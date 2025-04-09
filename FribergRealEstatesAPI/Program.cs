@@ -1,3 +1,4 @@
+using Scalar.AspNetCore;
 
 namespace FribergRealEstatesAPI
 {
@@ -19,6 +20,7 @@ namespace FribergRealEstatesAPI
             if (app.Environment.IsDevelopment())
             {
                 app.MapOpenApi();
+                app.MapScalarApiReference();
             }
 
             app.UseHttpsRedirection();
@@ -29,6 +31,7 @@ namespace FribergRealEstatesAPI
             app.MapControllers();
 
             app.Run();
+
         }
     }
 }
