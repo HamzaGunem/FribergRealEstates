@@ -5,19 +5,21 @@
         //Auth: Hamza
         public static async Task SeedAsync(ApiDbContext context)
         {
-            if (context.Agencies != null)
+            if (!context.Agencies.Any())
             {
-                //Seed Agencies
+                //Seed Agencies and startup realtors
+                await AgencySeeding.SeedAgency(context);
             }
-            if (context.Realtors != null)
+            if (!context.Realtors.Any())
             {
                 //Seed Realtors
             }
-            if (context.Communs != null)
+            if (!context.Communs.Any())
             {
-                //Seed Communs
+                //Seed Communs and addresses
+                await CommunSeeding.SeedCommun(context);
             }
-            if (context.Residences != null)
+            if (!context.Residences.Any())
             {
                 //Seed Residences
             }

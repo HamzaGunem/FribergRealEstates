@@ -1,3 +1,6 @@
+using FribergRealEstatesAPI.Data;
+using FribergRealEstatesAPI.Data.Seeding;
+using Microsoft.EntityFrameworkCore;
 using Scalar.AspNetCore;
 
 namespace FribergRealEstatesAPI
@@ -13,6 +16,7 @@ namespace FribergRealEstatesAPI
             builder.Services.AddControllers();
             // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
             builder.Services.AddOpenApi();
+            builder.Services.AddDbContext<ApiDbContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("Default")));
 
             var app = builder.Build();
 
@@ -23,6 +27,12 @@ namespace FribergRealEstatesAPI
                 app.MapScalarApiReference();
             }
 
+            //Auth: Hamza, Seed all data
+            using (var scope = app.Services.CreateScope())
+            {
+                var apiDbContext = scope.ServiceProvider.GetRequiredService<ApiDbContext>();
+                SeedData.SeedAsync(apiDbContext).Wait();
+            }
             app.UseHttpsRedirection();
 
             app.UseAuthorization();
