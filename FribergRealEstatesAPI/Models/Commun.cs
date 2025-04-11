@@ -1,8 +1,8 @@
 ﻿namespace FribergRealEstatesAPI.Models
 {
+    // Made by Samuel
     public class Commun
     {
-        // Made by Samuel
         public int Id { get; set; }
 
         public string Name { get; set; }
