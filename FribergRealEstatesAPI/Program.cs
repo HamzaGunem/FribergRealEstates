@@ -22,7 +22,7 @@ namespace FribergRealEstatesAPI
                 app.MapOpenApi();
                 app.MapScalarApiReference();
             }
-            //Test
+
             app.UseHttpsRedirection();
 
             app.UseAuthorization();
