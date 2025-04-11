@@ -1,4 +1,6 @@
 using FribergRealEstatesAPI.Data;
+using FribergRealEstatesAPI.Data.Interfaces;
+using FribergRealEstatesAPI.Data.Repositories;
 using FribergRealEstatesAPI.Data.Seeding;
 using Microsoft.EntityFrameworkCore;
 using Scalar.AspNetCore;
@@ -17,6 +19,9 @@ namespace FribergRealEstatesAPI
             // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
             builder.Services.AddOpenApi();
             builder.Services.AddDbContext<ApiDbContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("Default")));
+
+            // Samuel
+            builder.Services.AddScoped(typeof(IRepository<>), typeof(GenericRepository<>));
 
             var app = builder.Build();
 
