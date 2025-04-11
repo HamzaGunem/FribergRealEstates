@@ -4,9 +4,12 @@
     public class Address
     {
         public int Id { get; set; }
-        public string Steet { get; set; }
+        public string Street { get; set; }
         public string PostalCode { get; set; }
         public string City { get; set; }
-        public Commun Commun { get; set; } 
+
+        //Navigation
+        public virtual Commun Commun { get; set; } 
+        public int CommunId { get; set; }
     }
 }

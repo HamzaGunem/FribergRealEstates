@@ -11,8 +11,10 @@
 
         public string LogoUrl { get; set; }
 
-        public virtual List<Realtor> Realtors { get; set; }
+        public Address Address { get; set; }
 
-        public virtual Address Address { get; set; }
+        //Navigation
+        public virtual ICollection<Realtor> Realtors { get; set; }
+
     }
 }

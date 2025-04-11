@@ -4,7 +4,7 @@ namespace FribergRealEstatesAPI.Models
 {
 
     // Made by Samuel
-    public abstract class Residence
+    public class Residence
     {
         public int Id { get; set; }
 

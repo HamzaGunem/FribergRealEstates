@@ -17,12 +17,13 @@ namespace FribergRealEstatesAPI.Models
 
         public string PhoneNumber { get; set; }
 
-        public string PictureUrl { get; set; }
+        public string? PictureUrl { get; set; }
+        public virtual List<Residence>? ActiveResidences { get; set; }
 
+        public virtual List<Residence>? SoldResidences { get; set; }
+
+        //Navigation
         public virtual Agency Agency { get; set; }
-
-        public virtual List<Residence> ActiveResidences { get; set; }
-
-        public virtual List<Residence> SoldResidences { get; set; }
+        public int AgencyId { get; set; }
     }
 }
