@@ -35,7 +35,10 @@ namespace FribergRealEstatesAPI.Models
 
         public virtual List<Facilities> Facilities { get; set; }
 
-        public Realtor Realtor { get; set; }
+        public virtual Realtor Realtor { get; set; }
+
+        // Navigation
+        public virtual int RealtorId { get; set; }
 
         public bool Sold { get; set; }
 

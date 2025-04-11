@@ -19,7 +19,7 @@ namespace FribergRealEstatesAPI.Models
 
         public string PictureUrl { get; set; }
 
-        public Agency Agency { get; set; }
+        public virtual Agency Agency { get; set; }
 
         public virtual List<Residence> ActiveResidences { get; set; }
 
