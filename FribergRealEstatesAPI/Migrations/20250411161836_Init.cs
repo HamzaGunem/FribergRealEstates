@@ -29,7 +29,7 @@ namespace FribergRealEstatesAPI.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Steet = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Street = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     PostalCode = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     City = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     CommunId = table.Column<int>(type: "int", nullable: false)
@@ -97,7 +97,6 @@ namespace FribergRealEstatesAPI.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    AdressId = table.Column<int>(type: "int", nullable: false),
                     StartPrice = table.Column<double>(type: "float", nullable: false),
                     beArea = table.Column<int>(type: "int", nullable: false),
                     BiArea = table.Column<int>(type: "int", nullable: true),
@@ -107,22 +106,22 @@ namespace FribergRealEstatesAPI.Migrations
                     MonthlyFee = table.Column<double>(type: "float", nullable: true),
                     OperatingCost = table.Column<double>(type: "float", nullable: false),
                     BuildYear = table.Column<int>(type: "int", nullable: false),
-                    ImageUrls = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    ImageUrls = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     ParkingSlotNumber = table.Column<int>(type: "int", nullable: true),
-                    Facilities = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Facilities = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Sold = table.Column<bool>(type: "bit", nullable: false),
                     IsAvailable = table.Column<bool>(type: "bit", nullable: false),
                     SoldPrice = table.Column<int>(type: "int", nullable: true),
                     RealtorId = table.Column<int>(type: "int", nullable: false),
-                    CommunId = table.Column<int>(type: "int", nullable: true),
-                    RealtorId1 = table.Column<int>(type: "int", nullable: true)
+                    AddressId = table.Column<int>(type: "int", nullable: false),
+                    CommunId = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Residences", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Residences_Address_AdressId",
-                        column: x => x.AdressId,
+                        name: "FK_Residences_Address_AddressId",
+                        column: x => x.AddressId,
                         principalTable: "Address",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
@@ -137,11 +136,6 @@ namespace FribergRealEstatesAPI.Migrations
                         principalTable: "Realtors",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
-                    table.ForeignKey(
-                        name: "FK_Residences_Realtors_RealtorId1",
-                        column: x => x.RealtorId1,
-                        principalTable: "Realtors",
-                        principalColumn: "Id");
                 });
 
             migrationBuilder.CreateIndex(
@@ -160,9 +154,10 @@ namespace FribergRealEstatesAPI.Migrations
                 column: "AgencyId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Residences_AdressId",
+                name: "IX_Residences_AddressId",
                 table: "Residences",
-                column: "AdressId");
+                column: "AddressId",
+                unique: true);
 
             migrationBuilder.CreateIndex(
                 name: "IX_Residences_CommunId",
@@ -173,11 +168,6 @@ namespace FribergRealEstatesAPI.Migrations
                 name: "IX_Residences_RealtorId",
                 table: "Residences",
                 column: "RealtorId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Residences_RealtorId1",
-                table: "Residences",
-                column: "RealtorId1");
         }
 
         /// <inheritdoc />

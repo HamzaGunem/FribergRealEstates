@@ -143,7 +143,7 @@ namespace FribergRealEstatesAPI.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<int>("AdressId")
+                    b.Property<int>("AddressId")
                         .HasColumnType("int");
 
                     b.Property<int?>("BiArea")
@@ -160,14 +160,12 @@ namespace FribergRealEstatesAPI.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.PrimitiveCollection<string>("Facilities")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("FloorRows")
                         .HasColumnType("int");
 
                     b.PrimitiveCollection<string>("ImageUrls")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<bool>("IsAvailable")
@@ -183,9 +181,6 @@ namespace FribergRealEstatesAPI.Migrations
                         .HasColumnType("int");
 
                     b.Property<int>("RealtorId")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("RealtorId1")
                         .HasColumnType("int");
 
                     b.Property<int>("Rooms")
@@ -205,13 +200,12 @@ namespace FribergRealEstatesAPI.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("AdressId");
+                    b.HasIndex("AddressId")
+                        .IsUnique();
 
                     b.HasIndex("CommunId");
 
                     b.HasIndex("RealtorId");
-
-                    b.HasIndex("RealtorId1");
 
                     b.ToTable("Residences");
                 });
@@ -251,9 +245,9 @@ namespace FribergRealEstatesAPI.Migrations
 
             modelBuilder.Entity("FribergRealEstatesAPI.Models.Residence", b =>
                 {
-                    b.HasOne("FribergRealEstatesAPI.Models.Address", "Adress")
-                        .WithMany()
-                        .HasForeignKey("AdressId")
+                    b.HasOne("FribergRealEstatesAPI.Models.Address", "Address")
+                        .WithOne("Residence")
+                        .HasForeignKey("FribergRealEstatesAPI.Models.Residence", "AddressId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -267,13 +261,14 @@ namespace FribergRealEstatesAPI.Migrations
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
-                    b.HasOne("FribergRealEstatesAPI.Models.Realtor", null)
-                        .WithMany("SoldResidences")
-                        .HasForeignKey("RealtorId1");
-
-                    b.Navigation("Adress");
+                    b.Navigation("Address");
 
                     b.Navigation("Realtor");
+                });
+
+            modelBuilder.Entity("FribergRealEstatesAPI.Models.Address", b =>
+                {
+                    b.Navigation("Residence");
                 });
 
             modelBuilder.Entity("FribergRealEstatesAPI.Models.Agency", b =>
@@ -291,8 +286,6 @@ namespace FribergRealEstatesAPI.Migrations
             modelBuilder.Entity("FribergRealEstatesAPI.Models.Realtor", b =>
                 {
                     b.Navigation("ActiveResidences");
-
-                    b.Navigation("SoldResidences");
                 });
 #pragma warning restore 612, 618
         }

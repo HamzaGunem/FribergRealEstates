@@ -11,5 +11,7 @@
         //Navigation
         public virtual Commun Commun { get; set; } 
         public int CommunId { get; set; }
+
+        public virtual Residence? Residence { get; set; }
     }
 }
