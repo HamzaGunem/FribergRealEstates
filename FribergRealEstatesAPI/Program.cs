@@ -38,6 +38,7 @@ namespace FribergRealEstatesAPI
                 var apiDbContext = scope.ServiceProvider.GetRequiredService<ApiDbContext>();
                 SeedData.SeedAsync(apiDbContext).Wait();
             }
+
             app.UseHttpsRedirection();
 
             app.UseAuthorization();

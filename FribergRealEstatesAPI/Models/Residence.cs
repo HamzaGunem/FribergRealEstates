@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace FribergRealEstatesAPI.Models
 {
@@ -7,11 +8,7 @@ namespace FribergRealEstatesAPI.Models
     public class Residence
     {
         public int Id { get; set; }
-
-        public Address Adress { get; set; }
-
         public double StartPrice { get; set; }
-
         public int beArea { get; set; }
 
         public int? BiArea { get; set; }
@@ -29,11 +26,11 @@ namespace FribergRealEstatesAPI.Models
 
         public int BuildYear { get; set; }
 
-        public string[] ImageUrls { get; set; }
+        public string[]? ImageUrls { get; set; }
 
         public int? ParkingSlotNumber { get; set; }
 
-        public virtual List<Facilities> Facilities { get; set; }
+        public virtual List<Facilities>? Facilities { get; set; }
 
         public bool Sold { get; set; }
 
@@ -45,6 +42,8 @@ namespace FribergRealEstatesAPI.Models
         public virtual Realtor Realtor { get; set; }
         public int RealtorId { get; set; }
 
-
+        //Navigation
+        public virtual Address Address { get; set; }
+        public int AddressId { get; set; }
     }
 }

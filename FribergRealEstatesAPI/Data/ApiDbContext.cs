@@ -18,12 +18,16 @@ namespace FribergRealEstatesAPI.Data
         {
             base.OnModelCreating(modelBuilder);
 
-            //Bostad till mäklare
             modelBuilder.Entity<Residence>()
                 .HasOne(r => r.Realtor)
-                .WithMany(re => re.ActiveResidences)
+                .WithMany(r => r.ActiveResidences)
                 .HasForeignKey(r => r.RealtorId)
                 .OnDelete(DeleteBehavior.Restrict);
+
+            modelBuilder.Entity<Residence>()
+                .HasOne(r => r.Address)
+                .WithOne(a => a.Residence)
+                .HasForeignKey<Residence>(r => r.AddressId);
 
             //Bostad till kommun
             modelBuilder.Entity<Address>()
