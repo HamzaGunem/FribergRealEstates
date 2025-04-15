@@ -41,10 +41,6 @@ namespace FribergRealEstatesAPI.Models
         public int? SoldPrice { get; set; }
 
         //Navigation
-        public virtual Realtor Realtor { get; set; }
-        public int RealtorId { get; set; }
-
-        //Navigation
         public virtual Address Address { get; set; }
         public int AddressId { get; set; }
     }
