@@ -9,7 +9,7 @@ namespace FribergRealEstatesAPI.Models
     {
         public int Id { get; set; }
         public double StartPrice { get; set; }
-        public int beArea { get; set; }
+        public int Area { get; set; }
 
         public int? BiArea { get; set; }
 
