@@ -21,7 +21,10 @@ namespace FribergRealEstatesAPI
             builder.Services.AddDbContext<ApiDbContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("Default")));
 
             // Samuel
-            builder.Services.AddScoped(typeof(IRepository<>), typeof(GenericRepository<>));
+            // Injecting
+            builder.Services.AddScoped<IAddressRepository, AddressRepository>();
+            builder.Services.AddScoped<ICommunRepository, CommunRepository>();
+            builder.Services.AddScoped<IResidenceRepository, ResidenceRepository>();
 
             var app = builder.Build();
 
