@@ -11,7 +11,7 @@ namespace FribergRealEstatesAPI.Data.Seeding
             {
                 Name = "Drömhem Fastigheter",
                 Description = "Specialiserar sig på lyxvillor och exklusiva bostäder i Stockholms innerstad och omnejd. Erbjuder personlig service och hög kompetens inom lyxbostäder.",
-                Address = context.Address.OrderBy(x => Guid.NewGuid()).FirstOrDefault(),
+                Address = context.Addresses.OrderBy(x => Guid.NewGuid()).FirstOrDefault(),
                 LogoUrl = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS0OvDqAb4obi8MFFOvja3tarDQ_kRGwNctxg&s",
                 Realtors = new[] {
                     new Realtor {
@@ -27,7 +27,7 @@ namespace FribergRealEstatesAPI.Data.Seeding
             {
                 Name = "Elite Living Properties",
                 Description = "Premium real estate agency focusing on modern penthouses and waterfront properties in Gothenburg. Known for innovative design solutions.",
-                Address = context.Address.OrderBy(x => Guid.NewGuid()).FirstOrDefault(),
+                Address = context.Addresses.OrderBy(x => Guid.NewGuid()).FirstOrDefault(),
                 LogoUrl = "https://example.com/logos/elite-living.png",
                 Realtors = new[] {
                     new Realtor {
@@ -44,7 +44,7 @@ namespace FribergRealEstatesAPI.Data.Seeding
             {
                 Name = "Nordic Haven Realty",
                 Description = "Specialists in sustainable and eco-friendly homes across Scandinavia. Winner of Green Real Estate Award 2023.",
-                Address = context.Address.OrderBy(x => Guid.NewGuid()).FirstOrDefault(),
+                Address = context.Addresses.OrderBy(x => Guid.NewGuid()).FirstOrDefault(),
                 LogoUrl = "https://example.com/logos/nordic-haven.png",
                 Realtors = new[] {
                     new Realtor {
@@ -60,7 +60,7 @@ namespace FribergRealEstatesAPI.Data.Seeding
             {
                 Name = "Scandinavian Design Living",
                 Description = "Curated selection of mid-century modern and contemporary design homes. Partnered with leading interior designers.",
-                Address = context.Address.OrderBy(x => Guid.NewGuid()).FirstOrDefault(),
+                Address = context.Addresses.OrderBy(x => Guid.NewGuid()).FirstOrDefault(),
                 LogoUrl = "https://example.com/logos/scandi-design.png",
                 Realtors = new[] {
                     new Realtor {
@@ -76,7 +76,7 @@ namespace FribergRealEstatesAPI.Data.Seeding
             {
                 Name = "Urban Edge Properties",
                 Description = "Boutique agency specializing in trendy lofts and converted industrial spaces in Malmö's up-and-coming neighborhoods.",
-                Address = context.Address.OrderBy(x => Guid.NewGuid()).FirstOrDefault(),
+                Address = context.Addresses.OrderBy(x => Guid.NewGuid()).FirstOrDefault(),
                 LogoUrl = "https://example.com/logos/urban-edge.png",
                 Realtors = new[] {
                     new Realtor {
@@ -92,7 +92,7 @@ namespace FribergRealEstatesAPI.Data.Seeding
             {
                 Name = "Lakeside Estates",
                 Description = "Experts in luxury lakefront properties throughout Sweden's picturesque countryside. Family-owned since 1985.",
-                Address = context.Address.OrderBy(x => Guid.NewGuid()).FirstOrDefault(),
+                Address = context.Addresses.OrderBy(x => Guid.NewGuid()).FirstOrDefault(),
                 LogoUrl = "https://example.com/logos/lakeside.png",
                 Realtors = new[] {
                     new Realtor {
@@ -108,7 +108,7 @@ namespace FribergRealEstatesAPI.Data.Seeding
             {
                 Name = "Capital Homes",
                 Description = "The leading agency for diplomatic and expat housing solutions in Stockholm. Multilingual staff available 24/7.",
-                Address = context.Address.OrderBy(x => Guid.NewGuid()).FirstOrDefault(),
+                Address = context.Addresses.OrderBy(x => Guid.NewGuid()).FirstOrDefault(),
                 LogoUrl = "https://example.com/logos/capital-homes.png",
                 Realtors = new[] {
                     new Realtor {
@@ -124,7 +124,7 @@ namespace FribergRealEstatesAPI.Data.Seeding
             {
                 Name = "Alpine Retreats",
                 Description = "Specialists in mountain chalets and ski-in/ski-out properties in Åre and other premium alpine locations.",
-                Address = context.Address.OrderBy(x => Guid.NewGuid()).FirstOrDefault(),
+                Address = context.Addresses.OrderBy(x => Guid.NewGuid()).FirstOrDefault(),
                 LogoUrl = "https://example.com/logos/alpine-retreats.png",
                 Realtors = new[] {
                     new Realtor {
@@ -141,7 +141,7 @@ namespace FribergRealEstatesAPI.Data.Seeding
             {
                 Name = "Historic Homes Sweden",
                 Description = "Dedicated to preserving and selling Sweden's architectural heritage. Specialists in castles, manors, and listed properties.",
-                Address = context.Address.OrderBy(x => Guid.NewGuid()).FirstOrDefault(),
+                Address = context.Addresses.OrderBy(x => Guid.NewGuid()).FirstOrDefault(),
                 LogoUrl = "https://example.com/logos/historic-homes.png",
                 Realtors = new[] {
                     new Realtor {
@@ -158,7 +158,7 @@ namespace FribergRealEstatesAPI.Data.Seeding
             {
                 Name = "Coastal Properties Sweden",
                 Description = "Experts in archipelago and coastal real estate from Bohuslän to Österlen. Boat and dock specialists.",
-                Address = context.Address.OrderBy(x => Guid.NewGuid()).FirstOrDefault(),
+                Address = context.Addresses.OrderBy(x => Guid.NewGuid()).FirstOrDefault(),
                 LogoUrl = "https://example.com/logos/coastal-properties.png",
                 Realtors = new[] {
                     new Realtor {
@@ -175,7 +175,7 @@ namespace FribergRealEstatesAPI.Data.Seeding
             {
                 Name = "Smart City Living",
                 Description = "Innovative agency focusing on smart homes and tech-integrated properties in Sweden's urban centers.",
-                Address = context.Address.OrderBy(x => Guid.NewGuid()).FirstOrDefault(),
+                Address = context.Addresses.OrderBy(x => Guid.NewGuid()).FirstOrDefault(),
                 LogoUrl = "https://example.com/logos/smart-city.png",
                 Realtors = new[] {
                     new Realtor {
@@ -192,7 +192,7 @@ namespace FribergRealEstatesAPI.Data.Seeding
             {
                 Name = "Nordic Haven Realty",
                 Description = "Specialists in sustainable and eco-friendly homes across Scandinavia. Winner of Green Real Estate Award 2023.",
-                Address = context.Address.OrderBy(x => Guid.NewGuid()).FirstOrDefault(),
+                Address = context.Addresses.OrderBy(x => Guid.NewGuid()).FirstOrDefault(),
                 LogoUrl = "https://example.com/logos/nordic-haven.png",
                 Realtors = new[] {
                     new Realtor {

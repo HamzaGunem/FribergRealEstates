@@ -1,8 +1,8 @@
 ﻿namespace FribergRealEstatesAPI.Data.Seeding
 {
+    //Auth: Hamza
     public class SeedData
     {
-        //Auth: Hamza
         public static async Task SeedAsync(ApiDbContext context)
         {
             if (!context.Communs.Any())

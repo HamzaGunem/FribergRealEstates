@@ -7,7 +7,7 @@ namespace FribergRealEstatesAPI.Data
     // Minor addition: Robert
     public class ApiDbContext : DbContext
     {
-        public DbSet<Address> Address { get; set; }
+        public DbSet<Address> Addresses { get; set; }
         public DbSet<Agency> Agencies { get; set; }
         public DbSet<Residence> Residences { get; set; }
         public DbSet<Commun> Communs { get; set; }
@@ -20,10 +20,15 @@ namespace FribergRealEstatesAPI.Data
         {
             base.OnModelCreating(modelBuilder);
 
-            modelBuilder.Entity<Residence>()
-                .HasOne(r => r.Realtor)
-                .WithMany(r => r.ActiveResidences)
-                .HasForeignKey(r => r.RealtorId)
+            modelBuilder.Entity<Advert>()
+                .HasOne(a => a.Residence)
+                .WithOne(r => r.Advert)
+                .HasForeignKey<Advert>(a => a.ResidenceId);
+
+            modelBuilder.Entity<Advert>()
+                .HasOne(a => a.Realtor)
+                .WithMany(r => r.ActiveAdverts)
+                .HasForeignKey(a => a.RealtorId)
                 .OnDelete(DeleteBehavior.Restrict);
 
             modelBuilder.Entity<Residence>()

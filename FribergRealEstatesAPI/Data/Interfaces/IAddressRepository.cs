@@ -2,6 +2,7 @@
 
 namespace FribergRealEstatesAPI.Data.Interfaces
 {
+    //Auth: Hamza
     public interface IAddressRepository : IRepository<Address>
     {
     }
