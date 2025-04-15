@@ -38,5 +38,7 @@ namespace FribergRealEstatesAPI.Models
         //Navigation
         public virtual Address Address { get; set; }
         public int AddressId { get; set; }
+
+        public virtual Advert? Advert { get; set; }
     }
 }
