@@ -1,16 +1,28 @@
 ﻿using FribergRealEstatesAPI.Data.Interfaces;
 using Microsoft.EntityFrameworkCore;
+using System.Linq.Expressions;
 
 namespace FribergRealEstatesAPI.Data.Repositories
 {
     // Made by Samuel
-    public class GenericRepository<T> : IRepository<T> where T : class
+    public abstract class GenericRepository<T, TContext> : IRepository<T> 
+        where T : class
+        where TContext : DbContext
     {
-        private readonly ApiDbContext _context;
+        protected TContext _context;
 
-        public GenericRepository(ApiDbContext context)
+        public GenericRepository(TContext context)
         {
             _context = context;
+        }
+        public virtual Task<T?> FirstOrDefaultAsync(Expression<Func<T, bool>> predicate)
+        {
+            return _context.Set<T>().FirstOrDefaultAsync(predicate);
+        }
+
+        public async Task<bool> AnyAsync(Expression<Func<T, bool>> predicate)
+        {
+            return await _context.Set<T>().AnyAsync(predicate);
         }
 
         public async Task<T> AddAsync(T entity)

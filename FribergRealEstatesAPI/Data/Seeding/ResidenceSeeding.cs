@@ -3,6 +3,7 @@ using FribergRealEstatesAPI.Models;
 
 namespace FribergRealEstatesAPI.Data.Seeding
 {
+    //Auth: Hamza
     public class ResidenceSeeding
     {
         public static async Task SeedResidences(ApiDbContext context)
@@ -26,7 +27,7 @@ namespace FribergRealEstatesAPI.Data.Seeding
             {
                 Address = context.Address.OrderBy(x => Guid.NewGuid()).FirstOrDefault(),
                 StartPrice = 1800000,
-                beArea = 85,
+                Area = 85,
                 Description = "Modern apartment with great views",
                 Rooms = 2,
                 FloorRows = 3,
@@ -42,7 +43,7 @@ namespace FribergRealEstatesAPI.Data.Seeding
             {
                 Address = context.Address.OrderBy(x => Guid.NewGuid()).FirstOrDefault(),
                 StartPrice = 3200000,
-                beArea = 120,
+                Area = 120,
                 Description = "Spacious family home with garden",
                 Rooms = 4,
                 FloorRows = 1,
@@ -58,7 +59,7 @@ namespace FribergRealEstatesAPI.Data.Seeding
             {
                 Address = context.Address.OrderBy(x => Guid.NewGuid()).FirstOrDefault(),
                 StartPrice = 2500000,
-                beArea = 95,
+                Area = 95,
                 Description = "Renovated apartment in central location",
                 Rooms = 3,
                 FloorRows = 4,
@@ -74,7 +75,7 @@ namespace FribergRealEstatesAPI.Data.Seeding
             {
                 Address = context.Address.OrderBy(x => Guid.NewGuid()).FirstOrDefault(),
                 StartPrice = 1500000,
-                beArea = 75,
+                Area = 75,
                 Description = "Cozy studio perfect for singles",
                 Rooms = 1,
                 FloorRows = 5,
@@ -90,7 +91,7 @@ namespace FribergRealEstatesAPI.Data.Seeding
             {
                 Address = context.Address.OrderBy(x => Guid.NewGuid()).FirstOrDefault(),
                 StartPrice = 2800000,
-                beArea = 110,
+                Area = 110,
                 Description = "Luxury penthouse with terrace",
                 Rooms = 3,
                 FloorRows = 8,
@@ -106,7 +107,7 @@ namespace FribergRealEstatesAPI.Data.Seeding
             {
                 Address = context.Address.OrderBy(x => Guid.NewGuid()).FirstOrDefault(),
                 StartPrice = 1950000,
-                beArea = 88,
+                Area = 88,
                 Description = "Bright apartment with balcony",
                 Rooms = 2,
                 FloorRows = 2,
@@ -122,7 +123,7 @@ namespace FribergRealEstatesAPI.Data.Seeding
             {
                 Address = context.Address.OrderBy(x => Guid.NewGuid()).FirstOrDefault(),
                 StartPrice = 4200000,
-                beArea = 150,
+                Area = 150,
                 Description = "Exclusive villa with pool",
                 Rooms = 5,
                 FloorRows = 1,
@@ -138,7 +139,7 @@ namespace FribergRealEstatesAPI.Data.Seeding
             {
                 Address = context.Address.OrderBy(x => Guid.NewGuid()).FirstOrDefault(),
                 StartPrice = 2300000,
-                beArea = 92,
+                Area = 92,
                 Description = "Modern loft-style apartment",
                 Rooms = 2,
                 FloorRows = 6,
@@ -154,7 +155,7 @@ namespace FribergRealEstatesAPI.Data.Seeding
             {
                 Address = context.Address.OrderBy(x => Guid.NewGuid()).FirstOrDefault(),
                 StartPrice = 1650000,
-                beArea = 78,
+                Area = 78,
                 Description = "Affordable first-time buyer option",
                 Rooms = 2,
                 FloorRows = 3,
@@ -170,7 +171,7 @@ namespace FribergRealEstatesAPI.Data.Seeding
             {
                 Address = context.Address.OrderBy(x => Guid.NewGuid()).FirstOrDefault(),
                 StartPrice = 3500000,
-                beArea = 125,
+                Area = 125,
                 Description = "Premium duplex in quiet area",
                 Rooms = 4,
                 FloorRows = 2,
