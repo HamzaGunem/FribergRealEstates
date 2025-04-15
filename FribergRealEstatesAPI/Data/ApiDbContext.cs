@@ -4,6 +4,7 @@ using Microsoft.EntityFrameworkCore;
 namespace FribergRealEstatesAPI.Data
 {
     //Auth: Hamza
+    // Minor addition: Robert
     public class ApiDbContext : DbContext
     {
         public DbSet<Address> Address { get; set; }
@@ -11,6 +12,7 @@ namespace FribergRealEstatesAPI.Data
         public DbSet<Residence> Residences { get; set; }
         public DbSet<Commun> Communs { get; set; }
         public DbSet<Realtor> Realtors { get; set; }
+        public DbSet<Advert> Adverts { get; set; }
 
         public ApiDbContext(DbContextOptions options) : base(options) { }
 

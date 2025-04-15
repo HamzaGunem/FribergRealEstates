@@ -4,6 +4,7 @@ using System.Net.Cache;
 namespace FribergRealEstatesAPI.Models
 {
     // Made by Samuel
+    // minor change Robert
     public class Realtor
     {
         public int Id { get; set; }
@@ -18,7 +19,7 @@ namespace FribergRealEstatesAPI.Models
         public string PhoneNumber { get; set; }
 
         public string? PictureUrl { get; set; }
-        public virtual ICollection<Residence>? ActiveResidences { get; set; }
+        public virtual ICollection<Advert>? ActiveAdverts { get; set; }
         //Navigation
         public virtual Agency Agency { get; set; }
         public int AgencyId { get; set; }
