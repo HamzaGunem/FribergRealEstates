@@ -11,7 +11,7 @@ namespace FribergRealEstatesAPI.Data.Seeding
             {
                 Address = context.Address.FirstOrDefault(x => x.Id == 4),
                 StartPrice = 2000000,
-                beArea = 90,
+                Area = 90,
                 Description = "sdsadsadsaxcvfvfvvng",
                 Rooms = 3,
                 FloorRows = 2,
