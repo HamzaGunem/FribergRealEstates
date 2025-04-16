@@ -20,11 +20,12 @@ namespace FribergRealEstatesAPI
             builder.Services.AddOpenApi();
             builder.Services.AddDbContext<ApiDbContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("Default")));
 
-            // Samuel
+            // Samuel, Robert
             // Injecting
             builder.Services.AddScoped<IAddressRepository, AddressRepository>();
             builder.Services.AddScoped<ICommunRepository, CommunRepository>();
             builder.Services.AddScoped<IResidenceRepository, ResidenceRepository>();
+            builder.Services.AddScoped<IRealtorRepository, RealtorRepository>();
 
             var app = builder.Build();
 
