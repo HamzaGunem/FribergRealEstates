@@ -151,7 +151,7 @@ namespace FribergRealEstatesAPI.Migrations
                         column: x => x.RealtorId,
                         principalTable: "Realtors",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_Adverts_Residences_ResidenceId",
                         column: x => x.ResidenceId,
