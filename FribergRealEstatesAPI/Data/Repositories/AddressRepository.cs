@@ -15,7 +15,7 @@ namespace FribergRealEstatesAPI.Data.Repositories
 
         public async Task<Address> GetAddressFullAsync(int id)
         {
-            var address = await _context.Address
+            var address = await _context.Addresses
                 .Include(a => a.Commun)
                 .Include(a => a.Residence)
                 .FirstOrDefaultAsync(a => a.Id == id);

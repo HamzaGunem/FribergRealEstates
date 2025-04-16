@@ -4,3 +4,5 @@ GET {{FribergRealEstatesAPI_HostAddress}}/weatherforecast/
 Accept: application/json
 
 ###
+GET {{FribergRealEstatesAPI_HostAddress}}/api/Address/12
+Accept: application/json
