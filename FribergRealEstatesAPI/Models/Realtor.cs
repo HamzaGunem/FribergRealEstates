@@ -24,8 +24,5 @@ namespace FribergRealEstatesAPI.Models
         public virtual Agency Agency { get; set; }
         public int AgencyId { get; set; }
         public virtual ICollection<Advert>? ActiveAdverts { get; set; }
-
-
-
     }
 }
