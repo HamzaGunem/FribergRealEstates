@@ -252,7 +252,7 @@ namespace FribergRealEstatesAPI.Migrations
                     b.HasOne("FribergRealEstatesAPI.Models.Realtor", "Realtor")
                         .WithMany("ActiveAdverts")
                         .HasForeignKey("RealtorId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.HasOne("FribergRealEstatesAPI.Models.Residence", "Residence")
