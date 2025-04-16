@@ -3,7 +3,6 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace FribergRealEstatesAPI.Models
 {
-
     // Made by Samuel
     // Changes by Robert
     public class Residence
