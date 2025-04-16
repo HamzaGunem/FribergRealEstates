@@ -5,6 +5,7 @@ using System.Linq.Expressions;
 namespace FribergRealEstatesAPI.Data.Repositories
 {
     // Made by Samuel
+    // Changes Hamza
     public abstract class GenericRepository<T, TContext> : IRepository<T> 
         where T : class
         where TContext : DbContext

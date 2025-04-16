@@ -9,7 +9,6 @@ namespace FribergRealEstatesAPI.Models
     public class Residence
     {
         public int Id { get; set; }
-        public double StartPrice { get; set; }
         public int Area { get; set; } // Main living area
 
         public int? BiArea { get; set; } // Extra Area
@@ -34,18 +33,12 @@ namespace FribergRealEstatesAPI.Models
 
         public virtual List<Facilities>? Facilities { get; set; }
 
-        public bool Sold { get; set; }
-
         public bool IsAvailable { get; set; }
-
-        public int? SoldPrice { get; set; }
-
-        //Navigation
-        public virtual Realtor Realtor { get; set; }
-        public int RealtorId { get; set; }
 
         //Navigation
         public virtual Address Address { get; set; }
         public int AddressId { get; set; }
+
+        public virtual Advert? Advert { get; set; }
     }
 }

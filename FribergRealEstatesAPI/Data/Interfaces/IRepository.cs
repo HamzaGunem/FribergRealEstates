@@ -3,6 +3,7 @@
 namespace FribergRealEstatesAPI.Data.Interfaces
 {
     // Made by Samuel
+    // Changes Hamza
     public interface IRepository<T>
     {
         Task<IEnumerable<T>> GetAllAsync();
@@ -14,7 +15,9 @@ namespace FribergRealEstatesAPI.Data.Interfaces
         Task UpdateAsync(T entity);
 
         Task DeleteAsync(int id);
+
         Task<T?> FirstOrDefaultAsync(Expression<Func<T, bool>> predicate);
+
         Task<bool> AnyAsync(Expression<Func<T, bool>> predicate);
     }
 }

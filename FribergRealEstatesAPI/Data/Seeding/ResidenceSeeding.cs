@@ -8,179 +8,229 @@ namespace FribergRealEstatesAPI.Data.Seeding
     {
         public static async Task SeedResidences(ApiDbContext context)
         {
-            context.Residences.Add(new Residence
+            context.Residences.Add(new Apartment
             {
-                Address = context.Address.FirstOrDefault(x => x.Id == 4),
-                StartPrice = 2000000,
-                Area = 90,
-                Description = "sdsadsadsaxcvfvfvvng",
-                Rooms = 3,
-                FloorRows = 2,
-                MonthlyFee = 1000,
-                OperatingCost = 4000,
-                BuildYear = 2002,
-                Sold = false,
-                IsAvailable = true,
-                Realtor = context.Realtors.First()
-            });
-            context.Residences.Add(new Residence
-            {
-                Address = context.Address.OrderBy(x => Guid.NewGuid()).FirstOrDefault(),
-                StartPrice = 1800000,
-                Area = 85,
-                Description = "Modern apartment with great views",
+                Address = context.Addresses.OrderBy(x => Guid.NewGuid()).First(),
+                Area = 75,
+                BiArea = 5,
+                Floors = 1,
+                Description = "Modern apartment in city center",
                 Rooms = 2,
-                FloorRows = 3,
+                FloorRows = 1,
                 MonthlyFee = 1200,
                 OperatingCost = 3500,
                 BuildYear = 2010,
-                Sold = false,
                 IsAvailable = true,
-                Realtor = context.Realtors.OrderBy(x => Guid.NewGuid()).FirstOrDefault()
             });
 
-            context.Residences.Add(new Residence
+            context.Residences.Add(new Apartment
             {
-                Address = context.Address.OrderBy(x => Guid.NewGuid()).FirstOrDefault(),
-                StartPrice = 3200000,
-                Area = 120,
-                Description = "Spacious family home with garden",
+                Address = context.Addresses.OrderBy(x => Guid.NewGuid()).First(),
+                Area = 110,
+                BiArea = 15,
+                Floors = 2,
+                Description = "Spacious family apartment",
                 Rooms = 4,
-                FloorRows = 1,
-                MonthlyFee = 1500,
-                OperatingCost = 5000,
-                BuildYear = 1995,
-                Sold = false,
-                IsAvailable = true,
-                Realtor = context.Realtors.OrderBy(x => Guid.NewGuid()).FirstOrDefault()
-            });
-
-            context.Residences.Add(new Residence
-            {
-                Address = context.Address.OrderBy(x => Guid.NewGuid()).FirstOrDefault(),
-                StartPrice = 2500000,
-                Area = 95,
-                Description = "Renovated apartment in central location",
-                Rooms = 3,
-                FloorRows = 4,
-                MonthlyFee = 1300,
-                OperatingCost = 4200,
-                BuildYear = 2005,
-                Sold = true,
+                FloorRows = 2,
+                MonthlyFee = 1800,
+                OperatingCost = 4500,
+                BuildYear = 2015,
                 IsAvailable = false,
-                Realtor = context.Realtors.OrderBy(x => Guid.NewGuid()).FirstOrDefault()
             });
 
-            context.Residences.Add(new Residence
+            context.Residences.Add(new Apartment
             {
-                Address = context.Address.OrderBy(x => Guid.NewGuid()).FirstOrDefault(),
-                StartPrice = 1500000,
-                Area = 75,
-                Description = "Cozy studio perfect for singles",
+                Address = context.Addresses.OrderBy(x => Guid.NewGuid()).First(),
+                Area = 65,
+                BiArea = 0,
+                Floors = 1,
+                Description = "Cozy studio apartment",
                 Rooms = 1,
-                FloorRows = 5,
+                FloorRows = 1,
                 MonthlyFee = 900,
                 OperatingCost = 3000,
-                BuildYear = 2015,
-                Sold = false,
+                BuildYear = 2005,
                 IsAvailable = true,
-                Realtor = context.Realtors.OrderBy(x => Guid.NewGuid()).FirstOrDefault()
             });
 
-            context.Residences.Add(new Residence
+            context.Residences.Add(new Apartment
             {
-                Address = context.Address.OrderBy(x => Guid.NewGuid()).FirstOrDefault(),
-                StartPrice = 2800000,
-                Area = 110,
-                Description = "Luxury penthouse with terrace",
+                Address = context.Addresses.OrderBy(x => Guid.NewGuid()).First(),
+                Area = 85,
+                BiArea = 10,
+                Floors = 3,
+                Description = "Penthouse with great view",
                 Rooms = 3,
-                FloorRows = 8,
-                MonthlyFee = 1800,
-                OperatingCost = 6000,
-                BuildYear = 2018,
-                Sold = false,
-                IsAvailable = true,
-                Realtor = context.Realtors.OrderBy(x => Guid.NewGuid()).FirstOrDefault()
-            });
-
-            context.Residences.Add(new Residence
-            {
-                Address = context.Address.OrderBy(x => Guid.NewGuid()).FirstOrDefault(),
-                StartPrice = 1950000,
-                Area = 88,
-                Description = "Bright apartment with balcony",
-                Rooms = 2,
                 FloorRows = 2,
-                MonthlyFee = 1100,
-                OperatingCost = 3800,
-                BuildYear = 2008,
-                Sold = false,
+                MonthlyFee = 2000,
+                OperatingCost = 5000,
+                BuildYear = 2018,
                 IsAvailable = true,
-                Realtor = context.Realtors.OrderBy(x => Guid.NewGuid()).FirstOrDefault()
             });
 
-            context.Residences.Add(new Residence
+            context.Residences.Add(new Apartment
             {
-                Address = context.Address.OrderBy(x => Guid.NewGuid()).FirstOrDefault(),
-                StartPrice = 4200000,
-                Area = 150,
-                Description = "Exclusive villa with pool",
+                Address = context.Addresses.OrderBy(x => Guid.NewGuid()).First(),
+                Area = 95,
+                BiArea = 12,
+                Floors = 2,
+                Description = "Renovated classic apartment",
+                Rooms = 3,
+                FloorRows = 2,
+                MonthlyFee = 1500,
+                OperatingCost = 4000,
+                BuildYear = 1995,
+                IsAvailable = true,
+            });
+
+            context.Residences.Add(new House
+            {
+                Address = context.Addresses.OrderBy(x => Guid.NewGuid()).First(),
+                Area = 120,
+                BiArea = 30,
+                Floors = 2,
+                Description = "Suburban family house",
                 Rooms = 5,
-                FloorRows = 1,
-                MonthlyFee = 2500,
-                OperatingCost = 8000,
+                FloorRows = 2,
+                MonthlyFee = 2200,
+                OperatingCost = 6000,
                 BuildYear = 2012,
-                Sold = false,
                 IsAvailable = true,
-                Realtor = context.Realtors.OrderBy(x => Guid.NewGuid()).FirstOrDefault()
             });
 
-            context.Residences.Add(new Residence
+            context.Residences.Add(new House
             {
-                Address = context.Address.OrderBy(x => Guid.NewGuid()).FirstOrDefault(),
-                StartPrice = 2300000,
-                Area = 92,
-                Description = "Modern loft-style apartment",
-                Rooms = 2,
-                FloorRows = 6,
-                MonthlyFee = 1400,
-                OperatingCost = 4500,
-                BuildYear = 2016,
-                Sold = true,
-                IsAvailable = false,
-                Realtor = context.Realtors.OrderBy(x => Guid.NewGuid()).FirstOrDefault()
-            });
-
-            context.Residences.Add(new Residence
-            {
-                Address = context.Address.OrderBy(x => Guid.NewGuid()).FirstOrDefault(),
-                StartPrice = 1650000,
-                Area = 78,
-                Description = "Affordable first-time buyer option",
-                Rooms = 2,
+                Address = context.Addresses.OrderBy(x => Guid.NewGuid()).First(),
+                Area = 150,
+                BiArea = 50,
+                Floors = 3,
+                Description = "Large countryside house",
+                Rooms = 6,
                 FloorRows = 3,
-                MonthlyFee = 950,
-                OperatingCost = 3200,
-                BuildYear = 2000,
-                Sold = false,
-                IsAvailable = true,
-                Realtor = context.Realtors.OrderBy(x => Guid.NewGuid()).FirstOrDefault()
+                MonthlyFee = 2800,
+                OperatingCost = 7000,
+                BuildYear = 2008,
+                IsAvailable = false,
             });
 
-            context.Residences.Add(new Residence
+            context.Residences.Add(new House
             {
-                Address = context.Address.OrderBy(x => Guid.NewGuid()).FirstOrDefault(),
-                StartPrice = 3500000,
-                Area = 125,
-                Description = "Premium duplex in quiet area",
+                Address = context.Addresses.OrderBy(x => Guid.NewGuid()).First(),
+                Area = 100,
+                BiArea = 20,
+                Floors = 1,
+                Description = "Small bungalow",
+                Rooms = 3,
+                FloorRows = 1,
+                MonthlyFee = 1700,
+                OperatingCost = 4500,
+                BuildYear = 2019,
+                IsAvailable = true,
+            });
+
+            context.Residences.Add(new House
+            {
+                Address = context.Addresses.OrderBy(x => Guid.NewGuid()).First(),
+                Area = 180,
+                BiArea = 60,
+                Floors = 2,
+                Description = "Luxury villa",
+                Rooms = 7,
+                FloorRows = 2,
+                MonthlyFee = 3500,
+                OperatingCost = 8000,
+                BuildYear = 2020,
+                IsAvailable = true,
+            });
+
+            context.Residences.Add(new House
+            {
+                Address = context.Addresses.OrderBy(x => Guid.NewGuid()).First(),
+                Area = 90,
+                BiArea = 15,
+                Floors = 1,
+                Description = "Cozy cottage",
+                Rooms = 2,
+                FloorRows = 1,
+                MonthlyFee = 1300,
+                OperatingCost = 3800,
+                BuildYear = 2000,
+                IsAvailable = true,
+            });
+
+            context.Residences.Add(new VacationHouse
+            {
+                Address = context.Addresses.OrderBy(x => Guid.NewGuid()).First(),
+                Area = 80,
+                BiArea = 20,
+                Floors = 1,
+                Description = "Beachfront vacation home",
+                Rooms = 3,
+                FloorRows = 1,
+                MonthlyFee = 1500,
+                OperatingCost = 4000,
+                BuildYear = 2015,
+                IsAvailable = true,
+            });
+
+            context.Residences.Add(new VacationHouse
+            {
+                Address = context.Addresses.OrderBy(x => Guid.NewGuid()).First(),
+                Area = 110,
+                BiArea = 30,
+                Floors = 2,
+                Description = "Mountain cabin",
                 Rooms = 4,
                 FloorRows = 2,
-                MonthlyFee = 1700,
-                OperatingCost = 5500,
-                BuildYear = 2014,
-                Sold = false,
+                MonthlyFee = 1900,
+                OperatingCost = 5000,
+                BuildYear = 2010,
                 IsAvailable = true,
-                Realtor = context.Realtors.OrderBy(x => Guid.NewGuid()).FirstOrDefault()
+            });
+
+            context.Residences.Add(new VacationHouse
+            {
+                Address = context.Addresses.OrderBy(x => Guid.NewGuid()).First(),
+                Area = 60,
+                BiArea = 10,
+                Floors = 1,
+                Description = "Small lakeside retreat",
+                Rooms = 2,
+                FloorRows = 1,
+                MonthlyFee = 1200,
+                OperatingCost = 3500,
+                BuildYear = 2005,
+                IsAvailable = false,
+            });
+
+            context.Residences.Add(new VacationHouse
+            {
+                Address = context.Addresses.OrderBy(x => Guid.NewGuid()).First(),
+                Area = 130,
+                BiArea = 40,
+                Floors = 2,
+                Description = "Ski chalet",
+                Rooms = 5,
+                FloorRows = 2,
+                MonthlyFee = 2500,
+                OperatingCost = 6500,
+                BuildYear = 2018,
+                IsAvailable = true,
+            });
+
+            context.Residences.Add(new VacationHouse
+            {
+                Address = context.Addresses.OrderBy(x => Guid.NewGuid()).First(),
+                Area = 70,
+                BiArea = 15,
+                Floors = 1,
+                Description = "Forest getaway",
+                Rooms = 2,
+                FloorRows = 1,
+                MonthlyFee = 1100,
+                OperatingCost = 3200,
+                BuildYear = 2012,
+                IsAvailable = true,
             });
             await context.SaveChangesAsync();
         }
