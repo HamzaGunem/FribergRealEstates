@@ -1,7 +1,6 @@
 ﻿using AutoMapper;
 using FribergRealEstatesAPI.Data.Dto;
 using FribergRealEstatesAPI.Data.Interfaces;
-using FribergRealEstatesAPI.Models;
 using Microsoft.AspNetCore.Mvc;
 
 namespace FribergRealEstatesAPI.Controllers
@@ -35,8 +34,8 @@ namespace FribergRealEstatesAPI.Controllers
         }
 
 
-        // GET: api/Address (eager)/ id
-        [HttpGet("/full/{addressId}")]
+        // GET: api/Address (eager)/full/ id
+        [HttpGet("full/{addressId}")]
         public async Task<ActionResult<AddressDto>> GetFullAddress(int addressId)
         {
             if (addressId <= 0)
