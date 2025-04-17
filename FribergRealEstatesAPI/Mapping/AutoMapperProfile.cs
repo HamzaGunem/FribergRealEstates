@@ -39,11 +39,19 @@ namespace FribergRealEstatesAPI.Mapping
             .ForMember(dest => dest.Area, opt => opt.MapFrom(src => src.Residence.Area))
             .ForMember(dest => dest.Rooms, opt => opt.MapFrom(src => src.Residence.Rooms));
 
+            // Address : Samuel
+            CreateMap<Address, AddressDto>()
+                .ForMember(adto => adto.Residence, opt => opt.MapFrom(a => a.Residence))
+                .ForMember(adto => adto.CommunName, opt => opt.MapFrom(a => a.Commun.Name))
+                .ReverseMap();
+
+
             //Default mapping with no reference to any other class
             CreateMap<Realtor, RealtorSummaryDto>();
             CreateMap<Residence, ResidenceSummaryDto>();
             CreateMap<Advert, AdvertSummaryDto>();
             CreateMap<Address, AddressDto>();
+            CreateMap<Address, AddressSummaryDto>() // Samuel
         }
     }
 }

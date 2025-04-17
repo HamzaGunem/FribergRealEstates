@@ -1,7 +1,8 @@
-﻿using FribergRealEstatesAPI.Data.Dto;
+﻿using AutoMapper;
+using FribergRealEstatesAPI.Data.Dto;
 using FribergRealEstatesAPI.Data.Interfaces;
+using FribergRealEstatesAPI.Models;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Infrastructure;
 
 namespace FribergRealEstatesAPI.Controllers
 {
@@ -11,52 +12,62 @@ namespace FribergRealEstatesAPI.Controllers
     public class AddressController : ControllerBase
     {
         private readonly IAddressRepository _addressRepository;
+        private readonly IMapper mapper;
 
-        public AddressController(IAddressRepository addressRepository)
+        public AddressController(IAddressRepository addressRepository, IMapper mapper)
         {
             _addressRepository = addressRepository;
+            this.mapper = mapper;
         }
 
-        // GET: api/Address/ id
-        [HttpGet("{addressId}")]
-        public async Task<IActionResult> GetFullAddress(int addressId)
+        // GET: api/ Address/
+        [HttpGet]
+        public async Task<ActionResult<List<AddressSummaryDto>>>GetAllAddresses()
+        {
+            var addresses = await _addressRepository.GetAllAsync();
+
+            var response = addresses.Select(address => mapper.Map<AddressSummaryDto>(address)).ToList();
+
+            if (response == null)
+                return NotFound("No addresses found");
+
+            return Ok(response);
+        }
+
+
+        // GET: api/Address (eager)/ id
+        [HttpGet("/full/{addressId}")]
+        public async Task<ActionResult<AddressDto>> GetFullAddress(int addressId)
         {
             if (addressId <= 0)
                 return NotFound(ModelState);
 
-            // TO-DO! create and add mapping to DTO
             var address = await _addressRepository.GetAddressFullAsync(addressId);
 
-            ResidenceDTO? residenceDto = null;
-
-            if (address.Residence != null)
-            {
-                residenceDto = new ResidenceDTO
-                {
-                    Id = address.Residence.Id,
-                    Area = address.Residence.Area,
-                    BiArea = address.Residence.BiArea,
-                    Description = address.Residence.Description,
-                    Rooms = address.Residence.Rooms
-                };
-            }
-
-            var addressDto = new AddressDto()
-            {
-                Id = address.Id,
-                Street = address.Street,
-                PostalCode = address.PostalCode,
-                City = address.City,
-                CommunName = address.Commun.Name,
-                Residence = residenceDto
-            };
-
+            var response = mapper.Map<AddressDto>(address);
 
             if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+
+            return Ok(response);
+        }
+
+
+        // GET: api/ Address (lazy)/ id
+        [HttpGet("{addressId}")]
+        public async Task<ActionResult<AddressSummaryDto>> GetAddressSummary(int addressId)
+        {
+            if (addressId <= 0)
                 return NotFound(ModelState);
 
-            // TO-DO! return as DTO
-            return Ok(addressDto);
+            var address = await _addressRepository.GetByIdAsync(addressId);
+
+            var response = mapper.Map<AddressSummaryDto>(address);
+
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+
+            return Ok(response);
         }
 
     }

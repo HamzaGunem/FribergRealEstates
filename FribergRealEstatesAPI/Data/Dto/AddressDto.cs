@@ -1,6 +1,7 @@
 ﻿namespace FribergRealEstatesAPI.Data.Dto
 {
     //Auth: Hamza
+    // Additions by Samuel
     public class AddressDto
     {
         public int Id { get; set; }
@@ -10,6 +11,6 @@
 
         public string CommunName { get; set; }
 
-        public ResidenceDTO Residence { get; set; }
+        public ResidenceSummaryDto Residence { get; set; }
     }
 }
