@@ -2,6 +2,7 @@ using FribergRealEstatesAPI.Data;
 using FribergRealEstatesAPI.Data.Interfaces;
 using FribergRealEstatesAPI.Data.Repositories;
 using FribergRealEstatesAPI.Data.Seeding;
+using FribergRealEstatesAPI.Mapping;
 using Microsoft.EntityFrameworkCore;
 using Scalar.AspNetCore;
 
@@ -20,12 +21,14 @@ namespace FribergRealEstatesAPI
             builder.Services.AddOpenApi();
             builder.Services.AddDbContext<ApiDbContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("Default")));
 
-            // Samuel, Robert
+            // Samuel, Robert, Hamza
             // Injecting
             builder.Services.AddScoped<IAddressRepository, AddressRepository>();
             builder.Services.AddScoped<ICommunRepository, CommunRepository>();
             builder.Services.AddScoped<IResidenceRepository, ResidenceRepository>();
             builder.Services.AddScoped<IRealtorRepository, RealtorRepository>();
+            builder.Services.AddScoped<IAdvertRepository, AdvertRepository>();
+            builder.Services.AddAutoMapper(typeof(AutoMapperProfile));
 
             var app = builder.Build();
 
@@ -36,7 +39,7 @@ namespace FribergRealEstatesAPI
                 app.MapScalarApiReference();
             }
 
-            //Auth: Hamza, Seed all data
+            //Hamza, Seed all data
             using (var scope = app.Services.CreateScope())
             {
                 var apiDbContext = scope.ServiceProvider.GetRequiredService<ApiDbContext>();

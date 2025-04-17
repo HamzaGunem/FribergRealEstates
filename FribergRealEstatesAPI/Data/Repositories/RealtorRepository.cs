@@ -26,5 +26,6 @@ namespace FribergRealEstatesAPI.Data.Repositories
 
             return realtor.ActiveAdverts.Where(a => !a.Sold).ToList();
         }
+
     }
 }

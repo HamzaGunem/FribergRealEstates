@@ -1,5 +1,6 @@
 ﻿namespace FribergRealEstatesAPI.Data.Dto
 {
+    //Auth: Hamza
     public class AddressDto
     {
         public int Id { get; set; }
