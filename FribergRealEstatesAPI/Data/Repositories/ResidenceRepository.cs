@@ -1,5 +1,6 @@
 ﻿using FribergRealEstatesAPI.Data.Interfaces;
 using FribergRealEstatesAPI.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace FribergRealEstatesAPI.Data.Repositories
 {

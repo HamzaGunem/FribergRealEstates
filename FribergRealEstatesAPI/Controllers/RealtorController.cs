@@ -1,4 +1,5 @@
-﻿using FribergRealEstatesAPI.Data.Dto;
+﻿using AutoMapper;
+using FribergRealEstatesAPI.Data.Dto;
 using FribergRealEstatesAPI.Data.Interfaces;
 using FribergRealEstatesAPI.Models;
 using Microsoft.AspNetCore.Http;
@@ -14,10 +15,12 @@ namespace FribergRealEstatesAPI.Controllers
     public class RealtorController : ControllerBase
     {
         private readonly IRealtorRepository _realtorRepository;
+        private readonly IMapper mapper;
 
-        public RealtorController(IRealtorRepository realtorRepository)
+        public RealtorController(IRealtorRepository realtorRepository, IMapper mapper)
         {
             this._realtorRepository = realtorRepository;
+            this.mapper = mapper;
         }
 
         [HttpGet("{realtorId}/active")]
@@ -55,5 +58,7 @@ namespace FribergRealEstatesAPI.Controllers
 
             return Ok(test);
         }
+
+
     }
 }
