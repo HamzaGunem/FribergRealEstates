@@ -25,6 +25,20 @@ namespace FribergRealEstatesAPI.Mapping
                 .ForMember(rdto => rdto.ActiveAdverts, opt => opt.MapFrom(r => r.ActiveAdverts))
                 .ReverseMap();
 
+          // Realtor-Adverts by Robert
+            CreateMap<Advert, RealtorAdvertsDto>()
+            .ForMember(dest => dest.Created, opt => opt.MapFrom(src => src.Created))
+            .ForMember(dest => dest.Sold, opt => opt.MapFrom(src => src.Sold))
+            .ForMember(dest => dest.CurrentPrice, opt => opt.MapFrom(src => src.CurrentPrice))
+            .ForMember(dest => dest.FirstName, opt => opt.MapFrom(src => src.Realtor.FirstName))
+            .ForMember(dest => dest.LastName, opt => opt.MapFrom(src => src.Realtor.LastName))
+            .ForMember(dest => dest.Agency, opt => opt.MapFrom(src => src.Realtor.Agency.Name))
+            .ForMember(dest => dest.Street, opt => opt.MapFrom(src => src.Residence.Address.Street))
+            .ForMember(dest => dest.City, opt => opt.MapFrom(src => src.Residence.Address.City))
+            .ForMember(dest => dest.Commune, opt => opt.MapFrom(src => src.Residence.Address.Commun.Name))
+            .ForMember(dest => dest.Area, opt => opt.MapFrom(src => src.Residence.Area))
+            .ForMember(dest => dest.Rooms, opt => opt.MapFrom(src => src.Residence.Rooms));
+
             //Default mapping with no reference to any other class
             CreateMap<Realtor, RealtorSummaryDto>();
             CreateMap<Residence, ResidenceSummaryDto>();
