@@ -2,17 +2,17 @@
 using FribergRealEstatesAPI.Data.Dto;
 using FribergRealEstatesAPI.Models;
 
-namespace FribergRealEstatesAPI.Data.AutoMapper
+namespace FribergRealEstatesAPI.Mapping
 {
     //Auth: Hamza
     public class AutoMapperProfile : Profile
     {
-        public AutoMapperProfile() 
+        public AutoMapperProfile()
         {
             //Advert
             CreateMap<Advert, AdvertDto>()
                 .ForMember(adto => adto.Realtor, opt => opt.MapFrom(a => a.Realtor))
-                .ForMember(adto => adto.Realtor, opt => opt.MapFrom(a => a.Residence))
+                .ForMember(adto => adto.Residence, opt => opt.MapFrom(a => a.Residence))
                 .ReverseMap();
 
             //Residence
@@ -20,6 +20,7 @@ namespace FribergRealEstatesAPI.Data.AutoMapper
                 .ForMember(rdto => rdto.Address, opt => opt.MapFrom(r => r.Address))
                 .ReverseMap();
 
+            //Realtor
             CreateMap<Realtor, RealtorDto>()
                 .ForMember(rdto => rdto.ActiveAdverts, opt => opt.MapFrom(r => r.ActiveAdverts))
                 .ReverseMap();
