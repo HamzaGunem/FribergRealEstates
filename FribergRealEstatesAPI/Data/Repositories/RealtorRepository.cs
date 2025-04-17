@@ -12,19 +12,15 @@ namespace FribergRealEstatesAPI.Data.Repositories
         }
 
         public async Task<IEnumerable<Advert>> GetActiveAdvertsByRealtorIdAsync(int realtorId)
-        {
-            var realtor = await _context.Realtors
-                .Include(b => b.Agency)
-                .Include(r => r.ActiveAdverts)
-                .ThenInclude(l => l.Residence)
-                .ThenInclude(a => a.Address)
-                .ThenInclude(c => c.Commun)
-                .FirstOrDefaultAsync(r => r.Id == realtorId);
-
-            if (realtor == null || realtor.ActiveAdverts == null)
-                return Enumerable.Empty<Advert>();
-
-            return realtor.ActiveAdverts.Where(a => !a.Sold).ToList();
+        {          
+            return await _context.Adverts
+                    .Where(a => a.RealtorId == realtorId && !a.Sold)
+                    .Include(a => a.Realtor)
+                    .ThenInclude(r => r.Agency)
+                    .Include(a => a.Residence)
+                    .ThenInclude(res => res.Address)
+                    .ThenInclude(addr => addr.Commun)
+                    .ToListAsync();
         }
 
     }
