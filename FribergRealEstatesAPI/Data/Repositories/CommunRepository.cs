@@ -9,6 +9,7 @@ namespace FribergRealEstatesAPI.Data.Repositories
     {
         public CommunRepository(ApiDbContext context) : base(context)
         {
-        }     
+        }
+
     }
 }

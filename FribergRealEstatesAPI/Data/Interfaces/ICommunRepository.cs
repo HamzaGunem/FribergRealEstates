@@ -5,6 +5,6 @@ namespace FribergRealEstatesAPI.Data.Interfaces
     //Auth: Hamza
     public interface ICommunRepository : IRepository<Commun>
     {
-
+        
     }
 }
