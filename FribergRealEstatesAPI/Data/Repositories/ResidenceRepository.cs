@@ -12,8 +12,27 @@ namespace FribergRealEstatesAPI.Data.Repositories
 
         }
 
+        public async Task<Residence> GetFullResidence(int id)
+        {
+            return await _context.Residences.Where(r => r.Id == id).Include(r => r.Address).FirstOrDefaultAsync();
+        }
+
+
         // added by Samuel
-        public async Task<Residence> GetResidenceByAddressAsync(int id) =>
-            await _context.Residences.Where(a => a.AddressId == id).FirstOrDefaultAsync();
+        public async Task<Residence> GetResidenceByAddressAsync(int id)
+        {
+            return await _context.Residences.Where(a => a.AddressId == id).FirstOrDefaultAsync();
+        }
+            
+                
+        // added by Samuel
+        public async Task<IEnumerable<Residence>> GetResidencesByCommunAsync(string communName) =>
+         await _context.Residences.Where(r => r.Address.City.ToUpper() == communName.ToUpper()).ToListAsync();
+        
+
+        // added by Samuel
+        public async Task<IEnumerable<Residence>> GetResidencesByCommunAsync(int id) =>
+            await _context.Residences.Where(r => r.Address.CommunId == id).ToListAsync();
+
     }
 }
