@@ -19,7 +19,7 @@ namespace FribergRealEstatesAPI.Controllers
             this.mapper = mapper;
         }
 
-
+        // added by Samuel
         [HttpGet("/city")]
         public async Task<ActionResult<ResidenceSummaryDto>> GetResidencesInCity(string cityName)
         {
@@ -33,6 +33,7 @@ namespace FribergRealEstatesAPI.Controllers
             return Ok(response);
         }
 
+        // added by Samuel
         [HttpGet("/commun")]
         public async Task<ActionResult<ResidenceSummaryDto>> GetResidencesInCommun(string communName)
         {
@@ -46,6 +47,7 @@ namespace FribergRealEstatesAPI.Controllers
             return Ok(response);
         }
 
+        // added by Samuel
         [HttpGet("/commun/{communId}")]
         public async Task<ActionResult<ResidenceSummaryDto>> GetResidencesInCommunById(int communId)
         {
