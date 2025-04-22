@@ -23,5 +23,16 @@ namespace FribergRealEstatesAPI.Data.Repositories
                     .ToListAsync();
         }
 
+        public async Task<IEnumerable<Advert>> GetSoldAdvertsByRealtorIdAsync(int realtorId)
+        {
+            return await _context.Adverts
+                    .Where(a => a.RealtorId == realtorId && a.Sold)
+                    .Include(a => a.Realtor)
+                    .ThenInclude(r => r.Agency)
+                    .Include(a => a.Residence)
+                    .ThenInclude(res => res.Address)
+                    .ThenInclude(addr => addr.Commun)
+                    .ToListAsync();
+        }
     }
 }
