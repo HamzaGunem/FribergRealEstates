@@ -20,20 +20,6 @@ namespace FribergRealEstatesAPI.Controllers
         }
 
         // added by Samuel
-        [HttpGet("/city")]
-        public async Task<ActionResult<ResidenceSummaryDto>> GetResidencesInCity(string cityName)
-        {
-            var residences = await _residenceRepository.GetResidencesByCityAsync(cityName);
-                       
-            var response = residences.Select(residence => mapper.Map<ResidenceSummaryDto>(residence)).ToList();
-
-            if (response == null)
-                return NotFound("No residences found");
-
-            return Ok(response);
-        }
-
-        // added by Samuel
         [HttpGet("/commun")]
         public async Task<ActionResult<ResidenceSummaryDto>> GetResidencesInCommun(string communName)
         {
