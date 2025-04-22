@@ -1,4 +1,5 @@
-﻿using FribergRealEstatesAPI.Data.Interfaces;
+﻿using FribergRealEstatesAPI.Data.Dto;
+using FribergRealEstatesAPI.Data.Interfaces;
 using FribergRealEstatesAPI.Models;
 using Microsoft.EntityFrameworkCore;
 
@@ -33,6 +34,12 @@ namespace FribergRealEstatesAPI.Data.Repositories
                     .ThenInclude(res => res.Address)
                     .ThenInclude(addr => addr.Commun)
                     .ToListAsync();
+        }
+
+        public async Task<Realtor> GetProfileWithAgencyAsync(int realtorId)
+        {
+            return await _context.Realtors.Where(r => r.Id == realtorId)
+                .Include(a => a.Agency).FirstOrDefaultAsync();
         }
     }
 }
