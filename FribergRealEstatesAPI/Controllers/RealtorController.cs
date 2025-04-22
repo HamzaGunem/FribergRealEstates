@@ -39,13 +39,18 @@ namespace FribergRealEstatesAPI.Controllers
         }
 
         [HttpGet("{realtorId}/sold")]
-        public async Task<ActionResult<List>> GetSoldAdverts(int realtorId)
+        public async Task<ActionResult<List<RealtorAdvertsDto>>> GetSoldAdverts(int realtorId)
         {
             var realtor = _realtorRepository.GetByIdAsync(realtorId);
 
             if (realtor == null)
                 return NotFound();
 
+            var soldAdverts = await _realtorRepository.GetSoldAdvertsByRealtorIdAsync(realtorId);
+
+            var response = _mapper.Map<List<RealtorAdvertsDto>>(soldAdverts);
+
+            return Ok(response);
         }
     }
 }
