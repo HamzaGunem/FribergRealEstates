@@ -8,6 +8,7 @@ namespace FribergRealEstatesAPI.Data.Interfaces
 
         Task<IEnumerable<Advert>> GetActiveAdvertsByRealtorIdAsync(int realtorId);
         Task<IEnumerable<Advert>> GetSoldAdvertsByRealtorIdAsync(int realtorId);
+        Task<Realtor> GetProfileWithAgencyAsync(int realtorId);
 
     }
 }

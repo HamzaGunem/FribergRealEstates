@@ -34,7 +34,7 @@ namespace FribergRealEstatesAPI.Controllers
             var adverts = await _realtorRepository.GetActiveAdvertsByRealtorIdAsync(realtorId);
 
             var response = _mapper.Map<List<RealtorAdvertsDto>>(adverts);
-            
+
             return Ok(response);
         }
 
@@ -49,6 +49,19 @@ namespace FribergRealEstatesAPI.Controllers
             var soldAdverts = await _realtorRepository.GetSoldAdvertsByRealtorIdAsync(realtorId);
 
             var response = _mapper.Map<List<RealtorAdvertsDto>>(soldAdverts);
+
+            return Ok(response);
+        }
+
+        [HttpGet("{realtorId}/profile")]
+        public async Task<ActionResult<RealtorProfileDto>> GetRealtorProfile(int realtorId)
+        {
+            var realtor = await _realtorRepository.GetProfileWithAgencyAsync(realtorId);
+
+            if (realtor == null)
+                return NotFound();
+
+            var response = _mapper.Map<RealtorProfileDto>(realtor);
 
             return Ok(response);
         }
