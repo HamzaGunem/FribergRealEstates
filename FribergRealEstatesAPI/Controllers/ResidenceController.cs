@@ -46,5 +46,13 @@ namespace FribergRealEstatesAPI.Controllers
 
             return Ok(response);
         }
+
+        [HttpGet("{residenceId}/full")]
+        public async Task<ActionResult<ResidenceDto>> GetFullResidence(int residenceId)
+        {
+            var residence = await _residenceRepository.GetFullResidence(residenceId);
+            if (residence == null) return NotFound();
+            return Ok(mapper.Map<ResidenceDto>(residence));
+        }
     }
 }

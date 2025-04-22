@@ -17,6 +17,6 @@
 
         public int? ParkingSlotNumber { get; set; }
 
-        public AddressDto Address { get; set; }
+        public AddressSummaryDto Address { get; set; }
     }
 }
