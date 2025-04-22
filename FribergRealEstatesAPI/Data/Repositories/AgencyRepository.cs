@@ -28,6 +28,8 @@ namespace FribergRealEstatesAPI.Data.Repositories
         public async Task<Agency> GetAgencyWithRealtors(int id)
         {
             return await _context.Agencies
+                .Include(a => a.Address)
+                .ThenInclude(addr => addr.Commun)
                 .Include(a => a.Realtors)
                 .FirstOrDefaultAsync(a => a.Id == id);
         }
