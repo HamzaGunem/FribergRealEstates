@@ -5,6 +5,7 @@ using FribergRealEstatesAPI.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using System.Collections.Generic;
 
 namespace FribergRealEstatesAPI.Controllers
 {
@@ -34,6 +35,21 @@ namespace FribergRealEstatesAPI.Controllers
 
             var response = _mapper.Map<List<RealtorAdvertsDto>>(adverts);
             
+            return Ok(response);
+        }
+
+        [HttpGet("{realtorId}/sold")]
+        public async Task<ActionResult<List<RealtorAdvertsDto>>> GetSoldAdverts(int realtorId)
+        {
+            var realtor = _realtorRepository.GetByIdAsync(realtorId);
+
+            if (realtor == null)
+                return NotFound();
+
+            var soldAdverts = await _realtorRepository.GetSoldAdvertsByRealtorIdAsync(realtorId);
+
+            var response = _mapper.Map<List<RealtorAdvertsDto>>(soldAdverts);
+
             return Ok(response);
         }
     }
