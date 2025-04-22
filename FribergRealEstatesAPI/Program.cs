@@ -60,8 +60,9 @@ namespace FribergRealEstatesAPI
 
             app.UseHttpsRedirection();
 
-            app.UseAuthorization();
+            app.UseCors("AllowAll");
 
+            app.UseAuthorization();            
 
             app.MapControllers();
 
