@@ -50,8 +50,10 @@ namespace FribergRealEstatesAPI.Controllers
             return Ok(agencyDto);
         }
 
+        // Behöver fixas
+
         //Auth: Jonathan
-        [HttpPost("create")]
+        /*[HttpPost("create")]
         public async Task<ActionResult<Agency>> CreateAgency([FromBody] AgencyCreateDto agencyDto)
         {
             if (agencyDto == null)
@@ -59,6 +61,6 @@ namespace FribergRealEstatesAPI.Controllers
 
             var agency = await agencyService.CreateAgencyAsync(agencyDto);
             return Ok(agency);
-        }
+        }*/
     }
 }
