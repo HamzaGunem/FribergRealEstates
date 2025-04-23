@@ -31,6 +31,16 @@ namespace FribergRealEstatesAPI
             builder.Services.AddScoped<IAgencyRepository, AgencyRepository>();
             builder.Services.AddAutoMapper(typeof(AutoMapperProfile));
 
+            // CORS
+
+            builder.Services.AddCors(options =>
+            {
+                options.AddPolicy("AllowAll",
+                    b => b.AllowAnyMethod()
+                    .AllowAnyHeader()
+                    .AllowAnyOrigin());
+            });
+
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.
@@ -49,9 +59,10 @@ namespace FribergRealEstatesAPI
 
             app.UseHttpsRedirection();
 
+            app.UseCors("AllowAll");
+
             app.UseAuthorization();
-
-
+            
             app.MapControllers();
 
             app.Run();
