@@ -6,6 +6,7 @@ using Microsoft.EntityFrameworkCore;
 namespace FribergRealEstatesAPI.Data.Repositories
 {
     // Created by Robert
+    // Updated by Jonathan
     public class RealtorRepository : GenericRepository<Realtor, ApiDbContext>, IRealtorRepository
     {
         public RealtorRepository(ApiDbContext context) : base(context)
@@ -40,6 +41,12 @@ namespace FribergRealEstatesAPI.Data.Repositories
         {
             return await _context.Realtors.Where(r => r.Id == realtorId)
                 .Include(a => a.Agency).FirstOrDefaultAsync();
+        }
+
+        // Jonathan
+        public async Task SaveChangesAsync()
+        {
+            await _context.SaveChangesAsync();
         }
     }
 }

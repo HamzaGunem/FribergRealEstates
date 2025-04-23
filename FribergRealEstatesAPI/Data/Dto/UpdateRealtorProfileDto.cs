@@ -1,8 +1,7 @@
 ﻿namespace FribergRealEstatesAPI.Data.Dto
 {
-    //Created by Robert
-    //Updated by Jonathan
-    public class RealtorProfileDto
+    //Created by Jonathan
+    public class UpdateRealtorProfileDto
     {
         public int Id { get; set; }
         public string FirstName { get; set; }
@@ -10,8 +9,7 @@
         public string PhoneNumber { get; set; }
         public string? PictureUrl { get; set; }
         public string Email { get; set; }
-        public int? AgencyId { get; set; }    //Jonathan
-        public string? AgencyName { get; set; }
+        public int AgencyId { get; set; }
     }
 }
 

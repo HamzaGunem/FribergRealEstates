@@ -55,7 +55,8 @@ namespace FribergRealEstatesAPI.Mapping
             CreateMap<Advert, AdvertSummaryDto>();
             CreateMap<Address, AddressDto>();            
             CreateMap<Address, AddressSummaryDto>(); // Samuel
-          
+            CreateMap<UpdateRealtorProfileDto, Realtor>().ReverseMap(); // Jonathan
+
         }
     }
 }
