@@ -37,6 +37,9 @@ namespace FribergRealEstatesAPI.Data.Services
 
             var agency = _mapper.Map<Agency>(dto);
             agency.Address = addressToUse;
+
+            await _agencyRepository.AddAsync(agency);
+
             return agency;
         }
     }
