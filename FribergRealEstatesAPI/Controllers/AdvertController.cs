@@ -28,15 +28,20 @@ namespace FribergRealEstatesAPI.Controllers
             return Ok(mapper.Map<List<AdvertDto>>(adverts));
         }
 
-        //Auth: Hamza
+        [HttpGet("filter")]
+        public async Task<ActionResult<List<AdvertDto>>> GetFilteredAdverts([FromQuery] AdvertFilterDto filter)
+        {
+            var adverts = await advertRepository.GetFilteredAdvertsAsync(filter);
+            if (filter == null)
+                return NotFound();
+            return Ok(mapper.Map<List<AdvertDto>>(adverts));
+        }
         [HttpGet("{realtorId}/adverts")]
         public async Task<ActionResult<List<AdvertDto>>> GetActiveAdvertsByRealtor(int realtorId)
         {
             var adverts = await advertRepository.GetActiveAdvertsByRealtorAsync(realtorId);
             if (adverts == null)
-            {
                 return NotFound();
-            }
             return Ok(mapper.Map<List<AdvertDto>>(adverts));
         }
     }
