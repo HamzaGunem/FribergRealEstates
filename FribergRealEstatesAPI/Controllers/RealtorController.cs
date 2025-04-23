@@ -10,6 +10,7 @@ using System.Collections.Generic;
 namespace FribergRealEstatesAPI.Controllers
 {
     // Created By Robert
+    // Updated by Jonathan
     [Route("api/[controller]")]
     [ApiController]
     public class RealtorController : ControllerBase
@@ -64,6 +65,26 @@ namespace FribergRealEstatesAPI.Controllers
             var response = _mapper.Map<RealtorProfileDto>(realtor);
 
             return Ok(response);
+        }
+
+        //Created by Jonathan
+        [HttpPut("{realtorId}/profile")]
+        public async Task<ActionResult<RealtorProfileDto>> UpdateRealtorProfile(int realtorId, [FromBody] UpdateRealtorProfileDto dto)
+        {
+            var realtor = await _realtorRepository.GetProfileWithAgencyAsync(realtorId);
+
+            if (realtor == null)
+                return NotFound();
+
+            _mapper.Map(dto, realtor);
+
+            await _realtorRepository.SaveChangesAsync();
+
+            realtor = await _realtorRepository.GetProfileWithAgencyAsync(realtor.Id);
+
+            var updatedRealtorProfile = _mapper.Map<RealtorProfileDto>(realtor);
+
+            return Ok(updatedRealtorProfile);
         }
     }
 }

@@ -43,6 +43,7 @@ namespace FribergRealEstatesAPI
 
             var app = builder.Build();
 
+            
             // Configure the HTTP request pipeline.
             if (app.Environment.IsDevelopment())
             {
@@ -61,8 +62,8 @@ namespace FribergRealEstatesAPI
 
             app.UseCors("AllowAll");
 
-            app.UseAuthorization();
-            
+            app.UseAuthorization();            
+
             app.MapControllers();
 
             app.Run();
