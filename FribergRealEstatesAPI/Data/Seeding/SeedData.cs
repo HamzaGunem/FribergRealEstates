@@ -24,6 +24,10 @@
                 //Seed Residences
                 await ResidenceSeeding.SeedResidences(context);
             }
+            if (!context.Adverts.Any())
+            {
+                await AdvertSeeding.SeedAdvert(context);
+            }
           
         }
     }

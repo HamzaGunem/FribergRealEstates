@@ -8,6 +8,7 @@ namespace FribergRealEstatesAPI.Models
     public class Residence
     {
         public int Id { get; set; }
+        public ResidenceType Type { get; set; }
         public int Area { get; set; } // Main living area
 
         public int? BiArea { get; set; } // Extra Area
