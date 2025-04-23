@@ -1,23 +1,27 @@
 ﻿using AutoMapper;
 using FribergRealEstatesAPI.Data.Dto;
 using FribergRealEstatesAPI.Data.Interfaces;
+using FribergRealEstatesAPI.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace FribergRealEstatesAPI.Controllers
 {
     //Auth: Oscar   
+    //Updated by Jonathan
     [Route("api/[controller]")]
     [ApiController]
     public class AgencyController : ControllerBase
     {
         private readonly IAgencyRepository agencyRepository;
         private readonly IMapper mapper;
+        private readonly IAgencyService agencyService;
 
-        public AgencyController(IAgencyRepository agencyRepository, IMapper mapper)
+        public AgencyController(IAgencyRepository agencyRepository, IMapper mapper, IAgencyService agencyService)
         {
             this.agencyRepository = agencyRepository;
             this.mapper = mapper;
+            this.agencyService = agencyService;
         }
 
         //Auth: Oscar
@@ -44,6 +48,17 @@ namespace FribergRealEstatesAPI.Controllers
             }
             var agencyDto = mapper.Map<AgencyWithRealtorsDto>(agency);
             return Ok(agencyDto);
+        }
+
+        //Auth: Jonathan
+        [HttpPost("create")]
+        public async Task<ActionResult<Agency>> CreateAgency([FromBody] AgencyCreateDto agencyDto)
+        {
+            if (agencyDto == null)
+                return BadRequest("Misssing data");
+
+            var agency = await agencyService.CreateAgencyAsync(agencyDto);
+            return Ok(agency);
         }
     }
 }

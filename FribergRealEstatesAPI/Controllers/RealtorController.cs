@@ -67,8 +67,7 @@ namespace FribergRealEstatesAPI.Controllers
             return Ok(response);
         }
 
-        //Created by Jonathan
-        [HttpPut("{realtorId}/profile")]
+        [HttpPut("{realtorId}/profile")]    //Created by Jonathan
         public async Task<ActionResult<RealtorProfileDto>> UpdateRealtorProfile(int realtorId, [FromBody] UpdateRealtorProfileDto dto)
         {
             var realtor = await _realtorRepository.GetProfileWithAgencyAsync(realtorId);
