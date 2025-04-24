@@ -28,8 +28,8 @@ namespace FribergRealEstatesAPI.Controllers
             return Ok(mapper.Map<List<AdvertDto>>(adverts));
         }
 
-        [HttpGet("filter")]
-        public async Task<ActionResult<List<AdvertDto>>> GetFilteredAdverts([FromQuery] AdvertFilterDto filter)
+        [HttpPost("filter")]
+        public async Task<ActionResult<List<AdvertDto>>> GetFilteredAdverts([FromBody] AdvertFilterDto filter)
         {
             var adverts = await advertRepository.GetFilteredAdvertsAsync(filter);
             if (filter == null)

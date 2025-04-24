@@ -39,6 +39,17 @@ namespace FribergRealEstatesAPI.Controllers
             return Ok(response);
         }
 
+        //Hamza
+        [HttpGet("{communName}/realtors/byCommun")]
+        public async Task<ActionResult<List<RealtorDto>>> GetRealtorsByAgencyCommun(string communName)
+        {
+            var realtors = await _realtorRepository.GetRealtorsByAgencyCommunName(communName);
+            if (realtors == null)
+                return NotFound();
+            var response = _mapper.Map<List<RealtorDto>>(realtors);
+            return Ok(response);
+        }
+
         [HttpGet("{realtorId}/sold")]
         public async Task<ActionResult<List<RealtorAdvertsDto>>> GetSoldAdverts(int realtorId)
         {

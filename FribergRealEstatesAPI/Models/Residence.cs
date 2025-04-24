@@ -31,7 +31,7 @@ namespace FribergRealEstatesAPI.Models
 
         public int? ParkingSlotNumber { get; set; }
 
-        public virtual List<Facilities>? Facilities { get; set; }
+        public List<Facilities>? Facilities { get; set; }
 
         public bool IsAvailable { get; set; }
 
