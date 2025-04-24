@@ -1,6 +1,9 @@
-﻿namespace FribergRealEstatesAPI.Models
+﻿using System.Text.Json.Serialization;
+
+namespace FribergRealEstatesAPI.Models
 {
     //Auth: Hamza
+    [JsonConverter(typeof(JsonStringEnumConverter))]
     public enum ResidenceType
     {
         Apartment = 1,
