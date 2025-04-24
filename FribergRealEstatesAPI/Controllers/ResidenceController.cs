@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using FribergRealEstatesAPI.Data.Dto;
 using FribergRealEstatesAPI.Data.Interfaces;
+using FribergRealEstatesAPI.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -11,11 +12,15 @@ namespace FribergRealEstatesAPI.Controllers
     public class ResidenceController : ControllerBase
     {
         private readonly IResidenceRepository _residenceRepository;
+        private readonly IAddressRepository addressRepository;
+        private readonly ICommunRepository communRepository;
         private readonly IMapper mapper;
 
-        public ResidenceController(IResidenceRepository residenceRepository, IMapper mapper)
+        public ResidenceController(IResidenceRepository residenceRepository,IAddressRepository addressRepository, ICommunRepository communRepository, IMapper mapper)
         {
             _residenceRepository = residenceRepository;
+            this.addressRepository = addressRepository;
+            this.communRepository = communRepository;
             this.mapper = mapper;
         }
 
@@ -65,6 +70,41 @@ namespace FribergRealEstatesAPI.Controllers
                 return NotFound();
 
             return Ok(mapper.Map<ResidenceSummaryDto>(residence));
+        }
+        //Auth: Oscar
+        [HttpPost]
+        public async Task<ActionResult<CreateResidenceDto>> CreateResidence(CreateResidenceDto dto)
+        {
+            var commun = await communRepository.GetByIdAsync(dto.CommunId);
+            if (commun == null)
+                return NotFound("Commun not found");
+            var address = new Address
+            {
+                Street = dto.Street,
+                PostalCode = dto.PostalCode,
+                City = dto.City,
+                CommunId = dto.CommunId
+            };
+            await addressRepository.AddAsync(address);
+
+            var residence = new Residence
+            {
+                Description = dto.Description,
+                Area = dto.Area,
+                BiArea = dto.BiArea,
+                Rooms = dto.Rooms,
+                Floors = dto.Floors,
+                FloorRows = dto.FloorRows,
+                MonthlyFee = dto.MonthlyFee,
+                OperatingCost = dto.OperatingCost,
+                BuildYear = dto.BuildYear,
+                ImageUrls = dto.ImageUrls,
+                ParkingSlotNumber = dto.ParkingSlotNumber,
+                Facilities = dto.Facilities,
+                Address = address,
+                IsAvailable = true
+            };
+
         }
     }
 }

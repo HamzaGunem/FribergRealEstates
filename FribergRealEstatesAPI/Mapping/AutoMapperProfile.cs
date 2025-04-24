@@ -55,6 +55,10 @@ namespace FribergRealEstatesAPI.Mapping
             //Auth: Oscar
             CreateMap<Realtor, SimpleRealtorDto>()
                 .ForMember(dest => dest.ActiveAdverts, opt => opt.MapFrom(src => src.ActiveAdverts));
+            //Auth: Oscar
+            CreateMap<CreateResidenceDto, Residence>()
+                .ForMember(dest => dest.Address, opt => opt.Ignore())
+                .ForMember(dest => dest.Advert, opt => opt.Ignore());
 
             //Default mapping with no reference to any other class
             CreateMap<Realtor, RealtorSummaryDto>();
