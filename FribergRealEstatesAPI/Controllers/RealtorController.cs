@@ -46,7 +46,7 @@ namespace FribergRealEstatesAPI.Controllers
             var realtors = await _realtorRepository.GetRealtorsByAgencyCommunName(communName);
             if (realtors == null)
                 return NotFound();
-            var response = _mapper.Map<List<RealtorAdvertsDto>>(realtors);
+            var response = _mapper.Map<List<RealtorDto>>(realtors);
             return Ok(response);
         }
 
