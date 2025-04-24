@@ -1,4 +1,5 @@
-﻿using FribergRealEstatesAPI.Models;
+﻿using FribergRealEstatesAPI.Data.Dto;
+using FribergRealEstatesAPI.Models;
 
 namespace FribergRealEstatesAPI.Data.Interfaces
 {
@@ -7,5 +8,6 @@ namespace FribergRealEstatesAPI.Data.Interfaces
     {
         Task<List<Advert>> GetAdvertsByPriceRangeAsync(double minPrice, double maxPrice);
         Task<List<Advert>> GetActiveAdvertsByRealtorAsync(int realtorId);
+        Task<List<Advert>> GetFilteredAdvertsAsync(AdvertFilterDto filter);
     }
 }

@@ -1,4 +1,5 @@
-﻿using FribergRealEstatesAPI.Data.Interfaces;
+﻿using FribergRealEstatesAPI.Data.Dto;
+using FribergRealEstatesAPI.Data.Interfaces;
 using FribergRealEstatesAPI.Models;
 using Microsoft.EntityFrameworkCore;
 
@@ -27,6 +28,46 @@ namespace FribergRealEstatesAPI.Data.Repositories
                 .Include(a => a.Residence)
                 .Include(a => a.Realtor)
                 .ToListAsync();
+        }
+
+        public async Task<List<Advert>> GetFilteredAdvertsAsync(AdvertFilterDto filter)
+        {
+            IQueryable<Advert> query = _context.Adverts
+                .Include(a => a.Residence)
+                .ThenInclude(r => r.Address)
+                .Include(a => a.Realtor);
+
+            //Type filter
+            if (filter.ResidenceTypes != null && filter.ResidenceTypes.Any())
+            {
+                query = query.Where(a => filter.ResidenceTypes.Contains(a.Residence.Type));
+            }
+
+            //Rooms 
+            if(filter.MinRooms.HasValue)
+                query = query.Where(a => a.Residence.Rooms >= filter.MinRooms.Value);
+            if(filter.MaxRooms.HasValue)
+                query = query.Where(a => a.Residence.Rooms <= filter.MaxRooms.Value);
+
+            //Price 
+            if(filter.MinPrice.HasValue)
+                query = query.Where(a => a.CurrentPrice >= filter.MinPrice.Value);
+            if(filter.MaxPrice.HasValue)
+                query = query.Where(a => a.CurrentPrice <= filter.MaxPrice.Value);
+
+            //Area 
+            if(filter.MinArea.HasValue)
+                query = query.Where(a => a.Residence.Area >= filter.MinArea.Value);
+            if(filter.MaxArea.HasValue)
+                query = query.Where(a => a.Residence.Area <= filter.MaxArea.Value);
+
+            //Adress
+            if (!string.IsNullOrEmpty(filter.Address))
+            {
+                query = query.Where(a => a.Residence.Address.City.Contains(filter.Address));
+            }
+
+            return await query.ToListAsync();
         }
     }
 }
