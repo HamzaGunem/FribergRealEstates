@@ -5,6 +5,7 @@ namespace FribergRealEstatesAPI.Data.Dto
     //Auth: Oscar
     public class CreateResidenceDto
     {
+        public ResidenceType Type { get; set; }
         public string Street { get; set; }
         public string PostalCode { get; set; }
         public string City { get; set; }
@@ -23,8 +24,8 @@ namespace FribergRealEstatesAPI.Data.Dto
         public int? ParkingSlotNumber { get; set; }
         public List<Facilities>? Facilities { get; set; }
 
-        public int RealtorId { get; set; }
-        public double CurrentPrice { get; set; }
+        //public int RealtorId { get; set; }
+        //public double CurrentPrice { get; set; }
 
     }
 }

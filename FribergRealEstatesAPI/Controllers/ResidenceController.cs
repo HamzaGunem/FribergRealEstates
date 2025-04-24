@@ -16,7 +16,7 @@ namespace FribergRealEstatesAPI.Controllers
         private readonly ICommunRepository communRepository;
         private readonly IMapper mapper;
 
-        public ResidenceController(IResidenceRepository residenceRepository,IAddressRepository addressRepository, ICommunRepository communRepository, IMapper mapper)
+        public ResidenceController(IResidenceRepository residenceRepository, IAddressRepository addressRepository, ICommunRepository communRepository, IMapper mapper)
         {
             _residenceRepository = residenceRepository;
             this.addressRepository = addressRepository;
@@ -77,7 +77,7 @@ namespace FribergRealEstatesAPI.Controllers
         {
             var commun = await communRepository.GetByIdAsync(dto.CommunId);
             if (commun == null)
-                return NotFound("Commun not found");
+                return NotFound("Kommun hittades inte.");
             var address = new Address
             {
                 Street = dto.Street,
@@ -87,23 +87,31 @@ namespace FribergRealEstatesAPI.Controllers
             };
             await addressRepository.AddAsync(address);
 
-            var residence = new Residence
+            Residence residence;
+            try
             {
-                Description = dto.Description,
-                Area = dto.Area,
-                BiArea = dto.BiArea,
-                Rooms = dto.Rooms,
-                Floors = dto.Floors,
-                FloorRows = dto.FloorRows,
-                MonthlyFee = dto.MonthlyFee,
-                OperatingCost = dto.OperatingCost,
-                BuildYear = dto.BuildYear,
-                ImageUrls = dto.ImageUrls,
-                ParkingSlotNumber = dto.ParkingSlotNumber,
-                Facilities = dto.Facilities,
-                Address = address,
-                IsAvailable = true
-            };
+                residence = dto.Type switch
+                {
+                    ResidenceType.Apartment => mapper.Map<Apartment>(dto),
+                    ResidenceType.House => mapper.Map<House>(dto),
+                    ResidenceType.RowHouse => mapper.Map<RowHouse>(dto),
+                    ResidenceType.VacationHouse => mapper.Map<VacationHouse>(dto),
+                    _ => throw new ArgumentException()
+                };
+            }
+            catch
+            {
+                return BadRequest("Ogiltigt bostadstyp.");
+            }
+
+            residence.AddressId = address.Id;
+            residence.Address = address;
+            residence.IsAvailable = true;
+       
+
+
+            await _residenceRepository.AddAsync(residence);
+            return CreatedAtAction(nameof(GetResidenceById), new { residenceId = residence.Id }, null);
 
         }
     }
