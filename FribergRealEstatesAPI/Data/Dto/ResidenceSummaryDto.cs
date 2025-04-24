@@ -12,7 +12,9 @@ namespace FribergRealEstatesAPI.Data.Dto
         public double OperatingCost { get; set; }
         public double? MonthlyFee { get; set; }
         public int FloorRows { get; set; }
+        public string[]? ImageUrls { get; set; }
         public ResidenceType Type { get; set; }
+        public List<Facilities>? Facilities { get; set; }
     }
 
 }
