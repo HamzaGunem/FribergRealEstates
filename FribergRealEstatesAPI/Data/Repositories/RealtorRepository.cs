@@ -13,6 +13,17 @@ namespace FribergRealEstatesAPI.Data.Repositories
         {
         }
 
+        //Hamza
+        public async Task<IEnumerable<Realtor>> GetRealtorsByAgencyCommunName(string agencyCommunName)
+        {
+            return await _context.Realtors
+                .Include(r => r.Agency)
+                .ThenInclude(a => a.Address)
+                .ThenInclude(a => a.Commun)
+                .Where(r => r.Agency.Address.Commun.Name == agencyCommunName)
+                .ToListAsync();
+        }
+
         public async Task<IEnumerable<Advert>> GetActiveAdvertsByRealtorIdAsync(int realtorId)
         {          
             return await _context.Adverts
@@ -48,5 +59,6 @@ namespace FribergRealEstatesAPI.Data.Repositories
         {
             await _context.SaveChangesAsync();
         }
+
     }
 }
