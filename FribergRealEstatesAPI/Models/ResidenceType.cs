@@ -6,9 +6,9 @@ namespace FribergRealEstatesAPI.Models
     [JsonConverter(typeof(JsonStringEnumConverter))]
     public enum ResidenceType
     {
-        Apartment = 1,
-        House = 2,
-        RowHouse = 3,
-        VacationHouse = 5
+        Apartment,
+        House,
+        RowHouse,
+        VacationHouse
     }
 }
