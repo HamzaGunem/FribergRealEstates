@@ -20,6 +20,12 @@ namespace FribergRealEstatesAPI.Data.Seeding
                 FloorRows = 1,
                 MonthlyFee = 1200,
                 OperatingCost = 3500,
+                Facilities = new List<Facilities>
+                {
+                    Facilities.Balcony,
+                    Facilities.ParkingLot,
+                   
+                },
                 BuildYear = 2010,
                 IsAvailable = true,
             });
