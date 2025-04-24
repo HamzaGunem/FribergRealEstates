@@ -43,8 +43,8 @@ namespace FribergRealEstatesAPI.Data.Repositories
                 .Include(a => a.Agency).FirstOrDefaultAsync();
         }
 
-        // Jonathan
-        public async Task SaveChangesAsync()
+        
+        public async Task SaveChangesAsync() // Jonathan
         {
             await _context.SaveChangesAsync();
         }

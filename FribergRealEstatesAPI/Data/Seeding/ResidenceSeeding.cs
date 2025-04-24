@@ -11,6 +11,7 @@ namespace FribergRealEstatesAPI.Data.Seeding
             context.Residences.Add(new Apartment
             {
                 Address = context.Addresses.OrderBy(x => Guid.NewGuid()).First(),
+                Type = ResidenceType.Apartment,
                 Area = 75,
                 BiArea = 5,
                 Floors = 1,
@@ -26,6 +27,7 @@ namespace FribergRealEstatesAPI.Data.Seeding
             context.Residences.Add(new Apartment
             {
                 Address = context.Addresses.OrderBy(x => Guid.NewGuid()).First(),
+                Type = ResidenceType.Apartment,
                 Area = 110,
                 BiArea = 15,
                 Floors = 2,
@@ -41,6 +43,7 @@ namespace FribergRealEstatesAPI.Data.Seeding
             context.Residences.Add(new Apartment
             {
                 Address = context.Addresses.OrderBy(x => Guid.NewGuid()).First(),
+                Type = ResidenceType.Apartment,
                 Area = 65,
                 BiArea = 0,
                 Floors = 1,
@@ -56,6 +59,7 @@ namespace FribergRealEstatesAPI.Data.Seeding
             context.Residences.Add(new Apartment
             {
                 Address = context.Addresses.OrderBy(x => Guid.NewGuid()).First(),
+                Type = ResidenceType.Apartment,
                 Area = 85,
                 BiArea = 10,
                 Floors = 3,
@@ -71,6 +75,7 @@ namespace FribergRealEstatesAPI.Data.Seeding
             context.Residences.Add(new Apartment
             {
                 Address = context.Addresses.OrderBy(x => Guid.NewGuid()).First(),
+                Type = ResidenceType.Apartment,
                 Area = 95,
                 BiArea = 12,
                 Floors = 2,
@@ -86,6 +91,7 @@ namespace FribergRealEstatesAPI.Data.Seeding
             context.Residences.Add(new House
             {
                 Address = context.Addresses.OrderBy(x => Guid.NewGuid()).First(),
+                Type = ResidenceType.House,
                 Area = 120,
                 BiArea = 30,
                 Floors = 2,
@@ -101,6 +107,7 @@ namespace FribergRealEstatesAPI.Data.Seeding
             context.Residences.Add(new House
             {
                 Address = context.Addresses.OrderBy(x => Guid.NewGuid()).First(),
+                Type = ResidenceType.House,
                 Area = 150,
                 BiArea = 50,
                 Floors = 3,
@@ -116,6 +123,7 @@ namespace FribergRealEstatesAPI.Data.Seeding
             context.Residences.Add(new House
             {
                 Address = context.Addresses.OrderBy(x => Guid.NewGuid()).First(),
+                Type = ResidenceType.House,
                 Area = 100,
                 BiArea = 20,
                 Floors = 1,
@@ -131,6 +139,7 @@ namespace FribergRealEstatesAPI.Data.Seeding
             context.Residences.Add(new House
             {
                 Address = context.Addresses.OrderBy(x => Guid.NewGuid()).First(),
+                Type = ResidenceType.House,
                 Area = 180,
                 BiArea = 60,
                 Floors = 2,
@@ -146,6 +155,7 @@ namespace FribergRealEstatesAPI.Data.Seeding
             context.Residences.Add(new House
             {
                 Address = context.Addresses.OrderBy(x => Guid.NewGuid()).First(),
+                Type = ResidenceType.House,
                 Area = 90,
                 BiArea = 15,
                 Floors = 1,
@@ -161,6 +171,7 @@ namespace FribergRealEstatesAPI.Data.Seeding
             context.Residences.Add(new VacationHouse
             {
                 Address = context.Addresses.OrderBy(x => Guid.NewGuid()).First(),
+                Type = ResidenceType.VacationHouse,
                 Area = 80,
                 BiArea = 20,
                 Floors = 1,
@@ -176,6 +187,7 @@ namespace FribergRealEstatesAPI.Data.Seeding
             context.Residences.Add(new VacationHouse
             {
                 Address = context.Addresses.OrderBy(x => Guid.NewGuid()).First(),
+                Type = ResidenceType.VacationHouse,
                 Area = 110,
                 BiArea = 30,
                 Floors = 2,
@@ -191,6 +203,7 @@ namespace FribergRealEstatesAPI.Data.Seeding
             context.Residences.Add(new VacationHouse
             {
                 Address = context.Addresses.OrderBy(x => Guid.NewGuid()).First(),
+                Type = ResidenceType.VacationHouse,
                 Area = 60,
                 BiArea = 10,
                 Floors = 1,
@@ -206,6 +219,7 @@ namespace FribergRealEstatesAPI.Data.Seeding
             context.Residences.Add(new VacationHouse
             {
                 Address = context.Addresses.OrderBy(x => Guid.NewGuid()).First(),
+                Type = ResidenceType.VacationHouse,
                 Area = 130,
                 BiArea = 40,
                 Floors = 2,
@@ -221,6 +235,7 @@ namespace FribergRealEstatesAPI.Data.Seeding
             context.Residences.Add(new VacationHouse
             {
                 Address = context.Addresses.OrderBy(x => Guid.NewGuid()).First(),
+                Type = ResidenceType.VacationHouse,
                 Area = 70,
                 BiArea = 15,
                 Floors = 1,
