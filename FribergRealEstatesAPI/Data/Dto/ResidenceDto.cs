@@ -1,6 +1,9 @@
-﻿namespace FribergRealEstatesAPI.Data.Dto
+﻿using FribergRealEstatesAPI.Models;
+
+namespace FribergRealEstatesAPI.Data.Dto
 {
     //Auth: Hamza
+    //Additions: Oscar
     public class ResidenceDto
     {
         public int Id { get; set; }
@@ -14,6 +17,8 @@
         public int BuildYear { get; set; }
 
         public string[]? ImageUrls { get; set; }
+        public List<Facilities>? Facilities { get; set; }
+        public ResidenceType Type { get; set; }
 
         public int? ParkingSlotNumber { get; set; }
 
