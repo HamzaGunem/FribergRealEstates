@@ -107,12 +107,24 @@ namespace FribergRealEstatesAPI.Controllers
             residence.AddressId = address.Id;
             residence.Address = address;
             residence.IsAvailable = true;
-       
-
 
             await _residenceRepository.AddAsync(residence);
-            return CreatedAtAction(nameof(GetResidenceById), new { residenceId = residence.Id }, null);
+            var residenceDto = mapper.Map<ResidenceDto>(residence);
+            return CreatedAtAction(nameof(GetResidenceById), new { residenceId = residence.Id }, residenceDto);
 
+        }
+        //Auth: Oscar
+        [HttpPut("{residenceId}")]
+        public async Task<ActionResult<UpdateResidenceDto>> UpdateResidence(int residenceId, UpdateResidenceDto dto)
+        {
+            var residence = await _residenceRepository.GetByIdAsync(residenceId);
+            if (residence == null)
+                return NotFound("Residence not found");
+
+            mapper.Map(dto, residence);
+            await _residenceRepository.UpdateAsync(residence);
+            var updatedDto = mapper.Map<ResidenceDto>(residence);
+            return Ok(updatedDto);
         }
     }
 }

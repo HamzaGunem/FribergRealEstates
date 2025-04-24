@@ -63,7 +63,9 @@ namespace FribergRealEstatesAPI.Mapping
                 .Include<CreateResidenceDto, VacationHouse>()
                 .ForMember(dest => dest.Address, opt => opt.Ignore())
                 .ForMember(dest => dest.Advert, opt => opt.Ignore());
-
+            //Auth: Oscar
+            CreateMap<UpdateResidenceDto, Residence>()
+                .ForAllMembers(opts => opts.Condition((src, dest, srcMember) => srcMember != null));
             //Auth: Jonathan
             //Create Agency
             CreateMap<AgencyCreateDto, Agency>()
