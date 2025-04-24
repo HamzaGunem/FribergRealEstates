@@ -1,8 +1,10 @@
 ﻿using FribergRealEstatesAPI.Models;
+using Swashbuckle.AspNetCore.Annotations;
 
 namespace FribergRealEstatesAPI.Data.Dto
 {
     //Auth: Hamza
+    [SwaggerSchema(Title = "AdvertFilterDto", Description = "Filter for adverts")]
     public class AdvertFilterDto
     {
         public List<ResidenceType>? ResidenceTypes { get; set; }

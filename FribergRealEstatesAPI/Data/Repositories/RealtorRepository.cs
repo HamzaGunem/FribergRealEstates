@@ -17,6 +17,7 @@ namespace FribergRealEstatesAPI.Data.Repositories
         public async Task<IEnumerable<Realtor>> GetRealtorsByAgencyCommunName(string agencyCommunName)
         {
             return await _context.Realtors
+                .Include(r => r.ActiveAdverts)
                 .Include(r => r.Agency)
                 .ThenInclude(a => a.Address)
                 .ThenInclude(a => a.Commun)
