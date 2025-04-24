@@ -55,7 +55,17 @@ namespace FribergRealEstatesAPI.Mapping
             //Auth: Oscar
             CreateMap<Realtor, SimpleRealtorDto>()
                 .ForMember(dest => dest.ActiveAdverts, opt => opt.MapFrom(src => src.ActiveAdverts));
-
+            //Auth: Oscar
+            CreateMap<CreateResidenceDto, Residence>()
+                .Include<CreateResidenceDto, Apartment>()
+                .Include<CreateResidenceDto, House>()
+                .Include<CreateResidenceDto, RowHouse>()
+                .Include<CreateResidenceDto, VacationHouse>()
+                .ForMember(dest => dest.Address, opt => opt.Ignore())
+                .ForMember(dest => dest.Advert, opt => opt.Ignore());
+            //Auth: Oscar
+            CreateMap<UpdateResidenceDto, Residence>()
+                .ForAllMembers(opts => opts.Condition((src, dest, srcMember) => srcMember != null));
             //Auth: Jonathan
             //Create Agency
             CreateMap<AgencyCreateDto, Agency>()
@@ -71,7 +81,10 @@ namespace FribergRealEstatesAPI.Mapping
             CreateMap<Agency, AgencyWithRealtorsDto>(); // Oscar 
             CreateMap<UpdateRealtorProfileDto, Realtor>().ReverseMap(); // Jonathan
             CreateMap<AddressCreateDto, Address>(); //Jonathan
-
+            CreateMap<CreateResidenceDto, Apartment>(); //Oscar
+            CreateMap<CreateResidenceDto, House>(); //Oscar
+            CreateMap<CreateResidenceDto, RowHouse>(); //Oscar
+            CreateMap<CreateResidenceDto, VacationHouse>(); //Oscar
         }
     }
 }
