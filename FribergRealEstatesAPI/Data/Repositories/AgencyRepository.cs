@@ -9,6 +9,7 @@ using Microsoft.EntityFrameworkCore;
 namespace FribergRealEstatesAPI.Data.Repositories
 {
     //Auth: Oscar
+    //Updated by Jonathan
     public class AgencyRepository : GenericRepository<Agency, ApiDbContext>, IAgencyRepository
     {
         public AgencyRepository(ApiDbContext context) : base(context)
@@ -25,6 +26,16 @@ namespace FribergRealEstatesAPI.Data.Repositories
                .Where(a => a.Address.Commun.Name.ToUpper() == communName.ToUpper())
                .ToListAsync();
         }
+
+        //Jonathan
+        public async Task<Agency> GetAgencyWithAddressAndCommunAsync(int id)
+        {
+            return await _context.Agencies
+                .Include(a => a.Address)
+                .ThenInclude(addr => addr.Commun)
+                .FirstOrDefaultAsync(a => a.Id == id);
+        }
+
         public async Task<Agency> GetAgencyWithRealtors(int id)
         {
             return await _context.Agencies

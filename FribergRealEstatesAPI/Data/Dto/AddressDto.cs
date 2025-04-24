@@ -10,6 +10,7 @@
         public string City { get; set; }
 
         public string CommunName { get; set; }
+        public int CommunId { get; set; }
 
         public ResidenceSummaryDto Residence { get; set; }
     }

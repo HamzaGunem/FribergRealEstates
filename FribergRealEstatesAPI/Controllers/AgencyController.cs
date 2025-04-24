@@ -50,17 +50,33 @@ namespace FribergRealEstatesAPI.Controllers
             return Ok(agencyDto);
         }
 
-        // Behöver fixas
-
         //Auth: Jonathan
-        /*[HttpPost("create")]
-        public async Task<ActionResult<Agency>> CreateAgency([FromBody] AgencyCreateDto agencyDto)
+        [HttpPost("create")]
+        public async Task<ActionResult<AgencyDto>> CreateAgency([FromBody] AgencyCreateDto agencyDto)
         {
             if (agencyDto == null)
                 return BadRequest("Misssing data");
 
-            var agency = await agencyService.CreateAgencyAsync(agencyDto);
-            return Ok(agency);
-        }*/
+            var createdAgency = await agencyService.CreateAgencyAsync(agencyDto);
+
+            var responseDto = mapper.Map<AgencyDto>(createdAgency);
+
+
+            return CreatedAtAction(nameof(GetAgencyById), new { id = responseDto.Id }, responseDto);
+        }
+
+        //Auth: Jonathan
+        [HttpGet("{id}")]
+        public async Task<ActionResult<AgencyDto>> GetAgencyById(int id)
+        {
+            var agency = await agencyRepository.GetAgencyWithAddressAndCommunAsync(id);
+
+            if (agency == null)
+                return NotFound();
+
+            var responseDto = mapper.Map<AgencyDto>(agency);
+
+            return Ok(responseDto);
+        }
     }
 }
