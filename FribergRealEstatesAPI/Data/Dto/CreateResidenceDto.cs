@@ -10,7 +10,6 @@ namespace FribergRealEstatesAPI.Data.Dto
         public string PostalCode { get; set; }
         public string City { get; set; }
         public int CommunId { get; set; }
-
         public string Description { get; set; }
         public int Area { get; set; }
         public int? BiArea { get; set; }
