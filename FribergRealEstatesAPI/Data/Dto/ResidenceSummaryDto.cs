@@ -15,8 +15,8 @@ namespace FribergRealEstatesAPI.Data.Dto
         public string[]? ImageUrls { get; set; }
         public ResidenceType Type { get; set; }
         public List<Facilities>? Facilities { get; set; }
-        public string CommuneName { get; set; } // add Robert
-        public string City { get; set; } // add Robert
+
+        public AddressSummaryDto Address { get; set; }
     }
 
 }
