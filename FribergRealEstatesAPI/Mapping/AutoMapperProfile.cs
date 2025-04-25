@@ -9,18 +9,23 @@ namespace FribergRealEstatesAPI.Mapping
     {
         public AutoMapperProfile()
         {
-            //Advert
+            //Auth: Hamza Advert
             CreateMap<Advert, AdvertDto>()
                 .ForMember(adto => adto.Realtor, opt => opt.MapFrom(a => a.Realtor))
                 .ForMember(adto => adto.Residence, opt => opt.MapFrom(a => a.Residence))
                 .ReverseMap();
 
-            //Residence
+            //Auth: Hamza realtor to summary
+            CreateMap<Realtor, RealtorSummaryDto>()
+                .ForMember(rdto => rdto.AgencyName, opt => opt.MapFrom(r => r.Agency.Name))
+                .ReverseMap();
+
+            //Auth: Hamza Residence
             CreateMap<Residence, ResidenceDto>()
                 .ForMember(rdto => rdto.Address, opt => opt.MapFrom(r => r.Address))
                 .ReverseMap();
 
-            //Realtor
+            //Auth: Hamza Realtor
             CreateMap<Realtor, RealtorDto>()
                 .ForMember(rdto => rdto.ActiveAdverts, opt => opt.MapFrom(r => r.ActiveAdverts))
                 .ReverseMap();
@@ -75,8 +80,8 @@ namespace FribergRealEstatesAPI.Mapping
             CreateMap<Address, AddressSummaryDto>()
                 .ForMember(dest => dest.CommunName, opt => opt.MapFrom(src => src.Commun.Name));
 
-            //Default mapping with no reference to any other class
-            CreateMap<Realtor, RealtorSummaryDto>();
+            //Auth: Hamza Default mapping with no reference to any other class
+
             CreateMap<Residence, ResidenceSummaryDto>();
             CreateMap<Advert, AdvertSummaryDto>();
             CreateMap<Address, AddressDto>();            
