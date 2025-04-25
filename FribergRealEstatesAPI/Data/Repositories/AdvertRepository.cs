@@ -20,6 +20,7 @@ namespace FribergRealEstatesAPI.Data.Repositories
                 .ThenInclude(r => r.Address) // change Robert
                 .ThenInclude(c => c.Commun) // change Robert
                 .Include(a => a.Realtor)
+                .ThenInclude(r => r.Agency)
                 .ToListAsync();
         }
 
