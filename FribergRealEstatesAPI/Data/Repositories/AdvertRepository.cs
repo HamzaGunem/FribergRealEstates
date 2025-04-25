@@ -20,7 +20,6 @@ namespace FribergRealEstatesAPI.Data.Repositories
                 .ThenInclude(r => r.Address) // change Robert
                 .ThenInclude(c => c.Commun) // change Robert
                 .Include(a => a.Realtor)
-                .ThenInclude(r => r.Agency)
                 .ToListAsync();
         }
 
@@ -30,7 +29,8 @@ namespace FribergRealEstatesAPI.Data.Repositories
                 .Include(a => a.Residence)
                 .ThenInclude(r => r.Address)
                 .ThenInclude(c => c.Commun) // Change Robert
-                .Include(a => a.Realtor);
+                .Include(a => a.Realtor)
+                .ThenInclude(r => r.Agency);
 
             //Type filter
             if (filter.ResidenceTypes != null && filter.ResidenceTypes.Any())
