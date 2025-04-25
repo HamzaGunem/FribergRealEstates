@@ -69,14 +69,18 @@ namespace FribergRealEstatesAPI.Mapping
             //Auth: Jonathan
             //Create Agency
             CreateMap<AgencyCreateDto, Agency>()
-                .ForMember(dest => dest.Address, opt => opt.Ignore());
+                .ForMember(dest => dest.Address, opt => opt.Ignore());            
+
+            // Auth: Samuel Change: Robert
+            CreateMap<Address, AddressSummaryDto>()
+                .ForMember(dest => dest.CommunName, opt => opt.MapFrom(src => src.Commun.Name));
 
             //Default mapping with no reference to any other class
             CreateMap<Realtor, RealtorSummaryDto>();
             CreateMap<Residence, ResidenceSummaryDto>();
             CreateMap<Advert, AdvertSummaryDto>();
             CreateMap<Address, AddressDto>();            
-            CreateMap<Address, AddressSummaryDto>(); // Samuel
+            
             CreateMap<Realtor, SimpleRealtorDto>(); // Oscar
             CreateMap<Agency, AgencyWithRealtorsDto>(); // Oscar 
             CreateMap<UpdateRealtorProfileDto, Realtor>().ReverseMap(); // Jonathan

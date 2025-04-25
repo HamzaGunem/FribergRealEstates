@@ -12,6 +12,7 @@ namespace FribergRealEstatesAPI.Data.Dto
         public string Description { get; set; }
         public int Rooms { get; set; }
         public double OperatingCost { get; set; }
+        public int? Floors { get; set; } // Floorlevel in apartment
         public int FloorRows { get; set; } // Total floors inside apartment/house
         public double? MonthlyFee { get; set; }
         public int BuildYear { get; set; }
