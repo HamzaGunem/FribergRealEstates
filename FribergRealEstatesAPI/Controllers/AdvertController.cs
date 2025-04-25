@@ -21,13 +21,6 @@ namespace FribergRealEstatesAPI.Controllers
             this.mapper = mapper;
         }
 
-        [HttpGet("price-range")]
-        public async Task <ActionResult<List<AdvertDto>>> GetAdvertByPriceRange([FromQuery] double minPrice, [FromQuery] double maxPrice)
-        {
-            var adverts = await advertRepository.GetAdvertsByPriceRangeAsync(minPrice, maxPrice);
-            return Ok(mapper.Map<List<AdvertDto>>(adverts));
-        }
-
         [HttpPost("filter")]
         public async Task<ActionResult<List<AdvertDto>>> GetFilteredAdverts([FromBody] AdvertFilterDto filter)
         {
