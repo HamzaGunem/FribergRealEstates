@@ -23,6 +23,25 @@ namespace FribergRealEstatesAPI.Controllers
             this._realtorRepository = realtorRepository;
             this._mapper = mapper;
         }
+        //Auth: Hamza
+        [HttpGet("{realtorId}/full-profile")]
+        public async Task<ActionResult<RealtorFullProfileDto>> GetFullProfile(int realtorId)
+        {
+            var realtor = await _realtorRepository.GetProfileWithAgencyAsync(realtorId);
+            if (realtor == null)
+                return NotFound();
+
+            var activeAdverts = await _realtorRepository.GetActiveAdvertsByRealtorIdAsync(realtorId);
+            var soldAdverts = await _realtorRepository.GetSoldAdvertsByRealtorIdAsync(realtorId);
+
+            return new RealtorFullProfileDto
+            {
+                Realtor = _mapper.Map<RealtorSummaryDto>(realtor),
+                ActiveAdverts = _mapper.Map<List<AdvertDto>>(activeAdverts),
+                SoldAdverts = _mapper.Map<List<AdvertDto>>(soldAdverts)
+            };
+            
+        }
 
         [HttpGet("{realtorId}/active")]
         public async Task<ActionResult<List<RealtorAdvertsDto>>> GetActiveAdverts(int realtorId)
