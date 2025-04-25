@@ -9,6 +9,7 @@ namespace FribergRealEstatesAPI.Data.Dto
         public int Area { get; set; }
         public int? BiArea { get; set; }
         public string Description { get; set; }
+        public int? Floors { get; set; } 
         public int Rooms { get; set; }
         public double OperatingCost { get; set; }
         public double? MonthlyFee { get; set; }
