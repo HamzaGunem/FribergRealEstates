@@ -72,8 +72,8 @@ namespace FribergRealEstatesAPI.Mapping
             //Auth: Oscar
             CreateMap<UpdateResidenceDto, Residence>()
                 .ForAllMembers(opts => opts.Condition((src, dest, srcMember) => srcMember != null));
-            //Auth: Jonathan
-            //Create Agency
+
+            //Agency-Agency by Jonathan
             CreateMap<AgencyCreateDto, Agency>()
                 .ForMember(dest => dest.Address, opt => opt.Ignore());            
 
@@ -95,6 +95,7 @@ namespace FribergRealEstatesAPI.Mapping
             CreateMap<CreateResidenceDto, House>(); //Oscar
             CreateMap<CreateResidenceDto, RowHouse>(); //Oscar
             CreateMap<CreateResidenceDto, VacationHouse>(); //Oscar
+            CreateMap<Agency, AgencyDto>(); //Jonathan
         }
     }
 }
