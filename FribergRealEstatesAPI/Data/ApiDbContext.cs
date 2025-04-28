@@ -9,7 +9,7 @@ namespace FribergRealEstatesAPI.Data
 {
     //Auth: Hamza
     // Minor addition: Robert
-    public class ApiDbContext : IdentityDbContext
+    public class ApiDbContext : IdentityDbContext<ApiUser>
     {
         public DbSet<Address> Addresses { get; set; }
         public DbSet<Agency> Agencies { get; set; }
@@ -58,7 +58,7 @@ namespace FribergRealEstatesAPI.Data
                 .WithMany(a => a.Realtors)
                 .HasForeignKey(r => r.AgencyId)
                 .OnDelete(DeleteBehavior.Restrict);
-
+            
             modelBuilder.Entity<IdentityRole>().HasData(
                 new IdentityRole
                 {
@@ -105,7 +105,6 @@ namespace FribergRealEstatesAPI.Data
                     RoleId = "896dfa0e-3035-4dd1-9f6b-061896a10140",
                     UserId = "f866bbe6-a717-4958-9134-9f30a8113360"
                 });
-
 
 
         }

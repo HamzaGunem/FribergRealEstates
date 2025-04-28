@@ -2,12 +2,13 @@
 
 namespace FribergRealEstatesAPI.Data.Dto
 {
-    public class UserDto : LoginUserDto
+    public class LoginUserDto
     {
         [Required]
-        public string FirstName { get; set; }
+        [EmailAddress]
+        public string Email { get; set; }
 
         [Required]
-        public string LastName { get; set; }
+        public string Password { get; set; }
     }
 }

@@ -22,6 +22,99 @@ namespace FribergRealEstatesAPI.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
+            modelBuilder.Entity("FribergRealEstatesAPI.Data.ApiUser", b =>
+                {
+                    b.Property<string>("Id")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<int>("AccessFailedCount")
+                        .HasColumnType("int");
+
+                    b.Property<string>("ConcurrencyStamp")
+                        .IsConcurrencyToken()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Email")
+                        .HasMaxLength(256)
+                        .HasColumnType("nvarchar(256)");
+
+                    b.Property<bool>("EmailConfirmed")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("FirstName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("LastName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("LockoutEnabled")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTimeOffset?>("LockoutEnd")
+                        .HasColumnType("datetimeoffset");
+
+                    b.Property<string>("NormalizedEmail")
+                        .HasMaxLength(256)
+                        .HasColumnType("nvarchar(256)");
+
+                    b.Property<string>("NormalizedUserName")
+                        .HasMaxLength(256)
+                        .HasColumnType("nvarchar(256)");
+
+                    b.Property<string>("PasswordHash")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("PhoneNumber")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("PhoneNumberConfirmed")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("SecurityStamp")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("TwoFactorEnabled")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("UserName")
+                        .HasMaxLength(256)
+                        .HasColumnType("nvarchar(256)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("NormalizedEmail")
+                        .HasDatabaseName("EmailIndex");
+
+                    b.HasIndex("NormalizedUserName")
+                        .IsUnique()
+                        .HasDatabaseName("UserNameIndex")
+                        .HasFilter("[NormalizedUserName] IS NOT NULL");
+
+                    b.ToTable("AspNetUsers", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            Id = "f866bbe6-a717-4958-9134-9f30a8113360",
+                            AccessFailedCount = 0,
+                            ConcurrencyStamp = "870a8806-cfa2-4450-864b-c9c0f1facf99",
+                            Email = "admin@api.com",
+                            EmailConfirmed = true,
+                            FirstName = "System",
+                            LastName = "Admin",
+                            LockoutEnabled = false,
+                            NormalizedEmail = "ADMIN@API.COM",
+                            NormalizedUserName = "ADMIN@API.COM",
+                            PasswordHash = "AQAAAAIAAYagAAAAEDAYbZGG974mrgZV0SKx9Yep2XcSiA1TCmRB/t4iWd7gfn+ocEhq+e0gijDomgCxhg==",
+                            PhoneNumberConfirmed = false,
+                            SecurityStamp = "60a81f0e-d836-4f62-a55b-3e37caad2293",
+                            TwoFactorEnabled = false,
+                            UserName = "admin@api.com"
+                        });
+                });
+
             modelBuilder.Entity("FribergRealEstatesAPI.Models.Address", b =>
                 {
                     b.Property<int>("Id")
@@ -268,19 +361,27 @@ namespace FribergRealEstatesAPI.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "8dbf5e67-e5dc-4fa5-a41b-3be035b70d2c"
+                            Id = "8dbf5e67-e5dc-4fa5-a41b-3be035b70d2c",
+                            Name = "User",
+                            NormalizedName = "User"
                         },
                         new
                         {
-                            Id = "896dfa0e-3035-4dd1-9f6b-061896a10140"
+                            Id = "896dfa0e-3035-4dd1-9f6b-061896a10140",
+                            Name = "Admin",
+                            NormalizedName = "Admin"
                         },
                         new
                         {
-                            Id = "65161035-f041-4293-aabf-557b9bafc89c"
+                            Id = "65161035-f041-4293-aabf-557b9bafc89c",
+                            Name = "SuperAdmin",
+                            NormalizedName = "SuperAdmin"
                         },
                         new
                         {
-                            Id = "d8a759ea-8753-4e78-b8f0-1130af4c0691"
+                            Id = "d8a759ea-8753-4e78-b8f0-1130af4c0691",
+                            Name = "Realtor",
+                            NormalizedName = "Realtor"
                         });
                 });
 
@@ -307,80 +408,6 @@ namespace FribergRealEstatesAPI.Migrations
                     b.HasIndex("RoleId");
 
                     b.ToTable("AspNetRoleClaims", (string)null);
-                });
-
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUser", b =>
-                {
-                    b.Property<string>("Id")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<int>("AccessFailedCount")
-                        .HasColumnType("int");
-
-                    b.Property<string>("ConcurrencyStamp")
-                        .IsConcurrencyToken()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Discriminator")
-                        .IsRequired()
-                        .HasMaxLength(13)
-                        .HasColumnType("nvarchar(13)");
-
-                    b.Property<string>("Email")
-                        .HasMaxLength(256)
-                        .HasColumnType("nvarchar(256)");
-
-                    b.Property<bool>("EmailConfirmed")
-                        .HasColumnType("bit");
-
-                    b.Property<bool>("LockoutEnabled")
-                        .HasColumnType("bit");
-
-                    b.Property<DateTimeOffset?>("LockoutEnd")
-                        .HasColumnType("datetimeoffset");
-
-                    b.Property<string>("NormalizedEmail")
-                        .HasMaxLength(256)
-                        .HasColumnType("nvarchar(256)");
-
-                    b.Property<string>("NormalizedUserName")
-                        .HasMaxLength(256)
-                        .HasColumnType("nvarchar(256)");
-
-                    b.Property<string>("PasswordHash")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("PhoneNumber")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<bool>("PhoneNumberConfirmed")
-                        .HasColumnType("bit");
-
-                    b.Property<string>("SecurityStamp")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<bool>("TwoFactorEnabled")
-                        .HasColumnType("bit");
-
-                    b.Property<string>("UserName")
-                        .HasMaxLength(256)
-                        .HasColumnType("nvarchar(256)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("NormalizedEmail")
-                        .HasDatabaseName("EmailIndex");
-
-                    b.HasIndex("NormalizedUserName")
-                        .IsUnique()
-                        .HasDatabaseName("UserNameIndex")
-                        .HasFilter("[NormalizedUserName] IS NOT NULL");
-
-                    b.ToTable("AspNetUsers", (string)null);
-
-                    b.HasDiscriminator().HasValue("IdentityUser");
-
-                    b.UseTphMappingStrategy();
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
@@ -471,41 +498,6 @@ namespace FribergRealEstatesAPI.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
-            modelBuilder.Entity("FribergRealEstatesAPI.Data.ApiUser", b =>
-                {
-                    b.HasBaseType("Microsoft.AspNetCore.Identity.IdentityUser");
-
-                    b.Property<string>("FirstName")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("LastName")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasDiscriminator().HasValue("ApiUser");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = "f866bbe6-a717-4958-9134-9f30a8113360",
-                            AccessFailedCount = 0,
-                            ConcurrencyStamp = "7812e9ef-847b-411e-9bb4-db1d11802407",
-                            Email = "admin@api.com",
-                            EmailConfirmed = true,
-                            LockoutEnabled = false,
-                            NormalizedEmail = "ADMIN@API.COM",
-                            NormalizedUserName = "ADMIN@API.COM",
-                            PasswordHash = "AQAAAAIAAYagAAAAEPv2O6B4uIJY+6+AgZZ8JaUEKjaH8rcH4ph1nSJWSooZAuNOH+xAGbruuoN1tIHiUA==",
-                            PhoneNumberConfirmed = false,
-                            SecurityStamp = "c03aa14f-d575-4b03-aece-d76714c4ba01",
-                            TwoFactorEnabled = false,
-                            UserName = "admin@api.com",
-                            FirstName = "System",
-                            LastName = "Admin"
-                        });
-                });
-
             modelBuilder.Entity("FribergRealEstatesAPI.Models.Address", b =>
                 {
                     b.HasOne("FribergRealEstatesAPI.Models.Commun", "Commun")
@@ -584,7 +576,7 @@ namespace FribergRealEstatesAPI.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
                 {
-                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", null)
+                    b.HasOne("FribergRealEstatesAPI.Data.ApiUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -593,7 +585,7 @@ namespace FribergRealEstatesAPI.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<string>", b =>
                 {
-                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", null)
+                    b.HasOne("FribergRealEstatesAPI.Data.ApiUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -608,7 +600,7 @@ namespace FribergRealEstatesAPI.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", null)
+                    b.HasOne("FribergRealEstatesAPI.Data.ApiUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -617,7 +609,7 @@ namespace FribergRealEstatesAPI.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>
                 {
-                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", null)
+                    b.HasOne("FribergRealEstatesAPI.Data.ApiUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)

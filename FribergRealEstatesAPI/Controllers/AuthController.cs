@@ -52,5 +52,26 @@ namespace FribergRealEstatesAPI.Controllers
                 return Problem($"Something Went Wrong in the {nameof(Register)}", statusCode : 500);
             }
         }
+
+        [HttpPost]
+        [Route("login")]
+        public async Task<IActionResult> Login(LoginUserDto userdto)
+        {
+            try
+            {
+                var user = await _userManager.FindByEmailAsync(userdto.Email);
+                var passwordValid = await _userManager.CheckPasswordAsync(user, userdto.Password);
+                if(!passwordValid || user == null)
+                {
+                    return NotFound();
+                }
+
+                return Accepted();
+            }
+            catch(Exception ex)
+            {
+                return Problem($"Something Went Wrong in the {nameof(Login)}", statusCode: 500);
+            }
+        }
     }
 }
