@@ -1,12 +1,15 @@
-﻿using FribergRealEstatesAPI.Models;
+﻿using FribergRealEstatesAPI.Constants;
+using FribergRealEstatesAPI.Models;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Diagnostics;
 
 namespace FribergRealEstatesAPI.Data
 {
     //Auth: Hamza
     // Minor addition: Robert
-    public class ApiDbContext : IdentityDbContext
+    public class ApiDbContext : IdentityDbContext<ApiUser>
     {
         public DbSet<Address> Addresses { get; set; }
         public DbSet<Agency> Agencies { get; set; }
@@ -17,8 +20,13 @@ namespace FribergRealEstatesAPI.Data
 
         public ApiDbContext(DbContextOptions options) : base(options) { }
 
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            optionsBuilder.ConfigureWarnings(warnings => warnings.Ignore(RelationalEventId.PendingModelChangesWarning));
+        }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+
             base.OnModelCreating(modelBuilder);
 
             modelBuilder.Entity<Advert>()
@@ -50,6 +58,58 @@ namespace FribergRealEstatesAPI.Data
                 .WithMany(a => a.Realtors)
                 .HasForeignKey(r => r.AgencyId)
                 .OnDelete(DeleteBehavior.Restrict);
+
+
+            //Alla
+
+            modelBuilder.Entity<IdentityRole>().HasData(
+                new IdentityRole
+                {
+                    Name = ApiRoles.User,
+                    NormalizedName = ApiRoles.User,
+                    Id = "8dbf5e67-e5dc-4fa5-a41b-3be035b70d2c"
+                },
+                new IdentityRole
+                {
+                    Name = ApiRoles.Admin,
+                    NormalizedName = ApiRoles.Admin,
+                    Id = "896dfa0e-3035-4dd1-9f6b-061896a10140"
+                },
+                new IdentityRole
+                {
+                    Name = ApiRoles.SuperAdmin,
+                    NormalizedName = ApiRoles.SuperAdmin,
+                    Id = "65161035-f041-4293-aabf-557b9bafc89c"
+                },
+                new IdentityRole
+                {
+                    Name = ApiRoles.Realtor,
+                    NormalizedName = ApiRoles.Realtor,
+                    Id = "d8a759ea-8753-4e78-b8f0-1130af4c0691"
+                }
+                );
+            var hasher = new PasswordHasher<ApiUser>();
+            modelBuilder.Entity<ApiUser>().HasData(
+                new ApiUser
+                {
+                    Id = "f866bbe6-a717-4958-9134-9f30a8113360",
+                    Email = "admin@api.com",
+                    NormalizedEmail = "ADMIN@API.COM",
+                    UserName = "admin@api.com",
+                    NormalizedUserName = "ADMIN@API.COM",
+                    FirstName = "System",
+                    LastName = "Admin",
+                    PasswordHash = hasher.HashPassword(null, "Admin123!"),
+                    EmailConfirmed = true,
+                });
+            modelBuilder.Entity<IdentityUserRole<string>>().HasData(
+                new IdentityUserRole<string>
+                {
+                    RoleId = "896dfa0e-3035-4dd1-9f6b-061896a10140",
+                    UserId = "f866bbe6-a717-4958-9134-9f30a8113360"
+                });
+
+
         }
     }
 }

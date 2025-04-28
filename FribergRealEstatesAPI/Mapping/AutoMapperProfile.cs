@@ -47,7 +47,7 @@ namespace FribergRealEstatesAPI.Mapping
             .ForMember(dest => dest.Commune, opt => opt.MapFrom(src => src.Residence.Address.Commun.Name))
             .ForMember(dest => dest.Area, opt => opt.MapFrom(src => src.Residence.Area))
             .ForMember(dest => dest.Rooms, opt => opt.MapFrom(src => src.Residence.Rooms))
-            .ForMember(dest => dest.ImageURL, opt => opt.MapFrom(src => src.Residence.ImageUrls)); // Samuel
+            .ForMember(dest => dest.ImageUrls, opt => opt.MapFrom(src => src.Residence.ImageUrls ?? Array.Empty<string>())); // Samuel
 
             // Address : Samuel
             CreateMap<Address, AddressDto>()

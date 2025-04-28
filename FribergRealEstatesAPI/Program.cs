@@ -3,9 +3,12 @@ using FribergRealEstatesAPI.Data.Interfaces;
 using FribergRealEstatesAPI.Data.Repositories;
 using FribergRealEstatesAPI.Data.Seeding;
 using FribergRealEstatesAPI.Mapping;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
 using Scalar.AspNetCore;
+using System.Text;
 using System.Text.Json.Serialization;
 
 namespace FribergRealEstatesAPI
@@ -34,7 +37,10 @@ namespace FribergRealEstatesAPI
             builder.Services.AddAutoMapper(typeof(AutoMapperProfile));
 
             //Identity
-            builder.Services.AddIdentityCore<ApiUser>().AddRoles<IdentityRole>().AddEntityFrameworkStores<ApiDbContext>().AddDefaultTokenProviders();
+            builder.Services.AddIdentityCore<ApiUser>()
+                .AddRoles<IdentityRole>()
+                .AddEntityFrameworkStores<ApiDbContext>();
+            //.AddDefaultTokenProviders();
 
             builder.Services.AddControllers()
             .AddJsonOptions(options =>
@@ -51,9 +57,30 @@ namespace FribergRealEstatesAPI
                     .AllowAnyOrigin());
             });
 
+            //Alla
+            builder.Services.AddAuthentication(options =>
+            {
+                options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+                options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+            })
+                .AddJwtBearer(options =>
+                {
+                    options.TokenValidationParameters = new TokenValidationParameters
+                    {
+                        ValidateIssuer = true,
+                        ValidateAudience = true,
+                        ValidateLifetime = true,
+                        ValidateIssuerSigningKey = true,
+                        ValidIssuer = builder.Configuration["JwtSettings:Issuer"],
+                        ValidAudience = builder.Configuration["JwtSettings:Audience"],
+                        ClockSkew = TimeSpan.Zero,
+                        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["JwtSettings:Key"]))
+                    };
+                });
+
             var app = builder.Build();
 
-            
+
             // Configure the HTTP request pipeline.
             if (app.Environment.IsDevelopment())
             {
@@ -72,7 +99,8 @@ namespace FribergRealEstatesAPI
 
             app.UseCors("AllowAll");
 
-            app.UseAuthorization();            
+            app.UseAuthentication();
+            app.UseAuthorization();
 
             app.MapControllers();
 
