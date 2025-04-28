@@ -1,11 +1,12 @@
 ﻿using FribergRealEstatesAPI.Models;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
 namespace FribergRealEstatesAPI.Data
 {
     //Auth: Hamza
     // Minor addition: Robert
-    public class ApiDbContext : DbContext
+    public class ApiDbContext : IdentityDbContext
     {
         public DbSet<Address> Addresses { get; set; }
         public DbSet<Agency> Agencies { get; set; }
