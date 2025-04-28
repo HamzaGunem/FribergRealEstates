@@ -11,6 +11,6 @@ namespace FribergRealEstatesAPI.Data.Interfaces
         Task<List<Agency>> GetAgenciesByCommun(string communName);
 
         Task<Agency> GetAgencyWithRealtors(int id);
-        Task<Agency> GetAgencyWithAddressAndCommunAsync(int id); //Jonathan
+        Task CreateAgencyAsync(Agency agency); //Jonathan
     }
 }
