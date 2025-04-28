@@ -15,13 +15,13 @@ namespace FribergRealEstatesAPI.Controllers
     {
         private readonly IAgencyRepository agencyRepository;
         private readonly IMapper mapper;
-        private readonly IAgencyService agencyService;
+        private readonly IAddressRepository addressRepository;
 
-        public AgencyController(IAgencyRepository agencyRepository, IMapper mapper, IAgencyService agencyService)
+        public AgencyController(IAgencyRepository agencyRepository, IMapper mapper, IAddressRepository addressRepository)
         {
             this.agencyRepository = agencyRepository;
+            this.addressRepository = addressRepository;
             this.mapper = mapper;
-            this.agencyService = agencyService;
         }
 
         //Auth: Oscar
@@ -50,17 +50,25 @@ namespace FribergRealEstatesAPI.Controllers
             return Ok(agencyDto);
         }
 
-        // Behöver fixas
-
         //Auth: Jonathan
-        /*[HttpPost("create")]
-        public async Task<ActionResult<Agency>> CreateAgency([FromBody] AgencyCreateDto agencyDto)
+        [HttpPost("create")]
+        public async Task<ActionResult<AgencyDto>> CreateAgency([FromBody] AgencyCreateDto agencyCreateDto)
         {
-            if (agencyDto == null)
+            var agencyToCreate = mapper.Map<Agency>(agencyCreateDto);
+
+            if (agencyCreateDto == null)
                 return BadRequest("Misssing data");
 
-            var agency = await agencyService.CreateAgencyAsync(agencyDto);
-            return Ok(agency);
-        }*/
+            var address = await addressRepository.CreateAdressAsync(agencyCreateDto.Address);
+
+            mapper.Map<Address>(address);
+
+            agencyToCreate.Address = address;
+
+            await agencyRepository.CreateAgencyAsync(agencyToCreate);
+
+            return Created();
+        }
+
     }
 }

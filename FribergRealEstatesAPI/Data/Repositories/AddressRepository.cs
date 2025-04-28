@@ -1,4 +1,7 @@
-﻿using FribergRealEstatesAPI.Data.Interfaces;
+﻿using AutoMapper;
+using FribergRealEstatesAPI.Data.Dto;
+using FribergRealEstatesAPI.Data.Interfaces;
+using FribergRealEstatesAPI.Data.Dto;
 using FribergRealEstatesAPI.Models;
 using Microsoft.EntityFrameworkCore;
 
@@ -8,8 +11,10 @@ namespace FribergRealEstatesAPI.Data.Repositories
     // Editions by Samuel
     public class AddressRepository : GenericRepository<Address, ApiDbContext>, IAddressRepository
     {
-        public AddressRepository(ApiDbContext context) : base(context)
+        private readonly IMapper mapper;
+        public AddressRepository(ApiDbContext context, IMapper mapper) : base(context)
         {
+            this.mapper = mapper;
         }
 
 
@@ -23,6 +28,25 @@ namespace FribergRealEstatesAPI.Data.Repositories
 
         }
 
-        
+        //Jonathan
+        public async Task<Address> CreateAdressAsync(AddressCreateDto dto)
+        {
+            var existingAddress = await _context.Addresses.FirstOrDefaultAsync(a =>
+                a.Street == dto.Street &&
+                a.City == dto.City &&
+                a.PostalCode == dto.PostalCode &&
+                a.CommunId == dto.CommunId);
+
+            var addressToUse = existingAddress ?? mapper.Map<Address>(dto);
+
+            if (existingAddress == null)
+            {
+                await _context.AddAsync(addressToUse);
+                await _context.SaveChangesAsync();
+            }
+
+            return addressToUse;
+
+        }
     }
 }

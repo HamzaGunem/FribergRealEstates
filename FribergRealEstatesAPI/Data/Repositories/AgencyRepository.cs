@@ -9,10 +9,15 @@ using Microsoft.EntityFrameworkCore;
 namespace FribergRealEstatesAPI.Data.Repositories
 {
     //Auth: Oscar
+    //Updated by Jonathan
     public class AgencyRepository : GenericRepository<Agency, ApiDbContext>, IAgencyRepository
     {
-        public AgencyRepository(ApiDbContext context) : base(context)
+        private readonly IMapper mapper;
+        private readonly IAddressRepository addressRepository;
+        public AgencyRepository(ApiDbContext context, IMapper mapper, IAddressRepository addressRepository) : base(context)
         {
+            this.mapper = mapper;
+            this.addressRepository = addressRepository;
         }
 
         public async Task<List<Agency>> GetAgenciesByCommun(string communName)
@@ -25,6 +30,7 @@ namespace FribergRealEstatesAPI.Data.Repositories
                .Where(a => a.Address.Commun.Name.ToUpper() == communName.ToUpper())
                .ToListAsync();
         }
+
         public async Task<Agency> GetAgencyWithRealtors(int id)
         {
             return await _context.Agencies
@@ -32,6 +38,12 @@ namespace FribergRealEstatesAPI.Data.Repositories
                 .ThenInclude(addr => addr.Commun)
                 .Include(a => a.Realtors)
                 .FirstOrDefaultAsync(a => a.Id == id);
+        }
+
+        //Jonathan
+        public async Task CreateAgencyAsync(Agency agency)
+        {
+            await AddAsync(agency);
         }
 
     }
