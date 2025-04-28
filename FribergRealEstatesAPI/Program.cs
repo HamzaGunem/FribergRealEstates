@@ -2,8 +2,8 @@ using FribergRealEstatesAPI.Data;
 using FribergRealEstatesAPI.Data.Interfaces;
 using FribergRealEstatesAPI.Data.Repositories;
 using FribergRealEstatesAPI.Data.Seeding;
-using FribergRealEstatesAPI.Data.Services;
 using FribergRealEstatesAPI.Mapping;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Scalar.AspNetCore;
 using System.Text.Json.Serialization;
@@ -31,8 +31,10 @@ namespace FribergRealEstatesAPI
             builder.Services.AddScoped<IRealtorRepository, RealtorRepository>();
             builder.Services.AddScoped<IAdvertRepository, AdvertRepository>();
             builder.Services.AddScoped<IAgencyRepository, AgencyRepository>();
-            builder.Services.AddScoped<IAgencyService, AgencyService>(); // Jonathan
             builder.Services.AddAutoMapper(typeof(AutoMapperProfile));
+
+            //Identity
+            builder.Services.AddIdentityCore<ApiUser>().AddRoles<IdentityRole>().AddEntityFrameworkStores<ApiDbContext>().AddDefaultTokenProviders();
 
             builder.Services.AddControllers()
             .AddJsonOptions(options =>
