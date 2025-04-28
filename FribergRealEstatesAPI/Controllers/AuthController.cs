@@ -4,18 +4,25 @@ using FribergRealEstatesAPI.Data.Dto;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.IdentityModel.Tokens;
+using System.IdentityModel.Tokens.Jwt;
+using System.Security.Claims;
+using System.Text;
 
 namespace FribergRealEstatesAPI.Controllers
 {
+    //Alla
     [Route("api/[controller]")]
     [ApiController]
     public class AuthController : ControllerBase
     {
         private readonly UserManager<ApiUser> _userManager;
+        private readonly IConfiguration configuration;
 
-        public AuthController(UserManager<ApiUser> userManager)
+        public AuthController(UserManager<ApiUser> userManager, IConfiguration configuration)
         {
             _userManager = userManager;
+            configuration = configuration;
         }
 
         [HttpPost]
@@ -49,29 +56,61 @@ namespace FribergRealEstatesAPI.Controllers
             }
             catch (Exception ex)
             {
-                return Problem($"Something Went Wrong in the {nameof(Register)}", statusCode : 500);
+                return Problem($"Something Went Wrong in the {nameof(Register)}", statusCode: 500);
             }
         }
 
         [HttpPost]
         [Route("login")]
-        public async Task<IActionResult> Login(LoginUserDto userdto)
+        public async Task<ActionResult<AuthResponse>> Login(LoginUserDto userdto)
         {
             try
             {
                 var user = await _userManager.FindByEmailAsync(userdto.Email);
                 var passwordValid = await _userManager.CheckPasswordAsync(user, userdto.Password);
-                if(!passwordValid || user == null)
+                if (!passwordValid || user == null)
                 {
-                    return NotFound();
+                    return Unauthorized();
                 }
+                string tokenString = await GenerateToken(user);
+                var response = new AuthResponse
+                {
+                    Email = userdto.Email,
+                    Token = tokenString,
+                    UserId = user.Id,
+                };
 
-                return Accepted();
+                return Accepted(response);
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 return Problem($"Something Went Wrong in the {nameof(Login)}", statusCode: 500);
             }
+        }
+
+        private async Task<string> GenerateToken(ApiUser user)
+        {
+            var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(configuration["JwtSettings:Key"]));
+            var credentials = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
+            var roles = await _userManager.GetRolesAsync(user);
+            var roleClaims = roles.Select(q => new Claim(ClaimTypes.Role, q)).ToList();
+            var claims = new List<Claim>
+            {
+                new Claim(JwtRegisteredClaimNames.Sub, user.UserName),
+                new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
+                new Claim(JwtRegisteredClaimNames.Email, user.Email),
+                new Claim(CustomClaimTypes.Uid, user.Id),
+            }
+            .Union(roleClaims);
+
+            var token = new JwtSecurityToken(issuer: configuration["JwtSettings:Issuer"],
+                audience: configuration["JwtSettings:Audience"],
+                claims: claims,
+                expires: DateTime.UtcNow.AddMinutes(Convert.ToInt32(configuration["JwtSettings:DurationInMinutes"])),
+                signingCredentials: credentials
+                );
+
+            return new JwtSecurityTokenHandler().WriteToken(token);
         }
     }
 }

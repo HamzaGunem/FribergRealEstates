@@ -58,7 +58,10 @@ namespace FribergRealEstatesAPI.Data
                 .WithMany(a => a.Realtors)
                 .HasForeignKey(r => r.AgencyId)
                 .OnDelete(DeleteBehavior.Restrict);
-            
+
+
+            //Alla
+
             modelBuilder.Entity<IdentityRole>().HasData(
                 new IdentityRole
                 {
