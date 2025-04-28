@@ -5,6 +5,7 @@ using FribergRealEstatesAPI.Data.Seeding;
 using FribergRealEstatesAPI.Mapping;
 using Microsoft.EntityFrameworkCore;
 using Scalar.AspNetCore;
+using System.Text.Json.Serialization;
 
 namespace FribergRealEstatesAPI
 {
@@ -31,7 +32,12 @@ namespace FribergRealEstatesAPI
             builder.Services.AddScoped<IAgencyRepository, AgencyRepository>();
             builder.Services.AddAutoMapper(typeof(AutoMapperProfile));
 
-            // CORS
+            builder.Services.AddControllers()
+            .AddJsonOptions(options =>
+            {
+                options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter());
+            });
+
 
             builder.Services.AddCors(options =>
             {

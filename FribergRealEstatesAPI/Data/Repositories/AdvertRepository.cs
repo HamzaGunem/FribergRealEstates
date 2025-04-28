@@ -12,20 +12,13 @@ namespace FribergRealEstatesAPI.Data.Repositories
         {
         }
 
-        public async Task<List<Advert>> GetAdvertsByPriceRangeAsync(double minPrice, double maxPrice)
-        {
-            return await _context.Adverts
-                .Where(a => a.CurrentPrice >= minPrice && a.CurrentPrice <= maxPrice)
-                .Include(a => a.Residence)
-                .Include(a => a.Realtor)
-                .ToListAsync();
-        }
-
         public async Task<List<Advert>> GetActiveAdvertsByRealtorAsync(int realtorId)
         {
             return await _context.Adverts
                 .Where(a => a.RealtorId == realtorId && !a.Sold)
                 .Include(a => a.Residence)
+                .ThenInclude(r => r.Address) // change Robert
+                .ThenInclude(c => c.Commun) // change Robert
                 .Include(a => a.Realtor)
                 .ToListAsync();
         }
@@ -35,7 +28,9 @@ namespace FribergRealEstatesAPI.Data.Repositories
             IQueryable<Advert> query = _context.Adverts
                 .Include(a => a.Residence)
                 .ThenInclude(r => r.Address)
-                .Include(a => a.Realtor);
+                .ThenInclude(c => c.Commun) // Change Robert
+                .Include(a => a.Realtor)
+                .ThenInclude(r => r.Agency);
 
             //Type filter
             if (filter.ResidenceTypes != null && filter.ResidenceTypes.Any())

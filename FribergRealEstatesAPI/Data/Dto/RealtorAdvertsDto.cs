@@ -13,6 +13,7 @@
         public int Rooms { get; set; }
         public double CurrentPrice { get; set; }
         public bool Sold { get; set; }
+        public string[] ImageURL { get; set; }  // Samuel
         // Realtor
         public string FirstName { get; set; }
         public string LastName { get; set; }

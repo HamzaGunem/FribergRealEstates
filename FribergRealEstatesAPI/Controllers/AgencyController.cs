@@ -25,7 +25,7 @@ namespace FribergRealEstatesAPI.Controllers
         }
 
         //Auth: Oscar
-        [HttpGet("by-commun/{communName}")]
+        [HttpGet("{communName}/agencies/byCommun")]
         public async Task<ActionResult<IEnumerable<AgencyWithSimpleRealtorsDto>>> GetAgenciesByCommun(string communName)
         {
             var agencies = await agencyRepository.GetAgenciesByCommun(communName);

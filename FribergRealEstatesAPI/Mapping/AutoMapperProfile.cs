@@ -9,18 +9,23 @@ namespace FribergRealEstatesAPI.Mapping
     {
         public AutoMapperProfile()
         {
-            //Advert
+            //Auth: Hamza Advert
             CreateMap<Advert, AdvertDto>()
                 .ForMember(adto => adto.Realtor, opt => opt.MapFrom(a => a.Realtor))
                 .ForMember(adto => adto.Residence, opt => opt.MapFrom(a => a.Residence))
                 .ReverseMap();
 
-            //Residence
+            //Auth: Hamza realtor to summary
+            CreateMap<Realtor, RealtorSummaryDto>()
+                .ForMember(rdto => rdto.AgencyName, opt => opt.MapFrom(r => r.Agency.Name))
+                .ReverseMap();
+
+            //Auth: Hamza Residence
             CreateMap<Residence, ResidenceDto>()
                 .ForMember(rdto => rdto.Address, opt => opt.MapFrom(r => r.Address))
                 .ReverseMap();
 
-            //Realtor
+            //Auth: Hamza Realtor
             CreateMap<Realtor, RealtorDto>()
                 .ForMember(rdto => rdto.ActiveAdverts, opt => opt.MapFrom(r => r.ActiveAdverts))
                 .ReverseMap();
@@ -41,7 +46,8 @@ namespace FribergRealEstatesAPI.Mapping
             .ForMember(dest => dest.City, opt => opt.MapFrom(src => src.Residence.Address.City))
             .ForMember(dest => dest.Commune, opt => opt.MapFrom(src => src.Residence.Address.Commun.Name))
             .ForMember(dest => dest.Area, opt => opt.MapFrom(src => src.Residence.Area))
-            .ForMember(dest => dest.Rooms, opt => opt.MapFrom(src => src.Residence.Rooms));
+            .ForMember(dest => dest.Rooms, opt => opt.MapFrom(src => src.Residence.Rooms))
+            .ForMember(dest => dest.ImageURL, opt => opt.MapFrom(src => src.Residence.ImageUrls)); // Samuel
 
             // Address : Samuel
             CreateMap<Address, AddressDto>()
@@ -67,20 +73,20 @@ namespace FribergRealEstatesAPI.Mapping
             CreateMap<UpdateResidenceDto, Residence>()
                 .ForAllMembers(opts => opts.Condition((src, dest, srcMember) => srcMember != null));
 
-            //Agency-Agency by Jonathan (POST)
+            //Agency-Agency by Jonathan
             CreateMap<AgencyCreateDto, Agency>()
-                .ForMember(dest => dest.Address, opt => opt.Ignore());
-            //Adress-Adress by Jonathan (GET)
-            CreateMap<Address, AddressDto>()
-                .ForMember(dest => dest.CommunName, opt => opt.MapFrom(src => src.Commun.Name));
-            
+                .ForMember(dest => dest.Address, opt => opt.Ignore());            
 
-            //Default mapping with no reference to any other class
-            CreateMap<Realtor, RealtorSummaryDto>();
+            // Auth: Samuel Change: Robert
+            CreateMap<Address, AddressSummaryDto>()
+                .ForMember(dest => dest.CommunName, opt => opt.MapFrom(src => src.Commun.Name));
+
+            //Auth: Hamza Default mapping with no reference to any other class
+
             CreateMap<Residence, ResidenceSummaryDto>();
             CreateMap<Advert, AdvertSummaryDto>();
             CreateMap<Address, AddressDto>();            
-            CreateMap<Address, AddressSummaryDto>(); // Samuel
+            
             CreateMap<Realtor, SimpleRealtorDto>(); // Oscar
             CreateMap<Agency, AgencyWithRealtorsDto>(); // Oscar 
             CreateMap<UpdateRealtorProfileDto, Realtor>().ReverseMap(); // Jonathan

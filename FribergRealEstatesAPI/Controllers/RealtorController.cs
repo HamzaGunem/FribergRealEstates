@@ -23,6 +23,25 @@ namespace FribergRealEstatesAPI.Controllers
             this._realtorRepository = realtorRepository;
             this._mapper = mapper;
         }
+        //Auth: Hamza
+        [HttpGet("{realtorId}/full-profile")]
+        public async Task<ActionResult<RealtorFullProfileDto>> GetFullProfile(int realtorId)
+        {
+            var realtor = await _realtorRepository.GetProfileWithAgencyAsync(realtorId);
+            if (realtor == null)
+                return NotFound();
+
+            var activeAdverts = await _realtorRepository.GetActiveAdvertsByRealtorIdAsync(realtorId);
+            var soldAdverts = await _realtorRepository.GetSoldAdvertsByRealtorIdAsync(realtorId);
+
+            return new RealtorFullProfileDto
+            {
+                Realtor = _mapper.Map<RealtorSummaryDto>(realtor),
+                ActiveAdverts = _mapper.Map<List<AdvertDto>>(activeAdverts),
+                SoldAdverts = _mapper.Map<List<AdvertDto>>(soldAdverts)
+            };
+            
+        }
 
         [HttpGet("{realtorId}/active")]
         public async Task<ActionResult<List<RealtorAdvertsDto>>> GetActiveAdverts(int realtorId)
@@ -36,6 +55,17 @@ namespace FribergRealEstatesAPI.Controllers
 
             var response = _mapper.Map<List<RealtorAdvertsDto>>(adverts);
 
+            return Ok(response);
+        }
+
+        //Hamza
+        [HttpGet("{communName}/realtors/byCommun")]
+        public async Task<ActionResult<List<RealtorDto>>> GetRealtorsByAgencyCommun(string communName)
+        {
+            var realtors = await _realtorRepository.GetRealtorsByAgencyCommunName(communName);
+            if (realtors == null)
+                return NotFound();
+            var response = _mapper.Map<List<RealtorDto>>(realtors);
             return Ok(response);
         }
 
