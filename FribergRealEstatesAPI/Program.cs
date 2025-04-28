@@ -34,7 +34,10 @@ namespace FribergRealEstatesAPI
             builder.Services.AddAutoMapper(typeof(AutoMapperProfile));
 
             //Identity
-            builder.Services.AddIdentityCore<ApiUser>().AddRoles<IdentityRole>().AddEntityFrameworkStores<ApiDbContext>().AddDefaultTokenProviders();
+            builder.Services.AddIdentityCore<ApiUser>()
+                .AddRoles<IdentityRole>()
+                .AddEntityFrameworkStores<ApiDbContext>();
+                //.AddDefaultTokenProviders();
 
             builder.Services.AddControllers()
             .AddJsonOptions(options =>
