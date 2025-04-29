@@ -52,7 +52,7 @@ namespace FribergRealEstatesAPI.Controllers
                 }
 
                 await _userManager.AddToRoleAsync(user, ApiRoles.User);
-                return Accepted();
+                return Ok();
             }
             catch (Exception ex)
             {
