@@ -55,6 +55,17 @@ namespace FribergRealEstatesAPI.Data.Repositories
                 .Include(a => a.Agency).FirstOrDefaultAsync();
         }
 
+        public async Task<Realtor> GetRealtorImageById(int realtorId) //Viktor
+        {
+            return await _context.Realtors
+                .Where(r => r.Id == realtorId)
+                .Select(r => new Realtor
+                {
+                    PictureUrl = r.PictureUrl
+                })
+                .FirstOrDefaultAsync();
+        }
+
         
         public async Task SaveChangesAsync() // Jonathan
         {

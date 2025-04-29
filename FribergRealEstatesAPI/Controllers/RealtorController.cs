@@ -115,5 +115,18 @@ namespace FribergRealEstatesAPI.Controllers
 
             return Ok(updatedRealtorProfile);
         }
+
+        
+        [HttpGet("{realtorId}/image")] // Viktor       
+        public async Task<ActionResult<RealtorImageDto>> GetRealtorImage(int realtorId)
+        {
+            var realtor = await _realtorRepository.GetRealtorImageById(realtorId);
+            
+            if (realtor == null)
+                return NotFound();
+            
+            var response = _mapper.Map<RealtorImageDto>(realtor);
+            return Ok(response);
+        }
     }
 }

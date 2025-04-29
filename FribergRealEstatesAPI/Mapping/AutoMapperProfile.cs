@@ -30,6 +30,9 @@ namespace FribergRealEstatesAPI.Mapping
                 .ForMember(rdto => rdto.ActiveAdverts, opt => opt.MapFrom(r => r.ActiveAdverts))
                 .ReverseMap();
 
+            // Viktor
+            CreateMap<Realtor, RealtorImageDto>();
+
             // Realtor-profile by Robert
             CreateMap<Realtor, RealtorProfileDto>()
                 .ForMember(rdto => rdto.AgencyName, opt => opt.MapFrom(r => r.Agency.Name));
@@ -96,6 +99,8 @@ namespace FribergRealEstatesAPI.Mapping
             CreateMap<CreateResidenceDto, RowHouse>(); //Oscar
             CreateMap<CreateResidenceDto, VacationHouse>(); //Oscar
             CreateMap<Agency, AgencyDto>(); //Jonathan
+
+            
         }
     }
 }
