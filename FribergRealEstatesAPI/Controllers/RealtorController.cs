@@ -72,7 +72,7 @@ namespace FribergRealEstatesAPI.Controllers
         [HttpGet("{realtorId}/sold")]
         public async Task<ActionResult<List<RealtorAdvertsDto>>> GetSoldAdverts(int realtorId)
         {
-            var realtor = _realtorRepository.GetByIdAsync(realtorId);
+            var realtor = await _realtorRepository.GetByIdAsync(realtorId);
 
             if (realtor == null)
                 return NotFound();
