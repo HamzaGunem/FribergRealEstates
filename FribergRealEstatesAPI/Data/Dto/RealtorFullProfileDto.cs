@@ -2,6 +2,7 @@
 
 namespace FribergRealEstatesAPI.Data.Dto
 {
+    //Auth Hamza
     public class RealtorFullProfileDto
     {
         public RealtorSummaryDto Realtor { get; set; }
