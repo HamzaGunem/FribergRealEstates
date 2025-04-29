@@ -2,6 +2,7 @@
 using FribergRealEstatesAPI.Data.Dto;
 using FribergRealEstatesAPI.Data.Interfaces;
 using FribergRealEstatesAPI.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
