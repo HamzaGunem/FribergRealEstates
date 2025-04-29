@@ -17,12 +17,12 @@ namespace FribergRealEstatesAPI.Controllers
     public class AuthController : ControllerBase
     {
         private readonly UserManager<ApiUser> _userManager;
-        private readonly IConfiguration configuration;
+        private readonly IConfiguration _configuration;
 
         public AuthController(UserManager<ApiUser> userManager, IConfiguration configuration)
         {
             _userManager = userManager;
-            configuration = configuration;
+            _configuration = configuration;
         }
 
         [HttpPost]
@@ -90,7 +90,7 @@ namespace FribergRealEstatesAPI.Controllers
 
         private async Task<string> GenerateToken(ApiUser user)
         {
-            var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(configuration["JwtSettings:Key"]));
+            var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["JwtSettings:Key"]));
             var credentials = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
             var roles = await _userManager.GetRolesAsync(user);
             var roleClaims = roles.Select(q => new Claim(ClaimTypes.Role, q)).ToList();
@@ -103,10 +103,10 @@ namespace FribergRealEstatesAPI.Controllers
             }
             .Union(roleClaims);
 
-            var token = new JwtSecurityToken(issuer: configuration["JwtSettings:Issuer"],
-                audience: configuration["JwtSettings:Audience"],
+            var token = new JwtSecurityToken(issuer: _configuration["JwtSettings:Issuer"],
+                audience: _configuration["JwtSettings:Audience"],
                 claims: claims,
-                expires: DateTime.UtcNow.AddMinutes(Convert.ToInt32(configuration["JwtSettings:DurationInMinutes"])),
+                expires: DateTime.UtcNow.AddMinutes(Convert.ToInt32(_configuration["JwtSettings:DurationInMinutes"])),
                 signingCredentials: credentials
                 );
 
