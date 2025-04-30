@@ -92,7 +92,9 @@ namespace FribergRealEstatesAPI
             using (var scope = app.Services.CreateScope())
             {
                 var apiDbContext = scope.ServiceProvider.GetRequiredService<ApiDbContext>();
-                SeedData.SeedAsync(apiDbContext).Wait();
+                var userManager = scope.ServiceProvider.GetRequiredService<UserManager<ApiUser>>();
+                var roleManager = scope.ServiceProvider.GetRequiredService<RoleManager<IdentityRole>>();
+                SeedData.SeedAsync(apiDbContext,userManager,roleManager).Wait();
             }
 
             app.UseHttpsRedirection();
