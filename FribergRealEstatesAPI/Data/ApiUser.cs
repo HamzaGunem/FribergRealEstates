@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using FribergRealEstatesAPI.Models;
+using Microsoft.AspNetCore.Identity;
 
 namespace FribergRealEstatesAPI.Data
 {
@@ -7,5 +8,7 @@ namespace FribergRealEstatesAPI.Data
         public string FirstName { get; set; }
 
         public string LastName { get; set; }
+        public virtual Realtor? Realtor { get; set; }
+
     }
 }

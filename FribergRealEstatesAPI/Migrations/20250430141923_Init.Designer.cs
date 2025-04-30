@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace FribergRealEstatesAPI.Migrations
 {
     [DbContext(typeof(ApiDbContext))]
-    [Migration("20250428134602_upd6")]
-    partial class upd6
+    [Migration("20250430141923_Init")]
+    partial class Init
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -96,26 +96,6 @@ namespace FribergRealEstatesAPI.Migrations
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
 
                     b.ToTable("AspNetUsers", (string)null);
-
-                    b.HasData(
-                        new
-                        {
-                            Id = "f866bbe6-a717-4958-9134-9f30a8113360",
-                            AccessFailedCount = 0,
-                            ConcurrencyStamp = "870a8806-cfa2-4450-864b-c9c0f1facf99",
-                            Email = "admin@api.com",
-                            EmailConfirmed = true,
-                            FirstName = "System",
-                            LastName = "Admin",
-                            LockoutEnabled = false,
-                            NormalizedEmail = "ADMIN@API.COM",
-                            NormalizedUserName = "ADMIN@API.COM",
-                            PasswordHash = "AQAAAAIAAYagAAAAEDAYbZGG974mrgZV0SKx9Yep2XcSiA1TCmRB/t4iWd7gfn+ocEhq+e0gijDomgCxhg==",
-                            PhoneNumberConfirmed = false,
-                            SecurityStamp = "60a81f0e-d836-4f62-a55b-3e37caad2293",
-                            TwoFactorEnabled = false,
-                            UserName = "admin@api.com"
-                        });
                 });
 
             modelBuilder.Entity("FribergRealEstatesAPI.Models.Address", b =>
@@ -242,6 +222,10 @@ namespace FribergRealEstatesAPI.Migrations
                     b.Property<int>("AgencyId")
                         .HasColumnType("int");
 
+                    b.Property<string>("ApiUserId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
                     b.Property<string>("Email")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -264,6 +248,9 @@ namespace FribergRealEstatesAPI.Migrations
                     b.HasKey("Id");
 
                     b.HasIndex("AgencyId");
+
+                    b.HasIndex("ApiUserId")
+                        .IsUnique();
 
                     b.ToTable("Realtors");
                 });
@@ -360,32 +347,6 @@ namespace FribergRealEstatesAPI.Migrations
                         .HasFilter("[NormalizedName] IS NOT NULL");
 
                     b.ToTable("AspNetRoles", (string)null);
-
-                    b.HasData(
-                        new
-                        {
-                            Id = "8dbf5e67-e5dc-4fa5-a41b-3be035b70d2c",
-                            Name = "User",
-                            NormalizedName = "User"
-                        },
-                        new
-                        {
-                            Id = "896dfa0e-3035-4dd1-9f6b-061896a10140",
-                            Name = "Admin",
-                            NormalizedName = "Admin"
-                        },
-                        new
-                        {
-                            Id = "65161035-f041-4293-aabf-557b9bafc89c",
-                            Name = "SuperAdmin",
-                            NormalizedName = "SuperAdmin"
-                        },
-                        new
-                        {
-                            Id = "d8a759ea-8753-4e78-b8f0-1130af4c0691",
-                            Name = "Realtor",
-                            NormalizedName = "Realtor"
-                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -473,13 +434,6 @@ namespace FribergRealEstatesAPI.Migrations
                     b.HasIndex("RoleId");
 
                     b.ToTable("AspNetUserRoles", (string)null);
-
-                    b.HasData(
-                        new
-                        {
-                            UserId = "f866bbe6-a717-4958-9134-9f30a8113360",
-                            RoleId = "896dfa0e-3035-4dd1-9f6b-061896a10140"
-                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>
@@ -550,7 +504,15 @@ namespace FribergRealEstatesAPI.Migrations
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
+                    b.HasOne("FribergRealEstatesAPI.Data.ApiUser", "ApiUser")
+                        .WithOne("Realtor")
+                        .HasForeignKey("FribergRealEstatesAPI.Models.Realtor", "ApiUserId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
                     b.Navigation("Agency");
+
+                    b.Navigation("ApiUser");
                 });
 
             modelBuilder.Entity("FribergRealEstatesAPI.Models.Residence", b =>
@@ -617,6 +579,11 @@ namespace FribergRealEstatesAPI.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("FribergRealEstatesAPI.Data.ApiUser", b =>
+                {
+                    b.Navigation("Realtor");
                 });
 
             modelBuilder.Entity("FribergRealEstatesAPI.Models.Address", b =>

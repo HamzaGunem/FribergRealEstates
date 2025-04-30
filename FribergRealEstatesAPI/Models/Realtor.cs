@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using FribergRealEstatesAPI.Data;
+using System.ComponentModel.DataAnnotations;
 using System.Net.Cache;
 
 namespace FribergRealEstatesAPI.Models
@@ -19,6 +20,9 @@ namespace FribergRealEstatesAPI.Models
         public string PhoneNumber { get; set; }
 
         public string? PictureUrl { get; set; }
+
+        public string ApiUserId { get; set; }
+        public ApiUser? ApiUser { get; set; }
 
         //Navigation
         public virtual Agency Agency { get; set; }
