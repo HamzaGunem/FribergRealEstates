@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace FribergRealEstatesAPI.Migrations
 {
     [DbContext(typeof(ApiDbContext))]
-    [Migration("20250430141923_Init")]
-    partial class Init
+    [Migration("20250501062920_init")]
+    partial class init
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
