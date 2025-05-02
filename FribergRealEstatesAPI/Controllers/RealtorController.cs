@@ -65,7 +65,7 @@ namespace FribergRealEstatesAPI.Controllers
             return Ok(response);
         }
 
-        //Hamza
+        //Hamza, return type changed by Samuel
         [HttpGet("{communName}/realtors/byCommun")]
         public async Task<ActionResult<List<RealtorSummaryDto>>> GetRealtorsByAgencyCommun(string communName)
         {
