@@ -100,6 +100,7 @@ namespace FribergRealEstatesAPI.Controllers
                 new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
                 new Claim(JwtRegisteredClaimNames.Email, user.Email),
                 new Claim(CustomClaimTypes.Uid, user.Id),
+                //new Claim(ClaimTypes.NameIdentifier, user.Id),
             }
             .Union(roleClaims);
 

@@ -1,11 +1,16 @@
 ﻿using AutoMapper;
+using FribergRealEstatesAPI.Constants;
+using FribergRealEstatesAPI.Data;
 using FribergRealEstatesAPI.Data.Dto;
 using FribergRealEstatesAPI.Data.Interfaces;
 using FribergRealEstatesAPI.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
+using System.Security.Claims;
 
 namespace FribergRealEstatesAPI.Controllers
 {
@@ -17,11 +22,13 @@ namespace FribergRealEstatesAPI.Controllers
     {
         private readonly IRealtorRepository _realtorRepository;
         private readonly IMapper _mapper;
+        private readonly UserManager<ApiUser> manager;
 
-        public RealtorController(IRealtorRepository realtorRepository, IMapper mapper)
+        public RealtorController(IRealtorRepository realtorRepository, IMapper mapper, UserManager<ApiUser> manager)
         {
             this._realtorRepository = realtorRepository;
             this._mapper = mapper;
+            this.manager = manager;
         }
         //Auth: Hamza
         [HttpGet("{realtorId}/full-profile")]
@@ -114,6 +121,33 @@ namespace FribergRealEstatesAPI.Controllers
             var updatedRealtorProfile = _mapper.Map<RealtorProfileDto>(realtor);
 
             return Ok(updatedRealtorProfile);
+        }
+
+        // auth Robert Testdata
+        [Authorize]
+        [HttpGet("realtor/me")]
+        public async Task<ActionResult<RealtorProfileDto>> GetCurrentRealtor()
+        {
+            var userId = User.FindFirstValue(CustomClaimTypes.Uid);
+
+            if (string.IsNullOrEmpty(userId))
+                return Unauthorized("Ingen användare hittades i token.");
+
+            var realtor = await _realtorRepository.GetByApiUserIdAsync(userId);
+
+            if (realtor == null)
+                return NotFound("Ingen profil kopplad till denna användare.");
+
+            RealtorProfileDto respond = new RealtorProfileDto()
+            {
+                FirstName = realtor.FirstName,
+                LastName = realtor.LastName,
+                Email = realtor.Email,
+                PhoneNumber = realtor.PhoneNumber,
+                PictureUrl = realtor.PictureUrl,
+                AgencyName = realtor.Agency?.Name
+            };
+            return Ok(respond);
         }
     }
 }
