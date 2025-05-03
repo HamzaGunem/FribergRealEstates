@@ -139,7 +139,7 @@ namespace FribergRealEstatesAPI.Controllers
             if (realtor == null)
                 return NotFound("Ingen profil kopplad till denna användare.");
 
-            RealtorSummaryDto respond = new RealtorSummaryDto()
+            var realtorSummary = new RealtorSummaryDto()
             {
                 FirstName = realtor.FirstName,
                 LastName = realtor.LastName,
@@ -154,11 +154,11 @@ namespace FribergRealEstatesAPI.Controllers
 
             var response = new RealtorFullProfileDto
             {
-                Realtor = _mapper.Map<RealtorSummaryDto>(realtor),
+                Realtor = realtorSummary,
                 ActiveAdverts = _mapper.Map<List<AdvertDto>>(activeAdverts),
                 SoldAdverts = _mapper.Map<List<AdvertDto>>(soldAdverts)
             };
-            return Ok(respond);
+            return Ok(response);
         }
     }
 }
