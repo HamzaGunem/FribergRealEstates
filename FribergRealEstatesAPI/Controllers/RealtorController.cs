@@ -139,22 +139,12 @@ namespace FribergRealEstatesAPI.Controllers
             if (realtor == null)
                 return NotFound("Ingen profil kopplad till denna användare.");
 
-            var realtorSummary = new RealtorSummaryDto()
-            {
-                FirstName = realtor.FirstName,
-                LastName = realtor.LastName,
-                Email = realtor.Email,
-                PhoneNumber = realtor.PhoneNumber,
-                PictureUrl = realtor.PictureUrl,
-                AgencyName = realtor.Agency?.Name
-            };
-
             var activeAdverts = await _realtorRepository.GetActiveAdvertsByRealtorIdAsync(realtor.Id);
             var soldAdverts = await _realtorRepository.GetSoldAdvertsByRealtorIdAsync(realtor.Id);
 
             var response = new RealtorFullProfileDto
             {
-                Realtor = realtorSummary,
+                Realtor = _mapper.Map<RealtorSummaryDto>(realtor),
                 ActiveAdverts = _mapper.Map<List<AdvertDto>>(activeAdverts),
                 SoldAdverts = _mapper.Map<List<AdvertDto>>(soldAdverts)
             };
