@@ -3,6 +3,7 @@ using FribergRealEstatesAPI.Constants;
 using FribergRealEstatesAPI.Data;
 using FribergRealEstatesAPI.Data.Dto;
 using FribergRealEstatesAPI.Data.Interfaces;
+using FribergRealEstatesAPI.Data.Repositories;
 using FribergRealEstatesAPI.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
@@ -123,10 +124,10 @@ namespace FribergRealEstatesAPI.Controllers
             return Ok(updatedRealtorProfile);
         }
 
-        // auth Robert Testdata
+        // auth Robert Testdata, Changes Hamza
         [Authorize]
         [HttpGet("realtor/me")]
-        public async Task<ActionResult<RealtorProfileDto>> GetCurrentRealtor()
+        public async Task<ActionResult<RealtorFullProfileDto>> GetCurrentRealtor()
         {
             var userId = User.FindFirstValue(CustomClaimTypes.Uid);
 
@@ -138,7 +139,7 @@ namespace FribergRealEstatesAPI.Controllers
             if (realtor == null)
                 return NotFound("Ingen profil kopplad till denna användare.");
 
-            RealtorProfileDto respond = new RealtorProfileDto()
+            RealtorSummaryDto respond = new RealtorSummaryDto()
             {
                 FirstName = realtor.FirstName,
                 LastName = realtor.LastName,
@@ -146,6 +147,16 @@ namespace FribergRealEstatesAPI.Controllers
                 PhoneNumber = realtor.PhoneNumber,
                 PictureUrl = realtor.PictureUrl,
                 AgencyName = realtor.Agency?.Name
+            };
+
+            var activeAdverts = await _realtorRepository.GetActiveAdvertsByRealtorIdAsync(realtor.Id);
+            var soldAdverts = await _realtorRepository.GetSoldAdvertsByRealtorIdAsync(realtor.Id);
+
+            var response = new RealtorFullProfileDto
+            {
+                Realtor = _mapper.Map<RealtorSummaryDto>(realtor),
+                ActiveAdverts = _mapper.Map<List<AdvertDto>>(activeAdverts),
+                SoldAdverts = _mapper.Map<List<AdvertDto>>(soldAdverts)
             };
             return Ok(respond);
         }
