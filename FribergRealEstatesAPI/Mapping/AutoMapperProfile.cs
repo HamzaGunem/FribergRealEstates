@@ -18,6 +18,7 @@ namespace FribergRealEstatesAPI.Mapping
             //Auth: Hamza realtor to summary
             CreateMap<Realtor, RealtorSummaryDto>()
                 .ForMember(rdto => rdto.AgencyName, opt => opt.MapFrom(r => r.Agency.Name))
+                .ForMember(rdto => rdto.AgencyId, opt => opt.MapFrom(r => r.Agency.Id))
                 .ReverseMap();
 
             //Auth: Hamza Residence
