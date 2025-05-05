@@ -8,7 +8,7 @@ namespace FribergRealEstatesAPI.Data.Dto
         public int Id { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
-        public string? PictureUrl { get; set; }
+        public string? LogoUrl { get; set; }
         public AddressSummaryDto Address { get; set; }
         public List<SimpleRealtorDto> Realtors { get; set; } = new();
     }
