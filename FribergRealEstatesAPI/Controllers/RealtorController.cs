@@ -150,5 +150,16 @@ namespace FribergRealEstatesAPI.Controllers
             };
             return Ok(response);
         }
+
+        //Auth: Jonathan
+        [HttpPut("create")]    
+        public async Task<ActionResult<RealtorProfileDto>> CreateRealtorProfile(RealtorCreateDto realtorCreateDto)
+        {
+            var newRealtor = _mapper.Map<Realtor>(realtorCreateDto);
+
+            await _realtorRepository.AddAsync(newRealtor);
+
+            return Ok();
+        }
     }
 }

@@ -21,7 +21,7 @@ namespace FribergRealEstatesAPI.Models
 
         public string? PictureUrl { get; set; }
 
-        public string ApiUserId { get; set; }
+        public string? ApiUserId { get; set; }
         public ApiUser? ApiUser { get; set; }
 
         //Navigation
