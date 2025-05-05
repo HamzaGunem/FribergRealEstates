@@ -62,7 +62,7 @@ namespace FribergRealEstatesAPI.Data.Seeding
                         PhoneNumber = "0701111111",
                         ApiUserId = user2.Id,
                         AgencyId = 1,
-                        PictureUrl = "https://randomuser.me/api/portraits/men/1.jpg"
+                        PictureUrl = "https://printler.com/media/photo/179657.jpg"
                     };
                     context.Realtors.Add(realtor2);
                 }
