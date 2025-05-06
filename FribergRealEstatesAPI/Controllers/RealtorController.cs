@@ -56,7 +56,7 @@ namespace FribergRealEstatesAPI.Controllers
         [HttpGet("admin/validaterealtor")]
         public async Task<ActionResult<IEnumerable<AdminRealtorUserDto>>> GetAllRealtors()
         {
-            var realtors = await _realtorRepository.GetAllAsync();
+            var realtors = await _realtorRepository.GetAllRealtorsAsync();
             if(realtors == null)
             {
                 return NotFound();
