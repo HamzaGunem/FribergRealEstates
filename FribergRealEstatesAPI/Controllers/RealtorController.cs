@@ -140,6 +140,30 @@ namespace FribergRealEstatesAPI.Controllers
             return Ok(updatedRealtorProfile);
         }
 
+        // Auth: Robert
+        [HttpPut("{realtorId}/profileapiuser")]
+        public async Task<IActionResult> UpdateRealtorUserApiProfile(string id, [FromBody] AdminRealtorUserDto dto)
+        {
+            if(id != dto.ApiUserId)
+                return BadRequest();
+
+            var user = await manager.FindByIdAsync(id);
+
+            if(user == null)
+                return NotFound();
+
+            user.EmailConfirmed = dto.EmailConfirmed;
+            
+            var result = await manager.UpdateAsync(user);
+
+            if(!result.Succeeded)
+            {
+                return BadRequest();
+            }
+
+            return NoContent();
+        }
+
         // auth Robert Testdata, Changes Hamza
         [Authorize]
         [HttpGet("realtor/me")]
