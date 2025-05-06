@@ -8,9 +8,18 @@ namespace FribergRealEstatesAPI.Data.Seeding
     //Auth Hamza
     public static class UserAndRoleSeeding
     {
+
+  
         public static async Task SeedUsersAndRealtorsAsync(UserManager<ApiUser> userManager, ApiDbContext context)
         {
+            var agencyIds = context.Agencies.Select(a => a.Id).ToList();
 
+            int GetRandomAgencyId()
+            {
+                Random rand = new Random();
+                int index = rand.Next(agencyIds.Count);
+                return agencyIds[index];
+            }
             var user = new ApiUser
             {
                 UserName = "realtor1@api.com",
@@ -35,7 +44,7 @@ namespace FribergRealEstatesAPI.Data.Seeding
                     Email = user.Email,
                     PhoneNumber = "0700000000",
                     ApiUserId = user.Id,
-                    AgencyId = 1,
+                    AgencyId = GetRandomAgencyId(),
                     PictureUrl = "https://www.svtstatic.se/image-news/992/1:1/0.49/0.33/a2470c833f8e6998f3b6fbf0e0c5382dca712f40d13bd66a63f099011153e48c"
                 };
 
@@ -61,7 +70,7 @@ namespace FribergRealEstatesAPI.Data.Seeding
                         Email = user2.Email,
                         PhoneNumber = "0701111111",
                         ApiUserId = user2.Id,
-                        AgencyId = 1,
+                        AgencyId = GetRandomAgencyId(),
                         PictureUrl = "https://printler.com/media/photo/179657.jpg"
                     };
                     context.Realtors.Add(realtor2);
@@ -90,7 +99,7 @@ namespace FribergRealEstatesAPI.Data.Seeding
                         Email = user3.Email,
                         PhoneNumber = "0702222222",
                         ApiUserId = user3.Id,
-                        AgencyId = 2,
+                        AgencyId = GetRandomAgencyId(),
                         PictureUrl = "https://randomuser.me/api/portraits/women/2.jpg"
                     };
                     context.Realtors.Add(realtor3);
@@ -119,7 +128,7 @@ namespace FribergRealEstatesAPI.Data.Seeding
                         Email = user4.Email,
                         PhoneNumber = "0703333333",
                         ApiUserId = user4.Id,
-                        AgencyId = 1,
+                        AgencyId = GetRandomAgencyId(),
                         PictureUrl = "https://randomuser.me/api/portraits/men/3.jpg"
                     };
                     context.Realtors.Add(realtor4);
@@ -148,7 +157,7 @@ namespace FribergRealEstatesAPI.Data.Seeding
                         Email = user5.Email,
                         PhoneNumber = "0704444444",
                         ApiUserId = user5.Id,
-                        AgencyId = 3,
+                        AgencyId = GetRandomAgencyId(),
                         PictureUrl = "https://randomuser.me/api/portraits/women/4.jpg"
                     };
                     context.Realtors.Add(realtor5);
@@ -177,7 +186,7 @@ namespace FribergRealEstatesAPI.Data.Seeding
                         Email = user6.Email,
                         PhoneNumber = "0705555555",
                         ApiUserId = user6.Id,
-                        AgencyId = 2,
+                        AgencyId = GetRandomAgencyId(),
                         PictureUrl = "https://randomuser.me/api/portraits/men/5.jpg"
                     };
                     context.Realtors.Add(realtor6);
@@ -206,7 +215,7 @@ namespace FribergRealEstatesAPI.Data.Seeding
                         Email = user7.Email,
                         PhoneNumber = "0706666666",
                         ApiUserId = user7.Id,
-                        AgencyId = 3,
+                        AgencyId = GetRandomAgencyId(),
                         PictureUrl = "https://randomuser.me/api/portraits/women/6.jpg"
                     };
                     context.Realtors.Add(realtor7);
@@ -235,7 +244,7 @@ namespace FribergRealEstatesAPI.Data.Seeding
                         Email = user8.Email,
                         PhoneNumber = "0707777777",
                         ApiUserId = user8.Id,
-                        AgencyId = 1,
+                        AgencyId = GetRandomAgencyId(),
                         PictureUrl = "https://randomuser.me/api/portraits/men/7.jpg"
                     };
                     context.Realtors.Add(realtor8);
@@ -264,7 +273,7 @@ namespace FribergRealEstatesAPI.Data.Seeding
                         Email = user9.Email,
                         PhoneNumber = "0708888888",
                         ApiUserId = user9.Id,
-                        AgencyId = 2,
+                        AgencyId = GetRandomAgencyId(),
                         PictureUrl = "https://randomuser.me/api/portraits/women/8.jpg"
                     };
                     context.Realtors.Add(realtor9);
@@ -293,7 +302,7 @@ namespace FribergRealEstatesAPI.Data.Seeding
                         Email = user10.Email,
                         PhoneNumber = "0709999999",
                         ApiUserId = user10.Id,
-                        AgencyId = 3,
+                        AgencyId = GetRandomAgencyId(),
                         PictureUrl = "https://randomuser.me/api/portraits/men/9.jpg"
                     };
                     context.Realtors.Add(realtor10);
@@ -322,7 +331,7 @@ namespace FribergRealEstatesAPI.Data.Seeding
                         Email = user11.Email,
                         PhoneNumber = "0701010101",
                         ApiUserId = user11.Id,
-                        AgencyId = 1,
+                        AgencyId = GetRandomAgencyId(),
                         PictureUrl = "https://randomuser.me/api/portraits/women/10.jpg"
                     };
                     context.Realtors.Add(realtor11);
@@ -350,7 +359,7 @@ namespace FribergRealEstatesAPI.Data.Seeding
                         Email = user12.Email,
                         PhoneNumber = "0701110111",
                         ApiUserId = user12.Id,
-                        AgencyId = 2,
+                        AgencyId = GetRandomAgencyId(),
                         PictureUrl = "https://randomuser.me/api/portraits/men/11.jpg"
                     };
                     context.Realtors.Add(realtor12);
@@ -379,7 +388,7 @@ namespace FribergRealEstatesAPI.Data.Seeding
                         Email = user13.Email,
                         PhoneNumber = "0701212121",
                         ApiUserId = user13.Id,
-                        AgencyId = 3,
+                        AgencyId = GetRandomAgencyId(),
                         PictureUrl = "https://randomuser.me/api/portraits/women/12.jpg"
                     };
                     context.Realtors.Add(realtor13);
@@ -408,7 +417,7 @@ namespace FribergRealEstatesAPI.Data.Seeding
                         Email = user14.Email,
                         PhoneNumber = "0701313131",
                         ApiUserId = user14.Id,
-                        AgencyId = 1,
+                        AgencyId = GetRandomAgencyId(),
                         PictureUrl = "https://randomuser.me/api/portraits/men/13.jpg"
                     };
                     context.Realtors.Add(realtor14);
@@ -437,7 +446,7 @@ namespace FribergRealEstatesAPI.Data.Seeding
                         Email = user15.Email,
                         PhoneNumber = "0701414141",
                         ApiUserId = user15.Id,
-                        AgencyId = 2,
+                        AgencyId = GetRandomAgencyId(),
                         PictureUrl = "https://randomuser.me/api/portraits/women/14.jpg"
                     };
                     context.Realtors.Add(realtor15);
@@ -466,7 +475,7 @@ namespace FribergRealEstatesAPI.Data.Seeding
                         Email = user16.Email,
                         PhoneNumber = "0701515151",
                         ApiUserId = user16.Id,
-                        AgencyId = 3,
+                        AgencyId = GetRandomAgencyId(),
                         PictureUrl = "https://randomuser.me/api/portraits/men/15.jpg"
                     };
                     context.Realtors.Add(realtor16);
@@ -495,7 +504,7 @@ namespace FribergRealEstatesAPI.Data.Seeding
                         Email = user17.Email,
                         PhoneNumber = "0701616161",
                         ApiUserId = user17.Id,
-                        AgencyId = 1,
+                        AgencyId = GetRandomAgencyId(),
                         PictureUrl = "https://randomuser.me/api/portraits/women/16.jpg"
                     };
                     context.Realtors.Add(realtor17);
@@ -524,7 +533,7 @@ namespace FribergRealEstatesAPI.Data.Seeding
                         Email = user18.Email,
                         PhoneNumber = "0701717171",
                         ApiUserId = user18.Id,
-                        AgencyId = 2,
+                        AgencyId = GetRandomAgencyId(),
                         PictureUrl = "https://randomuser.me/api/portraits/men/17.jpg"
                     };
                     context.Realtors.Add(realtor18);
@@ -553,7 +562,7 @@ namespace FribergRealEstatesAPI.Data.Seeding
                         Email = user19.Email,
                         PhoneNumber = "0701818181",
                         ApiUserId = user19.Id,
-                        AgencyId = 3,
+                        AgencyId = GetRandomAgencyId(),
                         PictureUrl = "https://randomuser.me/api/portraits/women/18.jpg"
                     };
                     context.Realtors.Add(realtor19);
@@ -582,7 +591,7 @@ namespace FribergRealEstatesAPI.Data.Seeding
                         Email = user20.Email,
                         PhoneNumber = "0701919191",
                         ApiUserId = user20.Id,
-                        AgencyId = 1,
+                        AgencyId = GetRandomAgencyId(),
                         PictureUrl = "https://randomuser.me/api/portraits/men/19.jpg"
                     };
                     context.Realtors.Add(realtor20);
@@ -610,7 +619,7 @@ namespace FribergRealEstatesAPI.Data.Seeding
                         Email = user21.Email,
                         PhoneNumber = "0702020202",
                         ApiUserId = user21.Id,
-                        AgencyId = 2,
+                        AgencyId = GetRandomAgencyId(),
                         PictureUrl = "https://randomuser.me/api/portraits/women/20.jpg"
                     };
                     context.Realtors.Add(realtor21);
@@ -639,7 +648,7 @@ namespace FribergRealEstatesAPI.Data.Seeding
                         Email = user22.Email,
                         PhoneNumber = "0702121212",
                         ApiUserId = user22.Id,
-                        AgencyId = 3,
+                        AgencyId = GetRandomAgencyId(),
                         PictureUrl = "https://randomuser.me/api/portraits/men/21.jpg"
                     };
                     context.Realtors.Add(realtor22);
@@ -668,7 +677,7 @@ namespace FribergRealEstatesAPI.Data.Seeding
                         Email = user23.Email,
                         PhoneNumber = "0702222222",
                         ApiUserId = user23.Id,
-                        AgencyId = 1,
+                        AgencyId = GetRandomAgencyId(),
                         PictureUrl = "https://randomuser.me/api/portraits/women/22.jpg"
                     };
                     context.Realtors.Add(realtor23);
@@ -697,7 +706,7 @@ namespace FribergRealEstatesAPI.Data.Seeding
                         Email = user24.Email,
                         PhoneNumber = "0702323232",
                         ApiUserId = user24.Id,
-                        AgencyId = 2,
+                        AgencyId = GetRandomAgencyId(),
                         PictureUrl = "https://randomuser.me/api/portraits/men/23.jpg"
                     };
                     context.Realtors.Add(realtor24);
@@ -726,7 +735,7 @@ namespace FribergRealEstatesAPI.Data.Seeding
                         Email = user25.Email,
                         PhoneNumber = "0702424242",
                         ApiUserId = user25.Id,
-                        AgencyId = 3,
+                        AgencyId = GetRandomAgencyId(),
                         PictureUrl = "https://randomuser.me/api/portraits/women/24.jpg"
                     };
                     context.Realtors.Add(realtor25);
@@ -755,7 +764,7 @@ namespace FribergRealEstatesAPI.Data.Seeding
                         Email = user26.Email,
                         PhoneNumber = "0702525252",
                         ApiUserId = user26.Id,
-                        AgencyId = 1,
+                        AgencyId = GetRandomAgencyId(),
                         PictureUrl = "https://randomuser.me/api/portraits/men/25.jpg"
                     };
                     context.Realtors.Add(realtor26);
@@ -784,7 +793,7 @@ namespace FribergRealEstatesAPI.Data.Seeding
                         Email = user27.Email,
                         PhoneNumber = "0702626262",
                         ApiUserId = user27.Id,
-                        AgencyId = 2,
+                        AgencyId = GetRandomAgencyId(),
                         PictureUrl = "https://randomuser.me/api/portraits/women/26.jpg"
                     };
                     context.Realtors.Add(realtor27);
@@ -813,7 +822,7 @@ namespace FribergRealEstatesAPI.Data.Seeding
                         Email = user28.Email,
                         PhoneNumber = "0702727272",
                         ApiUserId = user28.Id,
-                        AgencyId = 3,
+                        AgencyId = GetRandomAgencyId(),
                         PictureUrl = "https://randomuser.me/api/portraits/men/27.jpg"
                     };
                     context.Realtors.Add(realtor28);
@@ -842,7 +851,7 @@ namespace FribergRealEstatesAPI.Data.Seeding
                         Email = user29.Email,
                         PhoneNumber = "0702828282",
                         ApiUserId = user29.Id,
-                        AgencyId = 1,
+                        AgencyId = GetRandomAgencyId(),
                         PictureUrl = "https://randomuser.me/api/portraits/women/28.jpg"
                     };
                     context.Realtors.Add(realtor29);
@@ -871,7 +880,7 @@ namespace FribergRealEstatesAPI.Data.Seeding
                         Email = user30.Email,
                         PhoneNumber = "0702929292",
                         ApiUserId = user30.Id,
-                        AgencyId = 2,
+                        AgencyId = GetRandomAgencyId(),
                         PictureUrl = "https://randomuser.me/api/portraits/men/29.jpg"
                     };
                     context.Realtors.Add(realtor30);
