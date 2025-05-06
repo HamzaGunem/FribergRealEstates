@@ -1,6 +1,8 @@
 ﻿using FribergRealEstatesAPI.Constants;
 using FribergRealEstatesAPI.Data;
 using FribergRealEstatesAPI.Data.Dto;
+using FribergRealEstatesAPI.Data.Interfaces;
+using FribergRealEstatesAPI.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -18,16 +20,76 @@ namespace FribergRealEstatesAPI.Controllers
     {
         private readonly UserManager<ApiUser> _userManager;
         private readonly IConfiguration _configuration;
+        private readonly IRealtorRepository _realtorRepository;
 
-        public AuthController(UserManager<ApiUser> userManager, IConfiguration configuration)
+        public AuthController(UserManager<ApiUser> userManager, IConfiguration configuration, IRealtorRepository realtorRepository)
         {
             _userManager = userManager;
             _configuration = configuration;
+            _realtorRepository = realtorRepository;
         }
 
+
+        // Samuel
+        public ApiUser CreateApiUser(RegisterDto regDto)
+        {
+            ApiUser user = new ApiUser()
+            {
+                UserName = regDto.Email,
+                NormalizedUserName = regDto.Email.ToUpper(),
+                Email = regDto.Email,
+                NormalizedEmail = regDto.Email.ToUpper(),
+                FirstName = regDto.FirstName,
+                LastName = regDto.LastName,
+                EmailConfirmed = false,
+            };
+            return user;
+        }
+
+        // Samuel
+        public Realtor CreateRealtor(RegisterDto regDto)
+        {
+            Realtor realtor = new Realtor()
+            {
+                Email = regDto.Email,
+                PhoneNumber = regDto.PhoneNumber,
+                FirstName = regDto.FirstName,
+                LastName = regDto.LastName,
+                PictureUrl = regDto.PictureUrl,
+            };
+            return realtor;
+        }
+
+        // Samuel
         [HttpPost]
         [Route("register")]
+        public async Task<IActionResult> Register(RegisterDto regDto)
+        {
+            try
+            {
+                var newUser = CreateApiUser(regDto);
+                var result = await _userManager.CreateAsync(newUser, regDto.Password);
+                await _userManager.AddToRoleAsync(newUser, ApiRoles.User);
+            }
+            catch(Exception ex)
+            {
+                return Problem($"Something Went Wrong in the {nameof(Register)}", statusCode: 500);
+            }
 
+            try
+            {
+                var newRealtor = CreateRealtor(regDto);
+                var result = await _realtorRepository.AddAsync(newRealtor);
+            }
+            catch(Exception ex)
+            {
+                return Problem($"Something Went Wrong in the {nameof(Register)}", statusCode: 500);
+            }
+            return Ok();
+        }
+        /*
+        [HttpPost]
+        [Route("register")]
         public async Task<IActionResult> Register(UserDto userDto)
         {
             try
@@ -59,7 +121,7 @@ namespace FribergRealEstatesAPI.Controllers
                 return Problem($"Something Went Wrong in the {nameof(Register)}", statusCode: 500);
             }
         }
-
+        */
         [HttpPost]
         [Route("login")]
         public async Task<ActionResult<AuthResponse>> Login(LoginUserDto userdto)
