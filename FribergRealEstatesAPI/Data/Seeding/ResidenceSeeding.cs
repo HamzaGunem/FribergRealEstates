@@ -62,6 +62,263 @@ namespace FribergRealEstatesAPI.Data.Seeding
                     "https://images.unsplash.com/photo-1583847268964-b28dc8f51f92"
                 }
             });
+            context.Residences.Add(new Apartment
+            {
+                Address = context.Addresses.OrderBy(x => Guid.NewGuid()).First(),
+                Type = ResidenceType.Apartment,
+                Area = 75,
+                BiArea = 8,
+                Floors = 7,
+                Description = "Fully automated smart apartment with voice-controlled lighting, climate, and security. Features floor-to-ceiling windows, a minimalist kitchen with smart appliances, and a built-in sound system. Perfect for tech enthusiasts!",
+                Rooms = 1,
+                FloorRows = 7,
+                MonthlyFee = 2900,
+                OperatingCost = 4100,
+                Facilities = new List<Facilities>
+                {
+                    Facilities.Elevator,
+                    Facilities.Balcony
+                },
+                BuildYear = 2022,
+                IsAvailable = true,
+                ImageUrls = new[]
+                {
+                    "https://images.unsplash.com/photo-1558002038-1055907df827",
+                    "https://images.unsplash.com/photo-1513519245088-0e12902e5a38"
+                }
+            });
+
+            context.Residences.Add(new Apartment
+            {
+                Address = context.Addresses.OrderBy(x => Guid.NewGuid()).First(),
+                Type = ResidenceType.Apartment,
+                Area = 90,
+                BiArea = 0,
+                Floors = 3,
+                Description = "Charming industrial-style loft with exposed brick walls, wooden beams, and large factory windows. Open-plan living with a mezzanine bedroom. Located in a converted warehouse with a shared rooftop garden.",
+                Rooms = 1,
+                FloorRows = 3,
+                MonthlyFee = 2200,
+                OperatingCost = 3500,
+                Facilities = new List<Facilities>
+                {
+                    Facilities.ParkingLot
+                },
+                BuildYear = 2016,
+                IsAvailable = true,
+                ImageUrls = new[]
+                {
+                    "https://images.unsplash.com/photo-1493809842364-78817add7ffb",
+                    "https://images.unsplash.com/photo-1513519245088-0e12902e5a38"
+                }
+            });
+
+            context.Residences.Add(new Apartment
+            {
+                Address = context.Addresses.OrderBy(x => Guid.NewGuid()).First(),
+                Type = ResidenceType.Apartment,
+                Area = 120,
+                BiArea = 15,
+                Floors = 2,
+                Description = "Spacious family apartment in a quiet neighborhood. Features a large kitchen, three bedrooms, a playroom, and a private garden. Close to schools and parks. Pet-friendly building!",
+                Rooms = 4,
+                FloorRows = 2,
+                MonthlyFee = 3800,
+                OperatingCost = 5200,
+                Facilities = new List<Facilities>
+                {
+                    Facilities.Elevator,
+                    Facilities.Balcony
+                },
+                BuildYear = 2010,
+                IsAvailable = true,
+                ImageUrls = new[]
+                {
+                    "https://images.unsplash.com/photo-1583847268964-b28dc8f51f92",
+                    "https://images.unsplash.com/photo-1600585154340-be6161a56a0c"
+                }
+            });
+
+            context.Residences.Add(new Apartment
+            {
+                Address = context.Addresses.OrderBy(x => Guid.NewGuid()).First(),
+                Type = ResidenceType.Apartment,
+                Area = 30,
+                BiArea = 0,
+                Floors = 1,
+                Description = "Affordable studio with all essentials: a compact kitchen, bathroom, and sleeping area. Ideal for students or young professionals. Just 2 minutes from the metro!",
+                Rooms = 1,
+                FloorRows = 1,
+                MonthlyFee = 950,
+                OperatingCost = 1200,
+                Facilities = new List<Facilities>
+                {
+                    Facilities.ParkingLot,
+                    Facilities.Elevator
+                },
+                BuildYear = 2000,
+                IsAvailable = true,
+                ImageUrls = new[]
+                {
+                    "https://images.unsplash.com/photo-1522708323590-d24dbb6b0267",
+                    "https://images.unsplash.com/photo-1556911220-bff31c812dba"
+                }
+            });
+            context.Residences.Add(new Apartment
+            {
+                Address = context.Addresses.OrderBy(x => Guid.NewGuid()).First(),
+                Type = ResidenceType.Apartment,
+                Area = 75,
+                BiArea = 8,
+                Floors = 3,
+                Description = "Modern lägenhet med öppen planlösning – Södermalm, Stockholm\r\nEn vacker lägenhet på 75 kvm med två rum och kök. Den öppna planlösningen ger en känsla av rymd och ljus. Köket är utrustat med moderna vitvaror och en ö med plats för måltider. Sovrummet har byggnadsstäder och det finns ett badrum med dusch. Lägenheten ligger på tredje våningen med hiss och har en balkong med utsikt över innergården.",
+                Rooms = 2,
+                FloorRows = 3,
+                MonthlyFee = 2000,
+                OperatingCost = 3500,
+                Facilities = new List<Facilities>
+                {
+                    Facilities.Elevator,
+                    Facilities.Balcony
+                },
+                BuildYear = 2010,
+                IsAvailable = true,
+                ImageUrls = new[]
+                {
+                    "https://images.unsplash.com/photo-1502673532817-9486cd496975",
+                    "https://images.unsplash.com/photo-1567427018147-5a13ab629a9b"
+                }
+            });
+
+            context.Residences.Add(new Apartment
+            {
+                Address = context.Addresses.OrderBy(x => Guid.NewGuid()).First(),
+                Type = ResidenceType.Apartment,
+                Area = 200,
+                BiArea = 50,
+                Floors = 12,
+                Description = "Luxury penthouse with a private infinity pool, home theater, and 360° city views. Includes a chef’s kitchen, walk-in closets, and a rooftop terrace. 24/7 security and valet parking.",
+                Rooms = 3,
+                FloorRows = 12,
+                MonthlyFee = 12000,
+                OperatingCost = 15000,
+                Facilities = new List<Facilities>
+                {
+                    Facilities.Pool,
+                    Facilities.Terrace,
+                    Facilities.Balcony
+    
+                },
+                BuildYear = 2021,
+                IsAvailable = true,
+                ImageUrls = new[]
+                {
+                    "https://images.unsplash.com/photo-1564501049412-61c2a3083791",
+                    "https://images.unsplash.com/photo-1582268611958-ebfd161ef9cf"
+                }
+            });
+
+            context.Residences.Add(new Apartment
+            {
+                Address = context.Addresses.OrderBy(x => Guid.NewGuid()).First(),
+                Type = ResidenceType.Apartment,
+                Area = 80,
+                BiArea = 10,
+                Floors = 4,
+                Description = "Sustainable living with solar panels, rainwater harvesting, and energy-efficient appliances. Features a green roof terrace, bamboo flooring, and organic garden access.",
+                Rooms = 2,
+                FloorRows = 4,
+                MonthlyFee = 2600,
+                OperatingCost = 3200,
+                Facilities = new List<Facilities>
+                {
+                    Facilities.Balcony
+                },
+                BuildYear = 2019,
+                IsAvailable = true,
+                ImageUrls = new[]
+                {
+                    "https://images.unsplash.com/photo-1600566752229-2506f6a68954",
+                    "https://images.unsplash.com/photo-1513519245088-0e12902e5a38"
+                }
+            });
+
+            context.Residences.Add(new Apartment
+            {
+                Address = context.Addresses.OrderBy(x => Guid.NewGuid()).First(),
+                Type = ResidenceType.Apartment,
+                Area = 70,
+                BiArea = 0,
+                Floors = 2,
+                Description = "Bright studio with large north-facing windows, perfect for painters and creatives. High ceilings, concrete floors, and a flexible open space. Shared courtyard with other artists.",
+                Rooms = 1,
+                FloorRows = 2,
+                MonthlyFee = 1800,
+                OperatingCost = 2400,
+                Facilities = new List<Facilities>
+                {
+                    Facilities.Balcony
+                },
+                BuildYear = 2015,
+                IsAvailable = true,
+                ImageUrls = new[]
+                {
+                    "https://images.unsplash.com/photo-1513519245088-0e12902e5a38",
+                    "https://images.unsplash.com/photo-1493809842364-78817add7ffb"
+                }
+            });
+
+            context.Residences.Add(new Apartment
+            {
+                Address = context.Addresses.OrderBy(x => Guid.NewGuid()).First(),
+                Type = ResidenceType.Apartment,
+                Area = 65,
+                BiArea = 5,
+                Floors = 3,
+                Description = "Light-filled apartment with clean lines, oak flooring, and functional design. Includes built-in storage, a balcony, and underfloor heating. Near nature reserves and bike paths.",
+                Rooms = 2,
+                FloorRows = 3,
+                MonthlyFee = 2300,
+                OperatingCost = 3400,
+                Facilities = new List<Facilities>
+                {
+                    Facilities.Balcony,
+     
+                },
+                BuildYear = 2017,
+                IsAvailable = true,
+                ImageUrls = new[]
+                {
+                    "https://images.unsplash.com/photo-1554995207-c18c2ce90e04",
+                    "https://images.unsplash.com/photo-1600121848594-d8644e57abab"
+                }
+            });
+            context.Residences.Add(new Apartment
+            {
+                Address = context.Addresses.OrderBy(x => Guid.NewGuid()).First(),
+                Type = ResidenceType.Apartment,
+                Area = 110,
+                BiArea = 10,
+                Floors = 5,
+                Description = "Exklusiv taklägenhet med vid utsikt – Östermalm, Stockholm\r\nEn fantastisk taklägenhet på 110 kvm med tre rum och kök. Den stora takterrassen erbjuder enastående utsikt över staden. Lägenheten har ett modernt kök, två sovrum och ett badrum med badkar. Det finns även ett separat tvättutrymme. Lägenheten ligger på femte våningen med hiss.",
+                Rooms = 3,
+                FloorRows = 5,
+                MonthlyFee = 2500,
+                OperatingCost = 4500,
+                Facilities = new List<Facilities>
+                {
+                    Facilities.Elevator,
+                    Facilities.Terrace,
+                    Facilities.NewProduction
+                },
+                BuildYear = 2015,
+                IsAvailable = true,
+                ImageUrls = new[]
+                {
+                    "https://images.unsplash.com/photo-1567016597817-15460187c79b",
+                    "https://images.unsplash.com/photo-1554995207-c18c2ce90e04"
+                }
+            });
 
             context.Residences.Add(new Apartment
             {
@@ -175,6 +432,213 @@ namespace FribergRealEstatesAPI.Data.Seeding
             {
                 Address = context.Addresses.OrderBy(x => Guid.NewGuid()).First(),
                 Type = ResidenceType.House,
+                Area = 185,
+                BiArea = 45,
+                Floors = 2,
+                Description = "Charming countryside villa with panoramic views of rolling hills. Features an open-plan living area with a fireplace, a modern kitchen, four bedrooms, and a sauna. The property includes a large garden, a greenhouse, and a private forest trail. Perfect for nature lovers!",
+                Rooms = 4,
+                FloorRows = 2,
+                MonthlyFee = 2800,
+                OperatingCost = 6500,
+                Facilities = new List<Facilities>
+                {
+        
+                    Facilities.ParkingLot
+                },
+                BuildYear = 2015,
+                IsAvailable = true,
+                ImageUrls = new[]
+                {
+                    "https://images.unsplash.com/photo-1600585154340-be6161a56a0c",
+                    "https://images.unsplash.com/photo-1605276374104-dee2a0ed3cd6"
+                }
+            });
+
+            context.Residences.Add(new House
+            {
+                Address = context.Addresses.OrderBy(x => Guid.NewGuid()).First(),
+                Type = ResidenceType.House,
+                Area = 210,
+                BiArea = 60,
+                Floors = 1,
+                Description = "Stunning single-story house with floor-to-ceiling windows overlooking a private lake. Features a gourmet kitchen, three bedrooms with en-suite bathrooms, and a floating deck with direct lake access. Includes a boat dock and outdoor fire pit.",
+                Rooms = 3,
+                FloorRows = 1,
+                MonthlyFee = 4500,
+                OperatingCost = 8500,
+                Facilities = new List<Facilities>
+                {
+                    Facilities.Pool,
+                    Facilities.ParkingLot,
+                    Facilities.Terrace
+                },
+                BuildYear = 2020,
+                IsAvailable = true,
+                ImageUrls = new[]
+                {
+                    "https://images.unsplash.com/photo-1600607687920-4e2a09cf159d",
+                    "https://images.unsplash.com/photo-1600607688969-a5bfcd646154"
+                }
+            });
+
+            context.Residences.Add(new House
+            {
+                Address = context.Addresses.OrderBy(x => Guid.NewGuid()).First(),
+                Type = ResidenceType.House,
+                Area = 150,
+                BiArea = 20,
+                Floors = 2,
+                Description = "Renovated 19th-century farmhouse with original stone walls and wooden beams. Includes a cozy kitchen with a AGA stove, three bedrooms, and a sunroom. The property features a barn (convertible to a studio/workshop) and 1.5 hectares of land.",
+                Rooms = 3,
+                FloorRows = 2,
+                MonthlyFee = 3200,
+                OperatingCost = 5000,
+                Facilities = new List<Facilities>
+                {
+                    Facilities.Balcony,
+                    Facilities.ParkingLot
+                },
+                BuildYear = 1850,
+                IsAvailable = true,
+                ImageUrls = new[]
+                {
+                    "https://images.unsplash.com/photo-1600046050379-8a5d01b3f6ca",
+                    "https://images.unsplash.com/photo-1600121848594-d8644e57abab"
+                }
+            });
+
+            context.Residences.Add(new House
+            {
+                Address = context.Addresses.OrderBy(x => Guid.NewGuid()).First(),
+                Type = ResidenceType.House,
+                Area = 320,
+                BiArea = 80,
+                Floors = 3,
+                Description = "State-of-the-art smart villa with a heated infinity pool, home theater, and rooftop terrace. Features five ensuite bedrooms, a wine cellar, and a gourmet kitchen with marble countertops. The garden includes an outdoor kitchen and a Zen meditation area.",
+                Rooms = 5,
+                FloorRows = 3,
+                MonthlyFee = 9500,
+                OperatingCost = 12000,
+                Facilities = new List<Facilities>
+                {
+                    Facilities.Pool,
+                    Facilities.Elevator,
+                    Facilities.ParkingLot
+                },
+                BuildYear = 2021,
+                IsAvailable = true,
+                ImageUrls = new[]
+                {
+                    "https://images.unsplash.com/photo-1564013799919-ab600027ffc6",
+                    "https://images.unsplash.com/photo-1582268611958-ebfd161ef9cf"
+                }
+            });
+
+            context.Residences.Add(new House
+            {
+                Address = context.Addresses.OrderBy(x => Guid.NewGuid()).First(),
+                Type = ResidenceType.House,
+                Area = 140,
+                BiArea = 30,
+                Floors = 2,
+                Description = "Energy-efficient timber house with solar panels, geothermal heating, and rainwater recycling. Open-plan living with a wood-burning stove, three bedrooms, and a greenhouse. The property includes an organic vegetable garden and a chicken coop.",
+                Rooms = 3,
+                FloorRows = 2,
+                MonthlyFee = 2400,
+                OperatingCost = 3800,
+                Facilities = new List<Facilities>
+                {
+                    Facilities.ParkingLot
+      
+                },
+                BuildYear = 2018,
+                IsAvailable = true,
+                ImageUrls = new[]
+                {
+                    "https://images.unsplash.com/photo-1600566752229-2506f6a68954",
+                    "https://images.unsplash.com/photo-1600585154340-be6161a56a0c"
+                }
+            });
+
+            context.Residences.Add(new House
+            {
+                Address = context.Addresses.OrderBy(x => Guid.NewGuid()).First(),
+                Type = ResidenceType.House,
+                Area = 90,
+                BiArea = 15,
+                Floors = 1,
+                Description = "Authentic log cabin nestled in the mountains, just steps from hiking and skiing trails. Features a wood-fired sauna, a stone fireplace, and a wraparound porch. Perfect for year-round adventures!",
+                Rooms = 2,
+                FloorRows = 1,
+                MonthlyFee = 1800,
+                OperatingCost = 3000,
+                Facilities = new List<Facilities>
+                {
+                    Facilities.ParkingLot
+                },
+                BuildYear = 2010,
+                IsAvailable = true,
+                ImageUrls = new[]
+                {
+                    "https://images.unsplash.com/photo-1483728642387-6c3bdd6c93e5",
+                    "https://images.unsplash.com/photo-1601918774946-25832a4be0d6"
+                }
+            });
+            context.Residences.Add(new House
+            {
+                Address = context.Addresses.OrderBy(x => Guid.NewGuid()).First(),
+                Type = ResidenceType.House,
+                Area = 110,
+                BiArea = 25,
+                Floors = 1,
+                Description = "Quaint cottage just 50 meters from the beach. Features a breezy open layout, a screened porch, and an outdoor shower. The property includes a private path to the sand and a storage shed for surfboards/kayaks.",
+                Rooms = 2,
+                FloorRows = 1,
+                MonthlyFee = 3500,
+                OperatingCost = 4800,
+                Facilities = new List<Facilities>
+                {
+                    Facilities.Balcony,
+                    Facilities.Terrace
+                },
+                BuildYear = 2005,
+                IsAvailable = true,
+                ImageUrls = new[]
+                {
+                    "https://images.unsplash.com/photo-1512917774080-9991f1c4c750",
+                    "https://images.unsplash.com/photo-1502672260266-1c1ef2d93688"
+                }
+            });
+
+            context.Residences.Add(new House
+            {
+                Address = context.Addresses.OrderBy(x => Guid.NewGuid()).First(),
+                Type = ResidenceType.House,
+                Area = 220,
+                BiArea = 50,
+                Floors = 2,
+                Description = "Equestrian property with a 5-stall barn, riding arena, and 10 acres of pastures. The main house includes four bedrooms, a chef’s kitchen, and a sunroom overlooking the grounds. Ideal for professional riders or hobbyists.",
+                Rooms = 4,
+                FloorRows = 2,
+                MonthlyFee = 5200,
+                OperatingCost = 9000,
+                Facilities = new List<Facilities>
+                {
+                    Facilities.Pool,
+                    Facilities.ParkingLot
+                },
+                BuildYear = 2015,
+                IsAvailable = true,
+                ImageUrls = new[]
+                {
+                    "https://images.unsplash.com/photo-1605276374104-dee2a0ed3cd6",
+                    "https://images.unsplash.com/photo-1600046050379-8a5d01b3f6ca"
+                }
+            });
+            context.Residences.Add(new House
+            {
+                Address = context.Addresses.OrderBy(x => Guid.NewGuid()).First(),
+                Type = ResidenceType.House,
                 Area = 150,
                 BiArea = 50,
                 Floors = 3,
@@ -196,6 +660,58 @@ namespace FribergRealEstatesAPI.Data.Seeding
                 {
                     "https://images.unsplash.com/photo-1605146769289-440113cc3d00",
                     "https://images.unsplash.com/photo-1600607687920-4e2a09cf159d"
+                }
+            });
+
+            context.Residences.Add(new House
+            {
+                Address = context.Addresses.OrderBy(x => Guid.NewGuid()).First(),
+                Type = ResidenceType.House,
+                Area = 250,
+                BiArea = 70,
+                Floors = 2,
+                Description = "Sleek glass-walled home with floating staircases and smart-home automation. Features a rooftop terrace, an indoor pool, and a gourmet kitchen with premium appliances. The minimalist garden includes a koi pond and zen rock garden.",
+                Rooms = 3,
+                FloorRows = 2,
+                MonthlyFee = 8800,
+                OperatingCost = 11000,
+                Facilities = new List<Facilities>
+                {
+                    Facilities.Pool,
+                    Facilities.Terrace,
+                    Facilities.ParkingLot
+                },
+                BuildYear = 2022,
+                IsAvailable = true,
+                ImageUrls = new[]
+                {
+                    "https://images.unsplash.com/photo-1582268611958-ebfd161ef9cf",
+                    "https://images.unsplash.com/photo-1564013799919-ab600027ffc6"
+                }
+            });
+
+            context.Residences.Add(new House
+            {
+                Address = context.Addresses.OrderBy(x => Guid.NewGuid()).First(),
+                Type = ResidenceType.House,
+                Area = 180,
+                BiArea = 40,
+                Floors = 2,
+                Description = "Perfect family home with a large backyard (play set included), a modern kitchen, and four bedrooms. The finished basement includes a home gym and a movie corner. Quiet neighborhood with excellent schools nearby.",
+                Rooms = 4,
+                FloorRows = 2,
+                MonthlyFee = 3800,
+                OperatingCost = 5500,
+                Facilities = new List<Facilities>
+                {
+                    Facilities.ParkingLot
+                },
+                BuildYear = 2016,
+                IsAvailable = true,
+                ImageUrls = new[]
+                {
+                    "https://images.unsplash.com/photo-1600585154340-be6161a56a0c",
+                    "https://images.unsplash.com/photo-1605276374104-dee2a0ed3cd6"
                 }
             });
 
@@ -250,6 +766,57 @@ namespace FribergRealEstatesAPI.Data.Seeding
                 {
                     "https://images.unsplash.com/photo-1613490493576-7fde63acd811",
                     "https://images.unsplash.com/photo-1600585152220-90363fe7e115"
+                }
+            });
+
+            context.Residences.Add(new House
+            {
+                Address = context.Addresses.OrderBy(x => Guid.NewGuid()).First(),
+                Type = ResidenceType.House,
+                Area = 120,
+                BiArea = 20,
+                Floors = 2,
+                Description = "Charmig villa med stor trädgård – Lidingö, Stockholm\r\nEn vacker villa på 120 kvm med fem rum och kök. Huset har två våningar med ett stort vardagsrum, tre sovrum och två badrum. Köket är nyrenoverat med moderna vitvaror. Trädgården är stor och välskött med plats för grill och uteservering. Lägenheten ligger i ett lugnt bostadsområde nära skola och dagis.",
+                Rooms = 5,
+                FloorRows = 2,
+                MonthlyFee = 1800,
+                OperatingCost = 4200,
+                Facilities = new List<Facilities>
+                {
+                    Facilities.Terrace
+                },
+                BuildYear = 1985,
+                IsAvailable = true,
+                ImageUrls = new[]
+                {
+                    "https://images.unsplash.com/photo-1583608205777-3fd6d25a380b",
+                    "https://images.unsplash.com/photo-1570129477492-45c003edd32c"
+                }
+            });
+
+            context.Residences.Add(new House
+            {
+                Address = context.Addresses.OrderBy(x => Guid.NewGuid()).First(),
+                Type = ResidenceType.House,
+                Area = 150,
+                BiArea = 25,
+                Floors = 2,
+                Description = "Stor familjevilla med pool – Djursholm, Stockholm\r\nEn imponerande villa på 150 kvm med sex rum och kök. Huset har två våningar med ett stort vardagsrum, fyra sovrum och två badrum. Det finns även ett hobbyrum i källaren. Trädgården är stor med en pool och uteserveringsområde. Villan ligger i ett exklusivt bostadsområde nära vatten.",
+                Rooms = 6,
+                FloorRows = 2,
+                MonthlyFee = 2200,
+                OperatingCost = 5000,
+                Facilities = new List<Facilities>
+                {
+                    Facilities.Pool,
+                    Facilities.Terrace
+                },
+                BuildYear = 2005,
+                IsAvailable = true,
+                ImageUrls = new[]
+                {
+                    "https://images.unsplash.com/photo-1598928506088-98345a67d9b1",
+                    "https://images.unsplash.com/photo-1600047302983-e930cce1530a"
                 }
             });
 
@@ -382,6 +949,57 @@ namespace FribergRealEstatesAPI.Data.Seeding
                 {
                     "https://images.unsplash.com/photo-1580587771525-78b9dba3b914",
                     "https://images.unsplash.com/photo-1564013799919-ab600027ffc6"
+                }
+            });
+            context.Residences.Add(new VacationHouse
+            {
+                Address = context.Addresses.OrderBy(x => Guid.NewGuid()).First(),
+                Type = ResidenceType.VacationHouse,
+                Area = 60,
+                BiArea = 15,
+                Floors = 1,
+                Description = "Mysigt sommarställe med sjönära läge – Trosa skärgård\r\nEtt mysigt sommarställe på 60 kvm med två rum och kök. Stugan har ett vardagsrum med öppen spis, ett sovrum och ett badrum med dusch. Utanför finns en stor altan med utsikt över sjön. Tomten är stor med plats för solstolar och grill. Stugan ligger i ett lugnt område nära badplats och båttrafik.",
+                Rooms = 2,
+                FloorRows = 1,
+                MonthlyFee = 1200,
+                OperatingCost = 3000,
+                Facilities = new List<Facilities>
+                {
+                    Facilities.Terrace,
+                    Facilities.ParkingLot
+                },
+                BuildYear = 1990,
+                IsAvailable = true,
+                ImageUrls = new[]
+                {
+                    "https://images.unsplash.com/photo-1571866316367-b1ffa92e90a3",
+                    "https://images.unsplash.com/photo-1566073741689-dbf3710f997f"
+                }
+            });
+
+            context.Residences.Add(new VacationHouse
+            {
+                Address = context.Addresses.OrderBy(x => Guid.NewGuid()).First(),
+                Type = ResidenceType.VacationHouse,
+                Area = 70,
+                BiArea = 18,
+                Floors = 1,
+                Description = "Modernt fritidshus med altan och bastu – Åre fjäll\r\nEtt modernt fritidshus på 70 kvm med tre rum och kök. Huset har ett vardagsrum med öppen spis, två sovrum och ett badrum med bastu. Utanför finns en stor altan med utsikt över fjällen. Tomten är lättskött med plats för grill och uteservering. Huset ligger nära skidbackar och vandringsleder.",
+                Rooms = 3,
+                FloorRows = 1,
+                MonthlyFee = 1400,
+                OperatingCost = 3800,
+                Facilities = new List<Facilities>
+                {
+                    Facilities.Terrace,
+                    Facilities.ParkingLot
+                },
+                BuildYear = 2012,
+                IsAvailable = true,
+                ImageUrls = new[]
+                {
+                    "https://images.unsplash.com/photo-1541170306230-c80d6a84bcdb",
+                    "https://images.unsplash.com/photo-1564501049412-61c2dcab3b3b"
                 }
             });
 

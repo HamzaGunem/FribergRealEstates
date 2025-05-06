@@ -37,6 +37,7 @@ namespace FribergRealEstatesAPI.Data.Repositories
                 .Include(a => a.Address)
                 .ThenInclude(addr => addr.Commun)
                 .Include(a => a.Realtors)
+                .ThenInclude(a => a.ActiveAdverts)
                 .FirstOrDefaultAsync(a => a.Id == id);
         }
 
