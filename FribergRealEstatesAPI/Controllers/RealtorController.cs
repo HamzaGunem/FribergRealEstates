@@ -10,6 +10,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using System.Collections;
 using System.Collections.Generic;
 using System.Security.Claims;
 
@@ -49,6 +50,21 @@ namespace FribergRealEstatesAPI.Controllers
                 SoldAdverts = _mapper.Map<List<AdvertDto>>(soldAdverts)
             };
             
+        }
+
+        //Auth: Robert
+        [HttpGet("admin/validaterealtor")]
+        public async Task<ActionResult<IEnumerable<AdminRealtorUserDto>>> GetAllRealtors()
+        {
+            var realtors = await _realtorRepository.GetAllAsync();
+            if(realtors == null)
+            {
+                return NotFound();
+            }
+
+            var response = _mapper.Map<List<AdminRealtorUserDto>>(realtors);
+
+            return Ok(response);
         }
 
         [HttpGet("{realtorId}/active")]
