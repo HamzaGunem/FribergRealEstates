@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace FribergRealEstatesAPI.Migrations
 {
     [DbContext(typeof(ApiDbContext))]
-    [Migration("20250428134356_nr5")]
-    partial class nr5
+    [Migration("20250506145846_init")]
+    partial class init
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -222,6 +222,9 @@ namespace FribergRealEstatesAPI.Migrations
                     b.Property<int>("AgencyId")
                         .HasColumnType("int");
 
+                    b.Property<string>("ApiUserId")
+                        .HasColumnType("nvarchar(450)");
+
                     b.Property<string>("Email")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -244,6 +247,10 @@ namespace FribergRealEstatesAPI.Migrations
                     b.HasKey("Id");
 
                     b.HasIndex("AgencyId");
+
+                    b.HasIndex("ApiUserId")
+                        .IsUnique()
+                        .HasFilter("[ApiUserId] IS NOT NULL");
 
                     b.ToTable("Realtors");
                 });
@@ -497,7 +504,14 @@ namespace FribergRealEstatesAPI.Migrations
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
+                    b.HasOne("FribergRealEstatesAPI.Data.ApiUser", "ApiUser")
+                        .WithOne("Realtor")
+                        .HasForeignKey("FribergRealEstatesAPI.Models.Realtor", "ApiUserId")
+                        .OnDelete(DeleteBehavior.Restrict);
+
                     b.Navigation("Agency");
+
+                    b.Navigation("ApiUser");
                 });
 
             modelBuilder.Entity("FribergRealEstatesAPI.Models.Residence", b =>
@@ -564,6 +578,11 @@ namespace FribergRealEstatesAPI.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("FribergRealEstatesAPI.Data.ApiUser", b =>
+                {
+                    b.Navigation("Realtor");
                 });
 
             modelBuilder.Entity("FribergRealEstatesAPI.Models.Address", b =>

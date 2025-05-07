@@ -15,5 +15,11 @@ namespace FribergRealEstatesAPI.Data.Dto
         public double? MinArea { get; set; }
         public double? MaxArea { get; set; }
         public string? Address { get; set; }
+
+        // OrderBy Added by Oscar
+
+        public string? OrderBy { get; set; }
+        
+        public bool? OrderDescending { get; set; } 
     }
 }

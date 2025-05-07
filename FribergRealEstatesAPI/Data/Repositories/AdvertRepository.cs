@@ -23,6 +23,17 @@ namespace FribergRealEstatesAPI.Data.Repositories
                 .ToListAsync();
         }
 
+        // Auth Robert
+        public async Task<Advert> GetActiveAdvertByAdvertIdAsync(int advertId)
+        {
+            return await _context.Adverts
+                .Include(a => a.Residence)
+                .ThenInclude(r => r.Address)
+                .ThenInclude(c => c.Commun)
+                .Include(a => a.Realtor)
+                .FirstOrDefaultAsync(a => a.Id == advertId);
+        }
+
         public async Task<List<Advert>> GetFilteredAdvertsAsync(AdvertFilterDto filter)
         {
             IQueryable<Advert> query = _context.Adverts
@@ -31,6 +42,7 @@ namespace FribergRealEstatesAPI.Data.Repositories
                 .ThenInclude(c => c.Commun) // Change Robert
                 .Include(a => a.Realtor)
                 .ThenInclude(r => r.Agency);
+             
 
             //Type filter
             if (filter.ResidenceTypes != null && filter.ResidenceTypes.Any())
@@ -39,27 +51,44 @@ namespace FribergRealEstatesAPI.Data.Repositories
             }
 
             //Rooms 
-            if(filter.MinRooms.HasValue)
+            if (filter.MinRooms.HasValue)
                 query = query.Where(a => a.Residence.Rooms >= filter.MinRooms.Value);
-            if(filter.MaxRooms.HasValue)
+            if (filter.MaxRooms.HasValue)
                 query = query.Where(a => a.Residence.Rooms <= filter.MaxRooms.Value);
 
             //Price 
-            if(filter.MinPrice.HasValue)
+            if (filter.MinPrice.HasValue)
                 query = query.Where(a => a.CurrentPrice >= filter.MinPrice.Value);
-            if(filter.MaxPrice.HasValue)
+            if (filter.MaxPrice.HasValue)
                 query = query.Where(a => a.CurrentPrice <= filter.MaxPrice.Value);
 
             //Area 
-            if(filter.MinArea.HasValue)
+            if (filter.MinArea.HasValue)
                 query = query.Where(a => a.Residence.Area >= filter.MinArea.Value);
-            if(filter.MaxArea.HasValue)
+            if (filter.MaxArea.HasValue)
                 query = query.Where(a => a.Residence.Area <= filter.MaxArea.Value);
 
             //Adress
             if (!string.IsNullOrEmpty(filter.Address))
             {
                 query = query.Where(a => a.Residence.Address.City.Contains(filter.Address));
+            }
+
+            // OrderBy Added by Oscar
+            if (!string.IsNullOrEmpty(filter.OrderBy))
+            {
+                bool descending = filter.OrderDescending ?? false;
+
+                query = filter.OrderBy.ToLower() switch
+                {
+                    "price" => descending
+                        ? query.OrderByDescending(a => a.CurrentPrice)
+                        : query.OrderBy(a => a.CurrentPrice),
+                    "rooms" => descending
+                        ? query.OrderByDescending(a => a.Residence.Rooms)
+                        : query.OrderBy(a => a.Residence.Rooms),
+                    _ => query
+                };
             }
 
             return await query.ToListAsync();

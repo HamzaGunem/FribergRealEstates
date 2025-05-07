@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using Scalar.AspNetCore;
+using System.Security.Claims;
 using System.Text;
 using System.Text.Json.Serialization;
 
@@ -74,7 +75,8 @@ namespace FribergRealEstatesAPI
                         ValidIssuer = builder.Configuration["JwtSettings:Issuer"],
                         ValidAudience = builder.Configuration["JwtSettings:Audience"],
                         ClockSkew = TimeSpan.Zero,
-                        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["JwtSettings:Key"]))
+                        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["JwtSettings:Key"])),
+                        RoleClaimType = ClaimTypes.Role
                     };
                 });
 
@@ -92,7 +94,9 @@ namespace FribergRealEstatesAPI
             using (var scope = app.Services.CreateScope())
             {
                 var apiDbContext = scope.ServiceProvider.GetRequiredService<ApiDbContext>();
-                SeedData.SeedAsync(apiDbContext).Wait();
+                var userManager = scope.ServiceProvider.GetRequiredService<UserManager<ApiUser>>();
+                var roleManager = scope.ServiceProvider.GetRequiredService<RoleManager<IdentityRole>>();
+                SeedData.SeedAsync(apiDbContext,userManager,roleManager).Wait();
             }
 
             app.UseHttpsRedirection();

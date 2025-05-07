@@ -1,11 +1,19 @@
 ﻿using AutoMapper;
+using FribergRealEstatesAPI.Constants;
+using FribergRealEstatesAPI.Data;
 using FribergRealEstatesAPI.Data.Dto;
 using FribergRealEstatesAPI.Data.Interfaces;
+using FribergRealEstatesAPI.Data.Repositories;
 using FribergRealEstatesAPI.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using System.Collections;
 using System.Collections.Generic;
+using System.Security.Claims;
+using FribergRealEstatesAPI.Constants;
 
 namespace FribergRealEstatesAPI.Controllers
 {
@@ -17,11 +25,13 @@ namespace FribergRealEstatesAPI.Controllers
     {
         private readonly IRealtorRepository _realtorRepository;
         private readonly IMapper _mapper;
+        private readonly UserManager<ApiUser> manager;
 
-        public RealtorController(IRealtorRepository realtorRepository, IMapper mapper)
+        public RealtorController(IRealtorRepository realtorRepository, IMapper mapper, UserManager<ApiUser> manager)
         {
             this._realtorRepository = realtorRepository;
             this._mapper = mapper;
+            this.manager = manager;
         }
         //Auth: Hamza
         [HttpGet("{realtorId}/full-profile")]
@@ -43,6 +53,22 @@ namespace FribergRealEstatesAPI.Controllers
             
         }
 
+        //Auth: Robert
+        [HttpGet("admin/allrealtors")]
+        [Authorize(Roles = ApiRoles.SuperAdmin)]
+        public async Task<ActionResult<IEnumerable<AdminRealtorUserDto>>> GetAllRealtors()
+        {
+            var realtors = await _realtorRepository.GetAllRealtorsAsync();
+            if(realtors == null)
+            {
+                return NotFound();
+            }
+
+            var response = _mapper.Map<List<AdminRealtorUserDto>>(realtors);
+
+            return Ok(response);
+        }
+
         [HttpGet("{realtorId}/active")]
         public async Task<ActionResult<List<RealtorAdvertsDto>>> GetActiveAdverts(int realtorId)
         {
@@ -58,21 +84,21 @@ namespace FribergRealEstatesAPI.Controllers
             return Ok(response);
         }
 
-        //Hamza
+        //Hamza, return type changed by Samuel
         [HttpGet("{communName}/realtors/byCommun")]
-        public async Task<ActionResult<List<RealtorDto>>> GetRealtorsByAgencyCommun(string communName)
+        public async Task<ActionResult<List<RealtorSummaryDto>>> GetRealtorsByAgencyCommun(string communName)
         {
             var realtors = await _realtorRepository.GetRealtorsByAgencyCommunName(communName);
             if (realtors == null)
                 return NotFound();
-            var response = _mapper.Map<List<RealtorDto>>(realtors);
+            var response = _mapper.Map<List<RealtorSummaryDto>>(realtors);
             return Ok(response);
         }
 
         [HttpGet("{realtorId}/sold")]
         public async Task<ActionResult<List<RealtorAdvertsDto>>> GetSoldAdverts(int realtorId)
         {
-            var realtor = _realtorRepository.GetByIdAsync(realtorId);
+            var realtor = await _realtorRepository.GetByIdAsync(realtorId);
 
             if (realtor == null)
                 return NotFound();
@@ -114,6 +140,68 @@ namespace FribergRealEstatesAPI.Controllers
             var updatedRealtorProfile = _mapper.Map<RealtorProfileDto>(realtor);
 
             return Ok(updatedRealtorProfile);
+        }
+
+        // Auth: Robert
+        [HttpPut("{realtorId}/profileapiuser")]
+        public async Task<IActionResult> UpdateRealtorUserApiProfile(string id, [FromBody] AdminRealtorUserDto dto)
+        {
+            if(id != dto.ApiUserId)
+                return BadRequest();
+
+            var user = await manager.FindByIdAsync(id);
+
+            if(user == null)
+                return NotFound();
+
+            user.EmailConfirmed = dto.EmailConfirmed;
+            
+            var result = await manager.UpdateAsync(user);
+
+            if(!result.Succeeded)
+            {
+                return BadRequest();
+            }
+
+            return NoContent();
+        }
+
+        // auth Robert Testdata, Changes Hamza
+        [Authorize]
+        [HttpGet("realtor/me")]
+        public async Task<ActionResult<RealtorFullProfileDto>> GetCurrentRealtor()
+        {
+            var userId = User.FindFirstValue(CustomClaimTypes.Uid);
+
+            if (string.IsNullOrEmpty(userId))
+                return Unauthorized("Ingen användare hittades i token.");
+
+            var realtor = await _realtorRepository.GetByApiUserIdAsync(userId);
+
+            if (realtor == null)
+                return NotFound("Ingen profil kopplad till denna användare.");
+
+            var activeAdverts = await _realtorRepository.GetActiveAdvertsByRealtorIdAsync(realtor.Id);
+            var soldAdverts = await _realtorRepository.GetSoldAdvertsByRealtorIdAsync(realtor.Id);
+
+            var response = new RealtorFullProfileDto
+            {
+                Realtor = _mapper.Map<RealtorSummaryDto>(realtor),
+                ActiveAdverts = _mapper.Map<List<AdvertDto>>(activeAdverts),
+                SoldAdverts = _mapper.Map<List<AdvertDto>>(soldAdverts)
+            };
+            return Ok(response);
+        }
+
+        //Auth: Jonathan
+        [HttpPut("create")]    
+        public async Task<ActionResult<RealtorProfileDto>> CreateRealtorProfile(RealtorCreateDto realtorCreateDto)
+        {
+            var newRealtor = _mapper.Map<Realtor>(realtorCreateDto);
+
+            await _realtorRepository.AddAsync(newRealtor);
+
+            return Ok();
         }
     }
 }

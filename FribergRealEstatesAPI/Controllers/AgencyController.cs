@@ -4,6 +4,7 @@ using FribergRealEstatesAPI.Data.Interfaces;
 using FribergRealEstatesAPI.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using System.Collections;
 
 namespace FribergRealEstatesAPI.Controllers
 {
@@ -22,6 +23,20 @@ namespace FribergRealEstatesAPI.Controllers
             this.agencyRepository = agencyRepository;
             this.addressRepository = addressRepository;
             this.mapper = mapper;
+        }
+
+        // Samuel
+        [HttpGet("/agencies/all")]
+        public async Task<ActionResult<IEnumerable<AgencySummaryDto>>> GetAllAgencies()
+        {
+            var agencies = await agencyRepository.GetAllAsync();
+
+            if(agencies == null || !agencies.Any())
+            {
+                return NotFound("No agencies found");
+            }
+            var result = mapper.Map<List<AgencySummaryDto>>(agencies);
+            return Ok(result);
         }
 
         //Auth: Oscar

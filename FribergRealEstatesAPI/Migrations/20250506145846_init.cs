@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace FribergRealEstatesAPI.Migrations
 {
     /// <inheritdoc />
-    public partial class nr5 : Migration
+    public partial class init : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -265,6 +265,7 @@ namespace FribergRealEstatesAPI.Migrations
                     Email = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     PhoneNumber = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     PictureUrl = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    ApiUserId = table.Column<string>(type: "nvarchar(450)", nullable: true),
                     AgencyId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
@@ -274,6 +275,12 @@ namespace FribergRealEstatesAPI.Migrations
                         name: "FK_Realtors_Agencies_AgencyId",
                         column: x => x.AgencyId,
                         principalTable: "Agencies",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_Realtors_AspNetUsers_ApiUserId",
+                        column: x => x.ApiUserId,
+                        principalTable: "AspNetUsers",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                 });
@@ -374,6 +381,13 @@ namespace FribergRealEstatesAPI.Migrations
                 column: "AgencyId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Realtors_ApiUserId",
+                table: "Realtors",
+                column: "ApiUserId",
+                unique: true,
+                filter: "[ApiUserId] IS NOT NULL");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Residences_AddressId",
                 table: "Residences",
                 column: "AddressId",
@@ -416,10 +430,10 @@ namespace FribergRealEstatesAPI.Migrations
                 name: "AspNetRoles");
 
             migrationBuilder.DropTable(
-                name: "AspNetUsers");
+                name: "Agencies");
 
             migrationBuilder.DropTable(
-                name: "Agencies");
+                name: "AspNetUsers");
 
             migrationBuilder.DropTable(
                 name: "Addresses");

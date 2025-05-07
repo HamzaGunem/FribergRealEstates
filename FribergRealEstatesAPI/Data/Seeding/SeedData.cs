@@ -1,10 +1,13 @@
-﻿namespace FribergRealEstatesAPI.Data.Seeding
+﻿using Microsoft.AspNetCore.Identity;
+
+namespace FribergRealEstatesAPI.Data.Seeding
 {
     //Auth: Hamza
     public class SeedData
     {
-        public static async Task SeedAsync(ApiDbContext context)
+        public static async Task SeedAsync(ApiDbContext context, UserManager<ApiUser> userManager, RoleManager<IdentityRole> identityRole)
         {
+            await UserAndRoleSeeding.SeedRolesAsync(identityRole);
             if (!context.Communs.Any())
             {
                 //Seed Communs and addresses
@@ -17,7 +20,7 @@
             }
             if (!context.Realtors.Any())
             {
-                //Seed Realtors
+                await UserAndRoleSeeding.SeedUsersAndRealtorsAsync(userManager, context);
             }
             if (!context.Residences.Any())
             {
