@@ -86,7 +86,7 @@ namespace FribergRealEstatesAPI.Controllers
             {
                 newRealtor = CreateRealtor(regDto);
                 newRealtor.Agency = await _agencyRepository.GetByIdAsync(regDto.AgencyId);
-                newRealtor.ApiUserId = newUser.Id;
+                //newRealtor.ApiUserId = newUser.Id;
                 newRealtor.ApiUser = newUser;
                 await _realtorRepository.AddAsync(newRealtor);
 
