@@ -46,6 +46,5 @@ namespace FribergRealEstatesAPI.Data.Repositories
         {
             await AddAsync(agency);
         }
-
     }
 }

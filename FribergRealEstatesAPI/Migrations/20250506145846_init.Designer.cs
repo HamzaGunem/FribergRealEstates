@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace FribergRealEstatesAPI.Migrations
 {
     [DbContext(typeof(ApiDbContext))]
-    [Migration("20250502162320_init")]
+    [Migration("20250506145846_init")]
     partial class init
     {
         /// <inheritdoc />
@@ -223,7 +223,6 @@ namespace FribergRealEstatesAPI.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("ApiUserId")
-                        .IsRequired()
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("Email")
@@ -250,7 +249,8 @@ namespace FribergRealEstatesAPI.Migrations
                     b.HasIndex("AgencyId");
 
                     b.HasIndex("ApiUserId")
-                        .IsUnique();
+                        .IsUnique()
+                        .HasFilter("[ApiUserId] IS NOT NULL");
 
                     b.ToTable("Realtors");
                 });
@@ -507,8 +507,7 @@ namespace FribergRealEstatesAPI.Migrations
                     b.HasOne("FribergRealEstatesAPI.Data.ApiUser", "ApiUser")
                         .WithOne("Realtor")
                         .HasForeignKey("FribergRealEstatesAPI.Models.Realtor", "ApiUserId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
+                        .OnDelete(DeleteBehavior.Restrict);
 
                     b.Navigation("Agency");
 
