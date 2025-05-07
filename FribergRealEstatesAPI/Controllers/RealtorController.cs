@@ -10,6 +10,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using System.Collections;
 using System.Collections.Generic;
 using System.Security.Claims;
 
@@ -49,6 +50,21 @@ namespace FribergRealEstatesAPI.Controllers
                 SoldAdverts = _mapper.Map<List<AdvertDto>>(soldAdverts)
             };
             
+        }
+
+        //Auth: Robert
+        [HttpGet("admin/validaterealtor")]
+        public async Task<ActionResult<IEnumerable<AdminRealtorUserDto>>> GetAllRealtors()
+        {
+            var realtors = await _realtorRepository.GetAllRealtorsAsync();
+            if(realtors == null)
+            {
+                return NotFound();
+            }
+
+            var response = _mapper.Map<List<AdminRealtorUserDto>>(realtors);
+
+            return Ok(response);
         }
 
         [HttpGet("{realtorId}/active")]
@@ -122,6 +138,30 @@ namespace FribergRealEstatesAPI.Controllers
             var updatedRealtorProfile = _mapper.Map<RealtorProfileDto>(realtor);
 
             return Ok(updatedRealtorProfile);
+        }
+
+        // Auth: Robert
+        [HttpPut("{realtorId}/profileapiuser")]
+        public async Task<IActionResult> UpdateRealtorUserApiProfile(string id, [FromBody] AdminRealtorUserDto dto)
+        {
+            if(id != dto.ApiUserId)
+                return BadRequest();
+
+            var user = await manager.FindByIdAsync(id);
+
+            if(user == null)
+                return NotFound();
+
+            user.EmailConfirmed = dto.EmailConfirmed;
+            
+            var result = await manager.UpdateAsync(user);
+
+            if(!result.Succeeded)
+            {
+                return BadRequest();
+            }
+
+            return NoContent();
         }
 
         // auth Robert Testdata, Changes Hamza

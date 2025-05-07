@@ -13,5 +13,6 @@ namespace FribergRealEstatesAPI.Data.Interfaces
         Task<Realtor> GetProfileWithAgencyAsync(int realtorId);
         Task SaveChangesAsync();    // Jonathan
         Task<Realtor?> GetByApiUserIdAsync(string apiUserId);
+        Task<IEnumerable<Realtor>> GetAllRealtorsAsync();
     }
 }

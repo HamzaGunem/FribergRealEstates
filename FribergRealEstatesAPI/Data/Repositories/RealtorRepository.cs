@@ -70,5 +70,13 @@ namespace FribergRealEstatesAPI.Data.Repositories
                 .FirstOrDefaultAsync(r => r.ApiUserId == apiUserId);
         }
 
+        // Auth: Robert
+        public async Task<IEnumerable<Realtor>> GetAllRealtorsAsync()
+        {
+            return await _context.Realtors
+                .Include(a => a.ApiUser)
+                .ToListAsync();
+        }
+
     }
 }

@@ -35,6 +35,12 @@ namespace FribergRealEstatesAPI.Mapping
             CreateMap<Realtor, RealtorProfileDto>()
                 .ForMember(rdto => rdto.AgencyName, opt => opt.MapFrom(r => r.Agency.Name));
 
+            // Auth: Robert , AdminRealtorUser
+            CreateMap<Realtor, AdminRealtorUserDto>()
+                .ForMember(rdto => rdto.ApiUserId, opt => opt.MapFrom(a => a.ApiUser.Id))
+                .ForMember(rdto => rdto.EmailConfirmed, opt => opt.MapFrom(e => e.ApiUser.EmailConfirmed))
+                .ReverseMap();
+
             // Realtor-Adverts by Robert
             CreateMap<Advert, RealtorAdvertsDto>()
             .ForMember(dest => dest.Created, opt => opt.MapFrom(src => src.Created))
