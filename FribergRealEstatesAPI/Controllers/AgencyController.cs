@@ -24,6 +24,24 @@ namespace FribergRealEstatesAPI.Controllers
             this.mapper = mapper;
         }
 
+        // Samuel
+        [HttpGet("/agencies/all")]
+        public async Task<ActionResult<IEnumerable<AgencySummaryDto>>> GetAllAgencies()
+        {
+            var agencies = await agencyRepository.GetAllAsync();
+
+            if(!agencies.Any())
+            {
+                return NotFound("No agencies found");
+            }
+            else
+            {
+                var result = mapper.Map<List<AgencySummaryDto>>(agencies).ToList();
+                return Ok(result);
+            }
+                
+        }
+
         //Auth: Oscar
         [HttpGet("{communName}/agencies/byCommun")]
         public async Task<ActionResult<IEnumerable<AgencyWithSimpleRealtorsDto>>> GetAgenciesByCommun(string communName)

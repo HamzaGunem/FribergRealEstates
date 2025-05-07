@@ -5,9 +5,6 @@ namespace FribergRealEstatesAPI.Data.Dto
     public class RegisterDto
     {
         [Required]
-        public string UserName { get; set; }
-
-        [Required]
         [EmailAddress]
         public string Email { get; set; }
 
@@ -23,5 +20,8 @@ namespace FribergRealEstatesAPI.Data.Dto
         public string? PhoneNumber { get; set; }
 
         public string? PictureUrl { get; set; }
+
+        [Required]
+        public int AgencyId { get; set; }
     }
 }
