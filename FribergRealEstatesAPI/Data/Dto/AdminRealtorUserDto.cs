@@ -10,5 +10,7 @@
         public string Email { get; set; }
         public string ApiUserId { get; set; }
         public bool EmailConfirmed { get; set; }
+        public int? AgencyId { get; set; }
+        public string? PictureUrl { get; set; }
     }
 }

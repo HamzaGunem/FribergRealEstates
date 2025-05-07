@@ -75,6 +75,7 @@ namespace FribergRealEstatesAPI.Data.Repositories
         {
             return await _context.Realtors
                 .Include(a => a.ApiUser)
+                .Include(b => b.Agency)
                 .ToListAsync();
         }
 
