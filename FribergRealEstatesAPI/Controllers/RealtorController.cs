@@ -54,7 +54,7 @@ namespace FribergRealEstatesAPI.Controllers
         }
 
         //Auth: Robert
-        [HttpGet("admin/validaterealtor")]
+        [HttpGet("admin/allrealtors")]
         [Authorize(Roles = ApiRoles.SuperAdmin)]
         public async Task<ActionResult<IEnumerable<AdminRealtorUserDto>>> GetAllRealtors()
         {
