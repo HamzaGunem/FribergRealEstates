@@ -73,7 +73,7 @@ namespace FribergRealEstatesAPI.Controllers
 
             var advert = new Advert
             {
-                Created = dto.Created,
+                Created = DateTime.Now,
                 Updated = DateTime.Now,
                 Sold = dto.Sold,
                 CurrentPrice = dto.CurrentPrice,
