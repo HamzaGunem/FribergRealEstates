@@ -71,14 +71,14 @@ namespace FribergRealEstatesAPI.Controllers
         public async Task<ActionResult<AdvertCreateDto>> CreateAdvert(AdvertCreateDto dto)
         {
             var realtor = await realtorRepository.GetByIdAsync(dto.RealtorId);
-            if (realtor == null)
+            if(realtor == null)
                 return NotFound("Mäklare hittades inte.");
 
             var residence = await residenceRepository.GetByIdAsync(dto.ResidenceId);
-            if (residence == null)
+            if(residence == null)
                 return NotFound("Bostad hittades inte.");
 
-            if (!residence.IsAvailable)
+            if(!residence.IsAvailable)
                 return BadRequest("Bostad är inte tillgänglig.");
 
             var advert = new Advert
