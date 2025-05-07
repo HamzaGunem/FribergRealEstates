@@ -3,9 +3,9 @@
     // Created by Robert
     public static class ApiRoles
     {
-        public static string Admin = "Admin";
-        public static string SuperAdmin = "SuperAdmin";
-        public static string Realtor = "Realtor";
-        public static string User = "User";
+        public const string Admin = "Admin";
+        public const string SuperAdmin = "SuperAdmin";
+        public const string Realtor = "Realtor";
+        public const string User = "User";
     }
 }

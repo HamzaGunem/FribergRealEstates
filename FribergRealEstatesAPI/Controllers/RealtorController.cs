@@ -13,6 +13,7 @@ using Microsoft.EntityFrameworkCore;
 using System.Collections;
 using System.Collections.Generic;
 using System.Security.Claims;
+using FribergRealEstatesAPI.Constants;
 
 namespace FribergRealEstatesAPI.Controllers
 {
@@ -54,6 +55,7 @@ namespace FribergRealEstatesAPI.Controllers
 
         //Auth: Robert
         [HttpGet("admin/validaterealtor")]
+        [Authorize(Roles = ApiRoles.SuperAdmin)]
         public async Task<ActionResult<IEnumerable<AdminRealtorUserDto>>> GetAllRealtors()
         {
             var realtors = await _realtorRepository.GetAllRealtorsAsync();
