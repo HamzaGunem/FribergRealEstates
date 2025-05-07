@@ -42,6 +42,7 @@ namespace FribergRealEstatesAPI.Data.Repositories
                 .ThenInclude(c => c.Commun) // Change Robert
                 .Include(a => a.Realtor)
                 .ThenInclude(r => r.Agency);
+             
 
             //Type filter
             if (filter.ResidenceTypes != null && filter.ResidenceTypes.Any())
@@ -76,21 +77,20 @@ namespace FribergRealEstatesAPI.Data.Repositories
             // OrderBy Added by Oscar
             if (!string.IsNullOrEmpty(filter.OrderBy))
             {
-                if (filter.OrderBy.Equals("price", StringComparison.OrdinalIgnoreCase))
-                {
-                    query = filter.OrderDescending == true
-                        ? query.OrderByDescending(a => a.CurrentPrice)
-                        : query.OrderBy(a => a.CurrentPrice);
-                }
-                else if (filter.OrderBy.Equals("rooms", StringComparison.OrdinalIgnoreCase))
-                {
-                    query = filter.OrderDescending == true
-                        ? query.OrderByDescending(a => a.Residence.Rooms)
-                        : query.OrderBy(a => a.Residence.Rooms);
-                }
+                bool descending = filter.OrderDescending ?? false;
 
+                query = filter.OrderBy.ToLower() switch
+                {
+                    "price" => descending
+                        ? query.OrderByDescending(a => a.CurrentPrice)
+                        : query.OrderBy(a => a.CurrentPrice),
+                    "rooms" => descending
+                        ? query.OrderByDescending(a => a.Residence.Rooms)
+                        : query.OrderBy(a => a.Residence.Rooms),
+                    _ => query
+                };
             }
-           
+
             return await query.ToListAsync();
         }
     }
