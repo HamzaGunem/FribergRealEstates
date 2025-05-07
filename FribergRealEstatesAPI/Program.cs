@@ -37,6 +37,9 @@ namespace FribergRealEstatesAPI
             builder.Services.AddScoped<IAgencyRepository, AgencyRepository>();
             builder.Services.AddAutoMapper(typeof(AutoMapperProfile));
 
+            // Robert - ChatHub
+            builder.Services.AddSignalR();            
+
             //Identity
             builder.Services.AddIdentityCore<ApiUser>()
                 .AddRoles<IdentityRole>()
@@ -89,6 +92,9 @@ namespace FribergRealEstatesAPI
                 app.MapOpenApi();
                 app.MapScalarApiReference();
             }
+
+            //Robert, Set chathub endpoint
+            app.MapHub<ChatHub>("/chathub");
 
             //Hamza, Seed all data
             using (var scope = app.Services.CreateScope())

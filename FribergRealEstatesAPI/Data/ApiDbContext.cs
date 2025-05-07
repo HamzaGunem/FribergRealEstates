@@ -1,5 +1,6 @@
 ﻿using FribergRealEstatesAPI.Constants;
 using FribergRealEstatesAPI.Models;
+using FribergRealEstatesAPI.Models.ChatHubModels;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
@@ -18,6 +19,8 @@ namespace FribergRealEstatesAPI.Data
         public DbSet<Realtor> Realtors { get; set; }
         public DbSet<Advert> Adverts { get; set; }
         public DbSet<Admin> Admins { get; set; }
+        public DbSet<Message> Messages { get; set; }
+        public DbSet<Dialogue> Dialogues { get; set; }
 
         public ApiDbContext(DbContextOptions options) : base(options) { }
 
