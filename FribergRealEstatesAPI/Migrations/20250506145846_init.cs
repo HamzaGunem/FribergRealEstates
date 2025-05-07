@@ -265,7 +265,7 @@ namespace FribergRealEstatesAPI.Migrations
                     Email = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     PhoneNumber = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     PictureUrl = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    ApiUserId = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    ApiUserId = table.Column<string>(type: "nvarchar(450)", nullable: true),
                     AgencyId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
@@ -384,7 +384,8 @@ namespace FribergRealEstatesAPI.Migrations
                 name: "IX_Realtors_ApiUserId",
                 table: "Realtors",
                 column: "ApiUserId",
-                unique: true);
+                unique: true,
+                filter: "[ApiUserId] IS NOT NULL");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Residences_AddressId",

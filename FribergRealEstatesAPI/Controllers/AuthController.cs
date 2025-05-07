@@ -10,6 +10,7 @@ using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace FribergRealEstatesAPI.Controllers
 {
@@ -21,17 +22,19 @@ namespace FribergRealEstatesAPI.Controllers
         private readonly UserManager<ApiUser> _userManager;
         private readonly IConfiguration _configuration;
         private readonly IRealtorRepository _realtorRepository;
+        private readonly IAgencyRepository _agencyRepository;
 
-        public AuthController(UserManager<ApiUser> userManager, IConfiguration configuration, IRealtorRepository realtorRepository)
+        public AuthController(UserManager<ApiUser> userManager, IConfiguration configuration, IRealtorRepository realtorRepository, IAgencyRepository agencyRepository)
         {
             _userManager = userManager;
             _configuration = configuration;
             _realtorRepository = realtorRepository;
+            _agencyRepository = agencyRepository;
         }
 
 
         // Samuel
-        public ApiUser CreateApiUser(RegisterDto regDto)
+        private ApiUser CreateApiUser(RegisterDto regDto)
         {
             ApiUser user = new ApiUser()
             {
@@ -47,7 +50,7 @@ namespace FribergRealEstatesAPI.Controllers
         }
 
         // Samuel
-        public Realtor CreateRealtor(RegisterDto regDto)
+        private Realtor CreateRealtor(RegisterDto regDto)
         {
             Realtor realtor = new Realtor()
             {
@@ -56,6 +59,7 @@ namespace FribergRealEstatesAPI.Controllers
                 FirstName = regDto.FirstName,
                 LastName = regDto.LastName,
                 PictureUrl = regDto.PictureUrl,
+                AgencyId = regDto.AgencyId,
             };
             return realtor;
         }
@@ -65,26 +69,33 @@ namespace FribergRealEstatesAPI.Controllers
         [Route("register")]
         public async Task<IActionResult> Register(RegisterDto regDto)
         {
+            ApiUser newUser = new();
+            Realtor newRealtor = new();
             try
             {
-                var newUser = CreateApiUser(regDto);
-                var result = await _userManager.CreateAsync(newUser, regDto.Password);
+                newUser = CreateApiUser(regDto);
+                await _userManager.CreateAsync(newUser, regDto.Password);
                 await _userManager.AddToRoleAsync(newUser, ApiRoles.User);
             }
             catch(Exception ex)
             {
                 return Problem($"Something Went Wrong in the {nameof(Register)}", statusCode: 500);
             }
-
+            
             try
             {
-                var newRealtor = CreateRealtor(regDto);
-                var result = await _realtorRepository.AddAsync(newRealtor);
+                newRealtor = CreateRealtor(regDto);
+                newRealtor.Agency = await _agencyRepository.GetByIdAsync(regDto.AgencyId);
+                //newRealtor.ApiUserId = newUser.Id;
+                newRealtor.ApiUser = newUser;
+                await _realtorRepository.AddAsync(newRealtor);
+
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 return Problem($"Something Went Wrong in the {nameof(Register)}", statusCode: 500);
             }
+
             return Ok();
         }
         /*
