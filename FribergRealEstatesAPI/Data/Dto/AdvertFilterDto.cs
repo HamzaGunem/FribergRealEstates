@@ -19,6 +19,7 @@ namespace FribergRealEstatesAPI.Data.Dto
         // OrderBy Added by Oscar
 
         public string? OrderBy { get; set; }
-        public bool? OrderDescending { get; set; } = false;
+        
+        public bool? OrderDescending { get; set; } 
     }
 }
