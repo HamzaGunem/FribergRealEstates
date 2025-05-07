@@ -73,6 +73,24 @@ namespace FribergRealEstatesAPI.Data.Repositories
                 query = query.Where(a => a.Residence.Address.City.Contains(filter.Address));
             }
 
+            // OrderBy Added by Oscar
+            if (!string.IsNullOrEmpty(filter.OrderBy))
+            {
+                if (filter.OrderBy.Equals("price", StringComparison.OrdinalIgnoreCase))
+                {
+                    query = filter.OrderDescending == true
+                        ? query.OrderByDescending(a => a.CurrentPrice)
+                        : query.OrderBy(a => a.CurrentPrice);
+                }
+                else if (filter.OrderBy.Equals("rooms", StringComparison.OrdinalIgnoreCase))
+                {
+                    query = filter.OrderDescending == true
+                        ? query.OrderByDescending(a => a.Residence.Rooms)
+                        : query.OrderBy(a => a.Residence.Rooms);
+                }
+
+            }
+           
             return await query.ToListAsync();
         }
     }
