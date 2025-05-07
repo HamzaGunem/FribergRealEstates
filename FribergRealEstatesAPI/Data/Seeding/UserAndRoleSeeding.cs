@@ -20,6 +20,38 @@ namespace FribergRealEstatesAPI.Data.Seeding
                 int index = rand.Next(agencyIds.Count);
                 return agencyIds[index];
             }
+
+            // Admin seeding
+            // Auth: Robert
+            var superAdmin = new ApiUser
+            {
+                UserName = "superadmin@api.com",
+                Email = "superadmin@api.com",
+                NormalizedUserName = "SUPERADMIN@API.COM",
+                NormalizedEmail = "SUPERADMIN@API.COM",
+                EmailConfirmed = true,
+                FirstName = "SuperAdmin",
+                LastName = "Admin"
+            };
+
+            var adminResult = await userManager.CreateAsync(superAdmin, "Superadmin123!");
+
+            if (adminResult.Succeeded)
+            {
+                await userManager.AddToRoleAsync(superAdmin, ApiRoles.SuperAdmin);
+
+                var admin = new Admin
+                {
+                    FirstName = "Marcus",
+                    LastName = "Friberg",
+                    Email = superAdmin.Email,
+                    ApiUserId = superAdmin.Id
+                };
+                context.Admins.Add(admin);
+            }
+
+
+            // Realtors seeding
             var user = new ApiUser
             {
                 UserName = "realtor1@api.com",
@@ -29,7 +61,7 @@ namespace FribergRealEstatesAPI.Data.Seeding
                 EmailConfirmed = true,
                 FirstName = "Test",
                 LastName = "Realtor"
-            };
+            };            
 
             var result = await userManager.CreateAsync(user, "Realtor123!");
 
