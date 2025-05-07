@@ -67,7 +67,7 @@ namespace FribergRealEstatesAPI.Controllers
         }*/
 
         //Auth: Viktor
-        [HttpPost("create")]
+        /*[HttpPost("create")]
         public async Task<ActionResult<AdvertCreateDto>> CreateAdvert(AdvertCreateDto dto)
         {
             var realtor = await realtorRepository.GetByIdAsync(dto.RealtorId);
@@ -94,7 +94,7 @@ namespace FribergRealEstatesAPI.Controllers
             await advertRepository.AddAsync(advert);
             var advertDto = mapper.Map<AdvertDto>(advert);
             return CreatedAtAction(nameof(GetAdvertById), new { advertId = advert.Id }, advertDto);
-        }
+        }*/
 
         //Auth: Viktor
         [HttpPut("{advertId}/edit")]
