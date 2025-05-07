@@ -50,7 +50,7 @@ namespace FribergRealEstatesAPI.Controllers
         }
 
         // Samuel
-        private async Task<Realtor> CreateRealtor(RegisterDto regDto)
+        private Realtor CreateRealtor(RegisterDto regDto)
         {
             Realtor realtor = new Realtor()
             {
@@ -60,7 +60,6 @@ namespace FribergRealEstatesAPI.Controllers
                 LastName = regDto.LastName,
                 PictureUrl = regDto.PictureUrl,
                 AgencyId = regDto.AgencyId,
-                Agency = await _agencyRepository.GetByIdAsync(regDto.AgencyId)
             };
             return realtor;
         }
@@ -70,10 +69,12 @@ namespace FribergRealEstatesAPI.Controllers
         [Route("register")]
         public async Task<IActionResult> Register(RegisterDto regDto)
         {
+            ApiUser newUser = new();
+            Realtor newRealtor = new();
             try
             {
-                var newUser = CreateApiUser(regDto);
-                var result = await _userManager.CreateAsync(newUser, regDto.Password);
+                newUser = CreateApiUser(regDto);
+                await _userManager.CreateAsync(newUser, regDto.Password);
                 await _userManager.AddToRoleAsync(newUser, ApiRoles.User);
             }
             catch(Exception ex)
@@ -83,13 +84,18 @@ namespace FribergRealEstatesAPI.Controllers
             
             try
             {
-                var newRealtor = CreateRealtor(regDto);
-                var result = await _realtorRepository.AddAsync(newRealtor);
+                newRealtor = CreateRealtor(regDto);
+                newRealtor.Agency = await _agencyRepository.GetByIdAsync(regDto.AgencyId);
+                newRealtor.ApiUserId = newUser.Id;
+                newRealtor.ApiUser = newUser;
+                await _realtorRepository.AddAsync(newRealtor);
+
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 return Problem($"Something Went Wrong in the {nameof(Register)}", statusCode: 500);
             }
+
             return Ok();
         }
         /*
