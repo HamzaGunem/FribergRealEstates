@@ -55,7 +55,7 @@ namespace FribergRealEstatesAPI.Controllers
             return Ok(mapper.Map<AdvertDto>(adverts));
         }
 
-        //Auth: Viktor
+        /*//Auth: Viktor
         [HttpGet("{advertId}/advert")] 
         public async Task<ActionResult<AdvertSummaryDto>> GetAdvertById(int advertId)
         {
@@ -64,7 +64,7 @@ namespace FribergRealEstatesAPI.Controllers
                 return NotFound();
 
             return Ok(mapper.Map<AdvertSummaryDto>(advert));
-        }
+        }*/
 
         //Auth: Viktor
         [HttpPost("create")]
