@@ -10,5 +10,7 @@ namespace FribergRealEstatesAPI.Data
         public string LastName { get; set; }
         public virtual Realtor? Realtor { get; set; }
 
+        public virtual Admin? Admin { get; set; }
+
     }
 }

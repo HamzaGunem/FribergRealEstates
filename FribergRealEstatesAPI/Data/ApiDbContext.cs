@@ -17,6 +17,7 @@ namespace FribergRealEstatesAPI.Data
         public DbSet<Commun> Communs { get; set; }
         public DbSet<Realtor> Realtors { get; set; }
         public DbSet<Advert> Adverts { get; set; }
+        public DbSet<Admin> Admins { get; set; }
 
         public ApiDbContext(DbContextOptions options) : base(options) { }
 
@@ -64,6 +65,13 @@ namespace FribergRealEstatesAPI.Data
                 .HasOne(r => r.ApiUser)
                 .WithOne(a => a.Realtor)
                 .HasForeignKey<Realtor>(r => r.ApiUserId)
+                .OnDelete(DeleteBehavior.Restrict);
+
+            //Admin till apiuser
+            modelBuilder.Entity<Admin>()
+                .HasOne(a => a.ApiUser)
+                .WithOne(a => a.Admin)
+                .HasForeignKey<Admin>(a => a.ApiUserId)
                 .OnDelete(DeleteBehavior.Restrict);
 
         }
