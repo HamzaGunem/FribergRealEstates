@@ -20,6 +20,7 @@ namespace FribergRealEstatesAPI.Data.Dto
 
         public List<Facilities>? Facilities { get; set; }
         public ResidenceType Type { get; set; }
+        public bool IsAvailable { get; set; }
 
         public int? ParkingSlotNumber { get; set; }
 
