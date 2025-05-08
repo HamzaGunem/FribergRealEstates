@@ -61,8 +61,8 @@ namespace FribergRealEstatesAPI.Controllers
             return Ok(mapper.Map<ResidenceDto>(residence));
         }
 
-        [HttpGet("residence/available")]
-        public async Task<ActionResult<IEnumerable<ResidenceDto>>> GetAvailableResidence()
+        [HttpGet("/available")]
+        public async Task<ActionResult<List<ResidenceDto>>> GetAvailableResidence()
         {
             var residences = await _residenceRepository.GetAvailableResidence();
             if (residences == null) return NotFound();
