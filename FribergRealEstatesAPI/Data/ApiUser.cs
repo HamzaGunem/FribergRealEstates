@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Identity;
 
 namespace FribergRealEstatesAPI.Data
 {
+    //Test
     public class ApiUser : IdentityUser
     {
         public string FirstName { get; set; }
