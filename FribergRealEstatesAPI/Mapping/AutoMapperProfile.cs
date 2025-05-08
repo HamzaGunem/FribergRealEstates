@@ -93,7 +93,7 @@ namespace FribergRealEstatesAPI.Mapping
             CreateMap<Residence, ResidenceSummaryDto>();
             CreateMap<Advert, AdvertSummaryDto>();
             CreateMap<Address, AddressDto>();            
-            
+            CreateMap<Commun, CommunDto>(); // Oscar
             CreateMap<Realtor, SimpleRealtorDto>(); // Oscar
             CreateMap<Agency, AgencyWithRealtorsDto>(); // Oscar 
             CreateMap<UpdateRealtorProfileDto, Realtor>().ReverseMap(); // Jonathan
