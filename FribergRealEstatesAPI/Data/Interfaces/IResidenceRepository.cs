@@ -13,6 +13,8 @@ namespace FribergRealEstatesAPI.Data.Interfaces
         // Samuel
         Task<IEnumerable<Residence>> GetResidencesByCommunAsync(string communName);
 
+        Task<IEnumerable<Residence>> GetAvailableResidences();
+
         Task<Residence> GetFullResidence(int id);
     }
 }

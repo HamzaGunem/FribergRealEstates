@@ -807,6 +807,12 @@ namespace FribergRealEstatesAPI.Data.Seeding
                 Residence = context.Residences.OrderBy(x => Guid.NewGuid()).First()
             });
             await context.SaveChangesAsync();
+
+            foreach (var advert in context.Adverts)
+            {
+                advert.Residence.IsAvailable = false;
+            }
+            await context.SaveChangesAsync();
         }
     }
 }

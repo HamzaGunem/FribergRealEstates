@@ -55,7 +55,7 @@ namespace FribergRealEstatesAPI.Data.Seeding
                     Facilities.Terrace
                 },
                 BuildYear = 2015,
-                IsAvailable = false,
+                IsAvailable = true,
                 ImageUrls = new[]
                 {
                     "https://images.unsplash.com/photo-1512917774080-9991f1c4c750",
@@ -655,7 +655,7 @@ namespace FribergRealEstatesAPI.Data.Seeding
                     Facilities.NewProduction
                 },
                 BuildYear = 2008,
-                IsAvailable = false,
+                IsAvailable = true,
                 ImageUrls = new[]
                 {
                     "https://images.unsplash.com/photo-1605146769289-440113cc3d00",
@@ -917,7 +917,7 @@ namespace FribergRealEstatesAPI.Data.Seeding
                     Facilities.Terrace
                 },
                 BuildYear = 2005,
-                IsAvailable = false,
+                IsAvailable = true,
                 ImageUrls = new[]
                 {
                     "https://images.unsplash.com/photo-1493809842364-78817add7ffb",
