@@ -87,6 +87,28 @@ namespace FribergRealEstatesAPI.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Admins",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    FirstName = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    LastName = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Email = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    ApiUserId = table.Column<string>(type: "nvarchar(450)", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Admins", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Admins_AspNetUsers_ApiUserId",
+                        column: x => x.ApiUserId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "AspNetUserClaims",
                 columns: table => new
                 {
@@ -201,7 +223,7 @@ namespace FribergRealEstatesAPI.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Description = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    LogoUrl = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    LogoUrl = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     AddressId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
@@ -321,6 +343,13 @@ namespace FribergRealEstatesAPI.Migrations
                 column: "CommunId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Admins_ApiUserId",
+                table: "Admins",
+                column: "ApiUserId",
+                unique: true,
+                filter: "[ApiUserId] IS NOT NULL");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Adverts_RealtorId",
                 table: "Adverts",
                 column: "RealtorId");
@@ -402,6 +431,9 @@ namespace FribergRealEstatesAPI.Migrations
         /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.DropTable(
+                name: "Admins");
+
             migrationBuilder.DropTable(
                 name: "Adverts");
 

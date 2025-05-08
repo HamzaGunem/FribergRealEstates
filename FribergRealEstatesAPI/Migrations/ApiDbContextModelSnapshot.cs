@@ -209,7 +209,6 @@ namespace FribergRealEstatesAPI.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("LogoUrl")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Name")

@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace FribergRealEstatesAPI.Migrations
 {
     [DbContext(typeof(ApiDbContext))]
-    [Migration("20250507090605_added admin")]
-    partial class addedadmin
+    [Migration("20250508074135_init")]
+    partial class init
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -212,7 +212,6 @@ namespace FribergRealEstatesAPI.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("LogoUrl")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Name")
