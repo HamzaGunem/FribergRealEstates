@@ -1,4 +1,5 @@
-﻿namespace FribergRealEstatesAPI.Data.Dto
+﻿// Auth: Oscar
+namespace FribergRealEstatesAPI.Data.Dto
 {
     public class CommunDto
     {
