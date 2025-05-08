@@ -12,7 +12,8 @@ namespace FribergRealEstatesAPI.Mapping
             //Auth: Hamza Residence special edition test
             CreateMap<ResidenceDtoV2, Residence>()
                 .ForMember(r => r.Type, opt => opt.MapFrom(src => Enum.Parse<ResidenceType>(src.Type)))
-                .ForMember(r => r.Facilities, opt => opt.MapFrom(src => src.Facilities.Select(f => Enum.Parse<Facilities>(f)).ToList()));
+                .ForMember(r => r.Facilities, opt => opt.MapFrom(src => src.Facilities.Select(f => Enum.Parse<Facilities>(f)).ToList()))
+                .ReverseMap();
                     
             //Auth: Hamza Advert
             CreateMap<Advert, AdvertDto>()
