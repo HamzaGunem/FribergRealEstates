@@ -38,7 +38,7 @@ namespace FribergRealEstatesAPI.Controllers
             return Ok(response);
         }
         //Hamza
-        [HttpGet("/active")]
+        [HttpGet("/Available")]
         public async Task<ActionResult<List<ResidenceDto>>> GetAvailableResidence()
         {
             var residences = await _residenceRepository.GetAvailableResidences();
