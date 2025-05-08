@@ -11,6 +11,10 @@ namespace FribergRealEstatesAPI.Data.Repositories
         {
 
         }
+        public async Task<IEnumerable<Residence>> GetAvailableResidence()
+        {
+            return await _context.Residences.Where(r => r.IsAvailable == true).Include(r => r.Address).ToListAsync();
+        }
 
         public async Task<Residence> GetFullResidence(int id)
         {
