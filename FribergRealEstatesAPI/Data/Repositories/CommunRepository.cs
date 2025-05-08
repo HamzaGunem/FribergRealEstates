@@ -1,6 +1,7 @@
 ﻿using FribergRealEstatesAPI.Data.Interfaces;
 using FribergRealEstatesAPI.Models;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Identity.Client;
 
 namespace FribergRealEstatesAPI.Data.Repositories
 {
@@ -9,6 +10,7 @@ namespace FribergRealEstatesAPI.Data.Repositories
     {
         public CommunRepository(ApiDbContext context) : base(context)
         {
+            
         }
 
     }
