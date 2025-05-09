@@ -61,7 +61,7 @@ namespace FribergRealEstatesAPI.Mapping
                 .ForMember(adto => adto.Residence, opt => opt.MapFrom(a => a.Residence))
                 .ForMember(adto => adto.CommunName, opt => opt.MapFrom(a => a.Commun.Name))
                 .ReverseMap();
-            
+
             // Agency : Auth: Oscar
             CreateMap<Agency, AgencyWithSimpleRealtorsDto>()
                 .ForMember(dest => dest.Realtors, opt => opt.MapFrom(src => src.Realtors));
@@ -80,9 +80,10 @@ namespace FribergRealEstatesAPI.Mapping
             CreateMap<UpdateResidenceDto, Residence>()
                 .ForAllMembers(opts => opts.Condition((src, dest, srcMember) => srcMember != null));
 
+
             //Agency-Agency by Jonathan
             CreateMap<AgencyCreateDto, Agency>()
-                .ForMember(dest => dest.Address, opt => opt.Ignore());            
+                .ForMember(dest => dest.Address, opt => opt.Ignore());
 
             // Auth: Samuel Change: Robert
             CreateMap<Address, AddressSummaryDto>()
@@ -92,10 +93,11 @@ namespace FribergRealEstatesAPI.Mapping
 
             CreateMap<Residence, ResidenceSummaryDto>();
             CreateMap<Advert, AdvertSummaryDto>();
-            CreateMap<Address, AddressDto>();            
+            CreateMap<Address, AddressDto>();
             CreateMap<Commun, CommunDto>(); // Oscar
             CreateMap<Realtor, SimpleRealtorDto>(); // Oscar
             CreateMap<Agency, AgencyWithRealtorsDto>(); // Oscar 
+            CreateMap<Agency, AgencyEditDto>().ReverseMap(); // Oscar
             CreateMap<UpdateRealtorProfileDto, Realtor>().ReverseMap(); // Jonathan
             CreateMap<AddressCreateDto, Address>(); //Jonathan
             CreateMap<CreateResidenceDto, Apartment>(); //Oscar
