@@ -68,21 +68,21 @@ namespace FribergRealEstatesAPI.Controllers
         }
         */
 
-        
+
         //Auth: Viktor
-        
+
         [HttpPost("create")]
-        public async Task<ActionResult<AdvertCreateDto>> CreateAdvert(AdvertCreateDto dto)
+        public async Task<ActionResult> CreateAdvert(AdvertCreateDto dto)
         {
-            var realtor = await realtorRepository.GetByIdAsync(dto.RealtorId);
-            if(realtor == null)
+            var realtor = await realtorRepository.GetProfileWithAgencyAsync(dto.RealtorId);
+            if (realtor == null)
                 return NotFound("Mäklare hittades inte.");
 
-            var residence = await residenceRepository.GetByIdAsync(dto.ResidenceId);
-            if(residence == null)
+            var residence = await residenceRepository.GetFullResidence(dto.ResidenceId);
+            if (residence == null)
                 return NotFound("Bostad hittades inte.");
 
-            if(!residence.IsAvailable)
+            if (!residence.IsAvailable)
                 return BadRequest("Bostad är inte tillgänglig.");
 
             var advert = new Advert
@@ -94,10 +94,15 @@ namespace FribergRealEstatesAPI.Controllers
                 RealtorId = dto.RealtorId,
                 ResidenceId = dto.ResidenceId,
             };
+            if (advert != null)
+            {
 
-            await advertRepository.AddAsync(advert);
-            var advertDto = mapper.Map<AdvertDto>(advert);
-            return CreatedAtAction(nameof(GetActiveAdvertByAdvertId), new { advertId = advert.Id }, advertDto);
+                residence.IsAvailable = false;
+                await advertRepository.AddAsync(advert);
+                return Ok();
+            }
+            return NotFound();
+
         }
 
         //Auth: Viktor
@@ -105,15 +110,15 @@ namespace FribergRealEstatesAPI.Controllers
         public async Task<ActionResult<AdvertUpdateDto>> UpdateAdvert(int advertId, AdvertUpdateDto dto)
         {
             var advert = await advertRepository.GetByIdAsync(advertId);
-            if(advert == null)
+            if (advert == null)
                 return NotFound("Annonsen hittades inte.");
-            
+
             mapper.Map(dto, advert);
             await advertRepository.UpdateAsync(advert);
             var updatedAdvertDto = mapper.Map<AdvertDto>(advert);
 
             return Ok(updatedAdvertDto);
         }
-      
+
     }
 }
