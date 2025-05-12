@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using FribergRealEstatesAPI.Data.Dto;
 using FribergRealEstatesAPI.Data.Interfaces;
+using FribergRealEstatesAPI.Extension;
 using FribergRealEstatesAPI.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -100,7 +101,7 @@ namespace FribergRealEstatesAPI.Controllers
                 return NotFound($"Address with ID {agency.Address.Id} not found.");
             }
 
-            if (existingAddress.Street != agencyEditDto.Address.Street)
+            if (!existingAddress.IsSameAddress(agencyEditDto.Address))
             {
                 var newAddress = new AddressCreateDto
                 {
@@ -117,6 +118,13 @@ namespace FribergRealEstatesAPI.Controllers
             await agencyRepository.UpdateAsync(agency);
             var result = mapper.Map<AgencyDto>(agency);
             return Ok(mapper.Map<AgencyDto>(agency));
+        }
+        [HttpGet("edit/all")]
+        public async Task<ActionResult<List<AgencyEditDto>>> GetAllForEdit()
+        {
+            var agencies = await agencyRepository.GetAgenciesWithAddressesAsync();
+            var dtos = mapper.Map<List<AgencyEditDto>>(agencies);
+            return Ok(dtos);
         }
 
     }
