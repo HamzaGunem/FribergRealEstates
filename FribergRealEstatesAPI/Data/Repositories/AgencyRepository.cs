@@ -31,6 +31,8 @@ namespace FribergRealEstatesAPI.Data.Repositories
                .ToListAsync();
         }
 
+
+
         public async Task<Agency> GetAgencyWithRealtors(int id)
         {
             return await _context.Agencies
@@ -45,6 +47,22 @@ namespace FribergRealEstatesAPI.Data.Repositories
         public async Task CreateAgencyAsync(Agency agency)
         {
             await AddAsync(agency);
+        }
+
+        public async Task<Agency> GetAgencyWithAddressAsync(int id)
+        {
+            return await _context.Agencies
+                .Include(a => a.Address)
+                .ThenInclude(addr => addr.Commun)
+                .FirstOrDefaultAsync(a => a.Id == id);
+        }
+        //Oscar
+        public async Task<List<Agency>> GetAgenciesWithAddressesAsync()
+        {
+            return await _context.Agencies
+                .Include(a => a.Address)
+                .ThenInclude(addr => addr.Commun)
+                .ToListAsync();
         }
     }
 }

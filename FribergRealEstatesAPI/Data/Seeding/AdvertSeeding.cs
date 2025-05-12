@@ -813,6 +813,12 @@ namespace FribergRealEstatesAPI.Data.Seeding
                 advert.Residence.IsAvailable = false;
             }
             await context.SaveChangesAsync();
+
+            foreach (var advert in context.Adverts)
+            {
+                advert.Residence.IsAvailable = false;
+            }
+            await context.SaveChangesAsync();
         }
     }
 }

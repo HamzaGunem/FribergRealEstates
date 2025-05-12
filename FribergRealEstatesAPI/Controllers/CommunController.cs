@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace FribergRealEstatesAPI.Controllers
 {
     //Auth: Oscar
+    //Tested by 
     [Route("api/[controller]")]
     [ApiController]
     public class CommunController : ControllerBase
