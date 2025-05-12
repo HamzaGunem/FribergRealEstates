@@ -9,6 +9,7 @@ namespace FribergRealEstatesAPI.Data.Interfaces
     public interface IAgencyRepository : IRepository<Agency>
     {
         Task<List<Agency>> GetAgenciesByCommun(string communName);
+        Task<List<Agency>> GetAgenciesWithAddressesAsync();
         Task<Agency> GetAgencyWithAddressAsync(int id);
         Task<Agency> GetAgencyWithRealtors(int id);
         Task CreateAgencyAsync(Agency agency); //Jonathan

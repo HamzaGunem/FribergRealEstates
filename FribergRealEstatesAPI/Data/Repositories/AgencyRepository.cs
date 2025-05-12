@@ -56,5 +56,13 @@ namespace FribergRealEstatesAPI.Data.Repositories
                 .ThenInclude(addr => addr.Commun)
                 .FirstOrDefaultAsync(a => a.Id == id);
         }
+        //Oscar
+        public async Task<List<Agency>> GetAgenciesWithAddressesAsync()
+        {
+            return await _context.Agencies
+                .Include(a => a.Address)
+                .ThenInclude(addr => addr.Commun)
+                .ToListAsync();
+        }
     }
 }
