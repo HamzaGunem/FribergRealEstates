@@ -39,17 +39,7 @@ namespace FribergRealEstatesAPI.Controllers
                 return NotFound("No residences found");
 
             return Ok(response);
-        }
-        //Hamza
-        [HttpGet("/available")]
-        public async Task<ActionResult<List<ResidenceDto>>> GetAvailableResidence()
-        {
-            var residences = await _residenceRepository.GetAvailableResidences();
-            if (residences == null)
-                return NotFound();
-            var response = mapper.Map<List<ResidenceDto>>(residences);
-            return Ok(response);
-        }
+        }  
 
         // added by Samuel
         [HttpGet("/commun/{communId}")]
@@ -73,7 +63,7 @@ namespace FribergRealEstatesAPI.Controllers
             if (residence == null) return NotFound();
             return Ok(mapper.Map<ResidenceDto>(residence));
         }
-
+        // Hamza
         [HttpGet("/available")]
         public async Task<ActionResult<List<Residence>>> GetAvailableResidence()
         {
