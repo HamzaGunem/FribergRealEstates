@@ -14,6 +14,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Security.Claims;
 using FribergRealEstatesAPI.Constants;
+using Microsoft.Extensions.Configuration.UserSecrets;
 
 namespace FribergRealEstatesAPI.Controllers
 {
@@ -131,12 +132,15 @@ namespace FribergRealEstatesAPI.Controllers
             if (realtor == null)
                 return NotFound();
 
+            var user = await manager.FindByIdAsync(realtor.ApiUserId);
+
             _mapper.Map(dto, realtor);
+            _mapper.Map(dto, user);
 
             await _realtorRepository.SaveChangesAsync();
 
             realtor = await _realtorRepository.GetProfileWithAgencyAsync(realtor.Id);
-
+            
             var updatedRealtorProfile = _mapper.Map<RealtorProfileDto>(realtor);
 
             return Ok(updatedRealtorProfile);

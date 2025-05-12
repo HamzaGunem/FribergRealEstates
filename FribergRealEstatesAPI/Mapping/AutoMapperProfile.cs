@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using FribergRealEstatesAPI.Data;
 using FribergRealEstatesAPI.Data.Dto;
 using FribergRealEstatesAPI.Models;
 
@@ -84,6 +85,26 @@ namespace FribergRealEstatesAPI.Mapping
             //Agency-Agency by Jonathan
             CreateMap<AgencyCreateDto, Agency>()
                 .ForMember(dest => dest.Address, opt => opt.Ignore());
+
+            //UpdateRealtor-ApiUser by Jonathan
+            CreateMap<UpdateRealtorProfileDto, ApiUser>()
+                .ForMember(dest => dest.Id, opt => opt.Ignore())
+                .ForMember(dest => dest.Realtor, opt => opt.Ignore())
+                .ForMember(dest => dest.Admin, opt => opt.Ignore())
+                .ForMember(dest => dest.UserName, opt => opt.Ignore())
+                .ForMember(dest => dest.NormalizedUserName, opt => opt.Ignore())
+                .ForMember(dest => dest.Email, opt => opt.Ignore())
+                .ForMember(dest => dest.NormalizedEmail, opt => opt.Ignore())
+                .ForMember(dest => dest.EmailConfirmed, opt => opt.Ignore())
+                .ForMember(dest => dest.PasswordHash, opt => opt.Ignore())
+                .ForMember(dest => dest.SecurityStamp, opt => opt.Ignore())
+                .ForMember(dest => dest.ConcurrencyStamp, opt => opt.Ignore())
+                .ForMember(dest => dest.PhoneNumber, opt => opt.Ignore())
+                .ForMember(dest => dest.PhoneNumberConfirmed, opt => opt.Ignore())
+                .ForMember(dest => dest.TwoFactorEnabled, opt => opt.Ignore())
+                .ForMember(dest => dest.LockoutEnd, opt => opt.Ignore())
+                .ForMember(dest => dest.LockoutEnabled, opt => opt.Ignore())
+                .ForMember(dest => dest.AccessFailedCount, opt => opt.Ignore());
 
             // Auth: Samuel Change: Robert
             CreateMap<Address, AddressSummaryDto>()
