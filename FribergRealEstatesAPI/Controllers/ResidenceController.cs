@@ -88,62 +88,70 @@ namespace FribergRealEstatesAPI.Controllers
         //Auth: Oscar, modified by Samuel
         [HttpPost]
         [Authorize(Roles = "SuperAdmin")]
-        //public async Task<ActionResult<CreateResidenceDto>> CreateResidence(CreateResidenceDto dto)
         public async Task<ActionResult> CreateResidence(CreateResidenceDto dto)
         {
-            var newAddress = AddNewAddress(dto);
+            Residence newResidence = new();
 
-            /*newAddress.Commun = await communRepository.GetByIdAsync(newAddress.CommunId);
-            
-            if (newAddress.Commun == null)
-                return NotFound("Kommun hittades inte.");*/
+            Address newAddress = new();
+            try 
+            { 
+                newAddress = AddNewAddress(dto);
+                await addressRepository.AddAsync(newAddress); 
+            }
+            catch(Exception ex) 
+            { throw; }
 
-            await addressRepository.AddAsync(newAddress);
-
-            Residence newResidence = MapNewResidence(dto, newAddress);
-
-            await _residenceRepository.AddAsync(newResidence);
-
-            return Ok(newResidence.Id);
-
-            /*
-           var commun = await communRepository.GetByIdAsync(dto.CommunId);
-           if (commun == null)
-               return NotFound("Kommun hittades inte.");
-           var address = new Address
-           {
-               Street = dto.Street,
-               PostalCode = dto.PostalCode,
-               City = dto.City,
-               CommunId = dto.CommunId
-           };
-           //await addressRepository.AddAsync(address);
-          
-            Residence residence;
             try
             {
-                residence = dto.Type switch
-                {
-                    ResidenceType.Apartment => mapper.Map<Apartment>(dto),
-                    ResidenceType.House => mapper.Map<House>(dto),
-                    ResidenceType.RowHouse => mapper.Map<RowHouse>(dto),
-                    ResidenceType.VacationHouse => mapper.Map<VacationHouse>(dto),
-                    _ => throw new ArgumentException()
-                };
+                newResidence = MapNewResidence(dto, newAddress);
+                await _residenceRepository.AddAsync(newResidence);
             }
-            catch
-            {
-                return BadRequest("Ogiltigt bostadstyp.");
-            }
+            catch(Exception ex)
+            { throw; }
+           
 
-            residence.AddressId = address.Id;
-            residence.Address = address;
-            residence.IsAvailable = true;
-            
-            await _residenceRepository.AddAsync(residence);
-            var residenceDto = mapper.Map<ResidenceDto>(residence);
-            return CreatedAtAction(nameof(GetResidenceById), new { residenceId = residence.Id }, residenceDto);
-            */
+            return Ok(newResidence.Id);
+            #region // Oscars kod
+            /* // Oscar
+            public async Task<ActionResult<CreateResidenceDto>> CreateResidence(CreateResidenceDto dto)
+            var commun = await communRepository.GetByIdAsync(dto.CommunId);
+            if (commun == null)
+                return NotFound("Kommun hittades inte.");
+            var address = new Address
+            {
+                Street = dto.Street,
+                PostalCode = dto.PostalCode,
+                City = dto.City,
+                CommunId = dto.CommunId
+            };
+            //await addressRepository.AddAsync(address);
+
+             Residence residence;
+             try
+             {
+                 residence = dto.Type switch
+                 {
+                     ResidenceType.Apartment => mapper.Map<Apartment>(dto),
+                     ResidenceType.House => mapper.Map<House>(dto),
+                     ResidenceType.RowHouse => mapper.Map<RowHouse>(dto),
+                     ResidenceType.VacationHouse => mapper.Map<VacationHouse>(dto),
+                     _ => throw new ArgumentException()
+                 };
+             }
+             catch
+             {
+                 return BadRequest("Ogiltigt bostadstyp.");
+             }
+
+             residence.AddressId = address.Id;
+             residence.Address = address;
+             residence.IsAvailable = true;
+
+             await _residenceRepository.AddAsync(residence);
+             var residenceDto = mapper.Map<ResidenceDto>(residence);
+             return CreatedAtAction(nameof(GetResidenceById), new { residenceId = residence.Id }, residenceDto);
+             */
+            #endregion
         }
 
         //Auth: Oscar
@@ -199,19 +207,5 @@ namespace FribergRealEstatesAPI.Controllers
             
             return newResidence;
         }        
-    }// End
-
-        /*
-        private List<Facilities> MapFacilities(CreateResidenceDto dto)
-        {
-            List<Facilities> newList = new();
-            foreach(var facility in dto.Facilities)
-            {
-                if(facility == "Elevator") { }
-
-            }
-            // // Elevator, Balcony, Terrace, ParkingLot, NewProduction, Pool
-        }// End 
-        */
-    
+    }// End    
 }
