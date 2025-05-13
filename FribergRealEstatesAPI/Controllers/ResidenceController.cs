@@ -2,6 +2,7 @@
 using FribergRealEstatesAPI.Data.Dto;
 using FribergRealEstatesAPI.Data.Interfaces;
 using FribergRealEstatesAPI.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -83,6 +84,7 @@ namespace FribergRealEstatesAPI.Controllers
         }
         //Auth: Oscar
         [HttpPost]
+        [Authorize(Roles ="SuperAdmin")]
         public async Task<ActionResult<CreateResidenceDto>> CreateResidence(CreateResidenceDto dto)
         {
             var commun = await communRepository.GetByIdAsync(dto.CommunId);
