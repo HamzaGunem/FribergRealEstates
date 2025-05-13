@@ -67,6 +67,7 @@ namespace FribergRealEstatesAPI.Data.Seeding
                     "https://bilder.hemnet.se/images/1024x/62/dd/62dd0a98c6fefdca10421247345520a0.jpg"
                 }
             });
+
             context.Residences.Add(new Apartment
             {
                 Address = context.Addresses.OrderBy(x => Guid.NewGuid()).First(),
@@ -74,7 +75,7 @@ namespace FribergRealEstatesAPI.Data.Seeding
                 Area = 75,
                 BiArea = 8,
                 Floors = 7,
-                Description = "Fully automated smart apartment with voice-controlled lighting, climate, and security. Features floor-to-ceiling windows, a minimalist kitchen with smart appliances, and a built-in sound system. Perfect for tech enthusiasts!",
+                Description = "Helt automatiserad smart lägenhet med röststyrd belysning, klimat och säkerhet. Funktioner inkluderar golv-till-tak-fönster, ett minimalistiskt kök med smarta apparater och ett inbyggt ljudsystem. Perfekt för teknikentusiaster!",
                 Rooms = 1,
                 FloorRows = 7,
                 MonthlyFee = 2900,
@@ -101,7 +102,7 @@ namespace FribergRealEstatesAPI.Data.Seeding
                 Area = 90,
                 BiArea = 0,
                 Floors = 3,
-                Description = "Charming industrial-style loft with exposed brick walls, wooden beams, and large factory windows. Open-plan living with a mezzanine bedroom. Located in a converted warehouse with a shared rooftop garden.",
+                Description = "Charmig industriell stil loft med exponerade tegelväggar, träbjälkar och stora fabriksfönster. Öppen planlösning med sovloft. Beläget i ett ombyggt lagerhus med en gemensam takterrass.",
                 Rooms = 1,
                 FloorRows = 3,
                 MonthlyFee = 2200,
@@ -127,7 +128,7 @@ namespace FribergRealEstatesAPI.Data.Seeding
                 Area = 120,
                 BiArea = 15,
                 Floors = 2,
-                Description = "Spacious family apartment in a quiet neighborhood. Features a large kitchen, three bedrooms, a playroom, and a private garden. Close to schools and parks. Pet-friendly building!",
+                Description = "Rymlig familjelägenhet i ett lugnt område. Funktioner inkluderar ett stort kök, tre sovrum, ett lekrum och en privat trädgård. Nära skolor och parker. Husdjursvänligt hus!",
                 Rooms = 4,
                 FloorRows = 2,
                 MonthlyFee = 3800,
@@ -155,7 +156,7 @@ namespace FribergRealEstatesAPI.Data.Seeding
                 Area = 30,
                 BiArea = 0,
                 Floors = 1,
-                Description = "Affordable studio with all essentials: a compact kitchen, bathroom, and sleeping area. Ideal for students or young professionals. Just 2 minutes from the metro!",
+                Description = "Överkomlig studio med alla nödvändigheter: ett kompakt kök, badrum och sovutrymme. Idealisk för studenter eller unga yrkesverksamma. Endast 2 minuter från tunnelbanan!",
                 Rooms = 1,
                 FloorRows = 1,
                 MonthlyFee = 950,
@@ -175,6 +176,7 @@ namespace FribergRealEstatesAPI.Data.Seeding
                     "https://bilder.hemnet.se/images/1024x/0d/c1/0dc131d6fada7647003bb8609638340d.jpg"
                 }
             });
+
             context.Residences.Add(new Apartment
             {
                 Address = context.Addresses.OrderBy(x => Guid.NewGuid()).First(),
@@ -210,7 +212,7 @@ namespace FribergRealEstatesAPI.Data.Seeding
                 Area = 200,
                 BiArea = 50,
                 Floors = 12,
-                Description = "Luxury penthouse with a private infinity pool, home theater, and 360° city views. Includes a chef’s kitchen, walk-in closets, and a rooftop terrace. 24/7 security and valet parking.",
+                Description = "Lyxig penthouse med privat oändlighetspool, hemma-bio och 360° utsikt över staden. Inkluderar ett kök för kockar, walk-in-kläder och en takterrass. 24/7 säkerhet och parkering med betjäning.",
                 Rooms = 3,
                 FloorRows = 12,
                 MonthlyFee = 12000,
@@ -220,7 +222,6 @@ namespace FribergRealEstatesAPI.Data.Seeding
                     Facilities.Pool,
                     Facilities.Terrace,
                     Facilities.Balcony
-    
                 },
                 BuildYear = 2021,
                 IsAvailable = true,
@@ -240,7 +241,7 @@ namespace FribergRealEstatesAPI.Data.Seeding
                 Area = 80,
                 BiArea = 10,
                 Floors = 4,
-                Description = "Sustainable living with solar panels, rainwater harvesting, and energy-efficient appliances. Features a green roof terrace, bamboo flooring, and organic garden access.",
+                Description = "Hållbart boende med solpaneler, regnvatteninsamling och energieffektiva apparater. Funktioner inkluderar en grön takterrass, bambugolv och tillgång till en ekologisk trädgård.",
                 Rooms = 2,
                 FloorRows = 4,
                 MonthlyFee = 2600,
@@ -268,7 +269,7 @@ namespace FribergRealEstatesAPI.Data.Seeding
                 Area = 70,
                 BiArea = 0,
                 Floors = 2,
-                Description = "Bright studio with large north-facing windows, perfect for painters and creatives. High ceilings, concrete floors, and a flexible open space. Shared courtyard with other artists.",
+                Description = "Ljus studio med stora nordvästliga fönster, perfekt för målare och kreativa. Höga tak, betonggolv och ett flexibelt öppet utrymme. Gemensam innergård med andra konstnärer.",
                 Rooms = 1,
                 FloorRows = 2,
                 MonthlyFee = 1800,
@@ -296,15 +297,14 @@ namespace FribergRealEstatesAPI.Data.Seeding
                 Area = 65,
                 BiArea = 5,
                 Floors = 3,
-                Description = "Light-filled apartment with clean lines, oak flooring, and functional design. Includes built-in storage, a balcony, and underfloor heating. Near nature reserves and bike paths.",
+                Description = "Ljusfylld lägenhet med rena linjer, ekgolv och funktionell design. Inkluderar inbyggd förvaring, en balkong och golvvärme. Nära naturreservat och cykelvägar.",
                 Rooms = 2,
                 FloorRows = 3,
                 MonthlyFee = 2300,
                 OperatingCost = 3400,
                 Facilities = new List<Facilities>
                 {
-                    Facilities.Balcony,
-     
+                    Facilities.Balcony
                 },
                 BuildYear = 2017,
                 IsAvailable = true,
@@ -316,6 +316,7 @@ namespace FribergRealEstatesAPI.Data.Seeding
                     "https://bilder.hemnet.se/images/1024x/09/70/09709fd94b1f0e8460ab25f5724612c8.jpg"
                 }
             });
+
             context.Residences.Add(new Apartment
             {
                 Address = context.Addresses.OrderBy(x => Guid.NewGuid()).First(),
@@ -472,14 +473,13 @@ namespace FribergRealEstatesAPI.Data.Seeding
                 Area = 185,
                 BiArea = 45,
                 Floors = 2,
-                Description = "Charming countryside villa with panoramic views of rolling hills. Features an open-plan living area with a fireplace, a modern kitchen, four bedrooms, and a sauna. The property includes a large garden, a greenhouse, and a private forest trail. Perfect for nature lovers!",
+                Description = "Charmig landsbygdsvilla med panoramautsikt över kullar. Funktioner inkluderar ett öppet vardagsrum med öppen spis, ett modernt kök, fyra sovrum och en bastu. Fastigheten inkluderar en stor trädgård, ett växthus och en privat skogsstig. Perfekt för naturälskare!",
                 Rooms = 4,
                 FloorRows = 2,
                 MonthlyFee = 2800,
                 OperatingCost = 6500,
                 Facilities = new List<Facilities>
                 {
-        
                     Facilities.ParkingLot
                 },
                 BuildYear = 2015,
@@ -500,7 +500,7 @@ namespace FribergRealEstatesAPI.Data.Seeding
                 Area = 210,
                 BiArea = 60,
                 Floors = 1,
-                Description = "Stunning single-story house with floor-to-ceiling windows overlooking a private lake. Features a gourmet kitchen, three bedrooms with en-suite bathrooms, and a floating deck with direct lake access. Includes a boat dock and outdoor fire pit.",
+                Description = "Enastående envåningshus med golv-till-tak-fönster med utsikt över en privat sjö. Funktioner inkluderar ett gourmetkök, tre sovrum med egna badrum och en flytande brygga med direkt tillgång till sjön. Inkluderar en båtbrygga och en utomhus eldstad.",
                 Rooms = 3,
                 FloorRows = 1,
                 MonthlyFee = 4500,
@@ -529,7 +529,7 @@ namespace FribergRealEstatesAPI.Data.Seeding
                 Area = 150,
                 BiArea = 20,
                 Floors = 2,
-                Description = "Renovated 19th-century farmhouse with original stone walls and wooden beams. Includes a cozy kitchen with a AGA stove, three bedrooms, and a sunroom. The property features a barn (convertible to a studio/workshop) and 1.5 hectares of land.",
+                Description = "Renoverad 1800-tals bondgård med originala stenväggar och träbjälkar. Inkluderar ett mysigt kök med AGA-spis, tre sovrum och en solrum. Fastigheten har en lada (omvandlingsbar till studio/verkstad) och 1,5 hektar mark.",
                 Rooms = 3,
                 FloorRows = 2,
                 MonthlyFee = 3200,
@@ -558,7 +558,7 @@ namespace FribergRealEstatesAPI.Data.Seeding
                 Area = 320,
                 BiArea = 80,
                 Floors = 3,
-                Description = "State-of-the-art smart villa with a heated infinity pool, home theater, and rooftop terrace. Features five ensuite bedrooms, a wine cellar, and a gourmet kitchen with marble countertops. The garden includes an outdoor kitchen and a Zen meditation area.",
+                Description = "Modernt smart hus med uppvärmd oändlighetspool, hemma-bio och takterrass. Funktioner inkluderar fem sovrum med egna badrum, ett vinkällare och ett gourmetkök med marmorbänkskivor. Trädgården inkluderar ett utomhuskök och en Zen-meditationsplats.",
                 Rooms = 5,
                 FloorRows = 3,
                 MonthlyFee = 9500,
@@ -587,7 +587,7 @@ namespace FribergRealEstatesAPI.Data.Seeding
                 Area = 140,
                 BiArea = 30,
                 Floors = 2,
-                Description = "Energy-efficient timber house with solar panels, geothermal heating, and rainwater recycling. Open-plan living with a wood-burning stove, three bedrooms, and a greenhouse. The property includes an organic vegetable garden and a chicken coop.",
+                Description = "Energisnål trähus med solpaneler, geotermisk uppvärmning och regnvattenåtervinning. Öppen planlösning med vedeldad spis, tre sovrum och ett växthus. Fastigheten inkluderar en ekologisk köksträdgård och ett hönshus.",
                 Rooms = 3,
                 FloorRows = 2,
                 MonthlyFee = 2400,
@@ -595,7 +595,6 @@ namespace FribergRealEstatesAPI.Data.Seeding
                 Facilities = new List<Facilities>
                 {
                     Facilities.ParkingLot
-      
                 },
                 BuildYear = 2018,
                 IsAvailable = true,
@@ -616,7 +615,7 @@ namespace FribergRealEstatesAPI.Data.Seeding
                 Area = 90,
                 BiArea = 15,
                 Floors = 1,
-                Description = "Authentic log cabin nestled in the mountains, just steps from hiking and skiing trails. Features a wood-fired sauna, a stone fireplace, and a wraparound porch. Perfect for year-round adventures!",
+                Description = "Äkta timmerstuga inbäddad i bergen, bara några steg från vandrings- och skidspår. Funktioner inkluderar en vedeldad bastu, en steneldstad och en omslutande veranda. Perfekt för äventyr året runt!",
                 Rooms = 2,
                 FloorRows = 1,
                 MonthlyFee = 1800,
@@ -636,6 +635,7 @@ namespace FribergRealEstatesAPI.Data.Seeding
                     "https://bilder.hemnet.se/images/1024x/9e/13/9e13151a1cd6689468a04abefe391499.jpg"
                 }
             });
+
             context.Residences.Add(new House
             {
                 Address = context.Addresses.OrderBy(x => Guid.NewGuid()).First(),
@@ -643,7 +643,7 @@ namespace FribergRealEstatesAPI.Data.Seeding
                 Area = 110,
                 BiArea = 25,
                 Floors = 1,
-                Description = "Quaint cottage just 50 meters from the beach. Features a breezy open layout, a screened porch, and an outdoor shower. The property includes a private path to the sand and a storage shed for surfboards/kayaks.",
+                Description = "Pittoreskt hus bara 50 meter från stranden. Funktioner inkluderar en luftig öppen planlösning, en inglasad veranda och en utomhusdusch. Fastigheten inkluderar en privat stig till sanden och ett förråd för surfbrädor/kajaker.",
                 Rooms = 2,
                 FloorRows = 1,
                 MonthlyFee = 3500,
@@ -672,7 +672,7 @@ namespace FribergRealEstatesAPI.Data.Seeding
                 Area = 220,
                 BiArea = 50,
                 Floors = 2,
-                Description = "Equestrian property with a 5-stall barn, riding arena, and 10 acres of pastures. The main house includes four bedrooms, a chef’s kitchen, and a sunroom overlooking the grounds. Ideal for professional riders or hobbyists.",
+                Description = "Hästgård med ett stall med fem boxar, ridbana och 10 hektar betesmarker. Huvudhuset inkluderar fyra sovrum, ett kök för kockar och ett solrum med utsikt över markerna. Idealisk för professionella ryttare eller hobbyister.",
                 Rooms = 4,
                 FloorRows = 2,
                 MonthlyFee = 5200,
@@ -693,6 +693,7 @@ namespace FribergRealEstatesAPI.Data.Seeding
                     "https://bilder.hemnet.se/images/1024x/5d/c3/5dc389dfe9009e08750998ed73ae1948.jpg"
                 }
             });
+
             context.Residences.Add(new House
             {
                 Address = context.Addresses.OrderBy(x => Guid.NewGuid()).First(),
@@ -730,7 +731,7 @@ namespace FribergRealEstatesAPI.Data.Seeding
                 Area = 250,
                 BiArea = 70,
                 Floors = 2,
-                Description = "Sleek glass-walled home with floating staircases and smart-home automation. Features a rooftop terrace, an indoor pool, and a gourmet kitchen with premium appliances. The minimalist garden includes a koi pond and zen rock garden.",
+                Description = "Snyggt glasväggshus med flytande trappor och smart hem-automation. Funktioner inkluderar en takterrass, en inomhuspool och ett gourmetkök med premiumapparater. Den minimalistiska trädgården inkluderar en koi-damm och en zen-trädgård.",
                 Rooms = 3,
                 FloorRows = 2,
                 MonthlyFee = 8800,
@@ -758,7 +759,7 @@ namespace FribergRealEstatesAPI.Data.Seeding
                 Area = 180,
                 BiArea = 40,
                 Floors = 2,
-                Description = "Perfect family home with a large backyard (play set included), a modern kitchen, and four bedrooms. The finished basement includes a home gym and a movie corner. Quiet neighborhood with excellent schools nearby.",
+                Description = "Perfekt familjehem med en stor bakgård (lekplats inkluderad), ett modernt kök och fyra sovrum. Den färdiga källaren inkluderar ett hemmagym och ett filmhörn. Lugnt område med utmärkta skolor i närheten.",
                 Rooms = 4,
                 FloorRows = 2,
                 MonthlyFee = 3800,
@@ -819,12 +820,12 @@ namespace FribergRealEstatesAPI.Data.Seeding
                 MonthlyFee = 3500,
                 OperatingCost = 8000,
                 Facilities = new List<Facilities>
-                {
-                    Facilities.ParkingLot,
-                    Facilities.Terrace,
-                    Facilities.Pool,
-                    Facilities.NewProduction
-                },
+            {
+                Facilities.ParkingLot,
+                Facilities.Terrace,
+                Facilities.Pool,
+                Facilities.NewProduction
+            },
                 BuildYear = 2020,
                 IsAvailable = true,
                 ImageUrls = new[]
@@ -849,9 +850,9 @@ namespace FribergRealEstatesAPI.Data.Seeding
                 MonthlyFee = 1800,
                 OperatingCost = 4200,
                 Facilities = new List<Facilities>
-                {
-                    Facilities.Terrace
-                },
+            {
+                Facilities.Terrace
+            },
                 BuildYear = 1985,
                 IsAvailable = true,
                 ImageUrls = new[]
@@ -876,10 +877,10 @@ namespace FribergRealEstatesAPI.Data.Seeding
                 MonthlyFee = 2200,
                 OperatingCost = 5000,
                 Facilities = new List<Facilities>
-                {
-                    Facilities.Pool,
-                    Facilities.Terrace
-                },
+            {
+                Facilities.Pool,
+                Facilities.Terrace
+            },
                 BuildYear = 2005,
                 IsAvailable = true,
                 ImageUrls = new[]
@@ -904,10 +905,10 @@ namespace FribergRealEstatesAPI.Data.Seeding
                 MonthlyFee = 1300,
                 OperatingCost = 3800,
                 Facilities = new List<Facilities>
-                {
-                    Facilities.ParkingLot,
-                    Facilities.Terrace
-                },
+            {
+                Facilities.ParkingLot,
+                Facilities.Terrace
+            },
                 BuildYear = 2000,
                 IsAvailable = true,
                 ImageUrls = new[]
@@ -932,11 +933,11 @@ namespace FribergRealEstatesAPI.Data.Seeding
                 MonthlyFee = 1500,
                 OperatingCost = 4000,
                 Facilities = new List<Facilities>
-                {
-                    Facilities.ParkingLot,
-                    Facilities.Terrace,
-                    Facilities.Pool
-                },
+            {
+                Facilities.ParkingLot,
+                Facilities.Terrace,
+                Facilities.Pool
+            },
                 BuildYear = 2015,
                 IsAvailable = true,
                 ImageUrls = new[]
@@ -962,10 +963,10 @@ namespace FribergRealEstatesAPI.Data.Seeding
                 MonthlyFee = 1900,
                 OperatingCost = 5000,
                 Facilities = new List<Facilities>
-                {
-                    Facilities.ParkingLot,
-                    Facilities.Terrace
-                },
+            {
+                Facilities.ParkingLot,
+                Facilities.Terrace
+            },
                 BuildYear = 2010,
                 IsAvailable = true,
                 ImageUrls = new[]
@@ -990,10 +991,10 @@ namespace FribergRealEstatesAPI.Data.Seeding
                 MonthlyFee = 1200,
                 OperatingCost = 3500,
                 Facilities = new List<Facilities>
-                {
-                    Facilities.ParkingLot,
-                    Facilities.Terrace
-                },
+            {
+                Facilities.ParkingLot,
+                Facilities.Terrace
+            },
                 BuildYear = 2005,
                 IsAvailable = true,
                 ImageUrls = new[]
@@ -1018,11 +1019,11 @@ namespace FribergRealEstatesAPI.Data.Seeding
                 MonthlyFee = 2500,
                 OperatingCost = 6500,
                 Facilities = new List<Facilities>
-                {
-                    Facilities.ParkingLot,
-                    Facilities.Terrace,
-                    Facilities.NewProduction
-                },
+            {
+                Facilities.ParkingLot,
+                Facilities.Terrace,
+                Facilities.NewProduction
+            },
                 BuildYear = 2018,
                 IsAvailable = true,
                 ImageUrls = new[]
@@ -1033,6 +1034,7 @@ namespace FribergRealEstatesAPI.Data.Seeding
                     "https://bilder.hemnet.se/images/1024x/63/95/63952f3e14c791ef8612956de17f571f.jpg"
                 }
             });
+
             context.Residences.Add(new VacationHouse
             {
                 Address = context.Addresses.OrderBy(x => Guid.NewGuid()).First(),
@@ -1046,10 +1048,10 @@ namespace FribergRealEstatesAPI.Data.Seeding
                 MonthlyFee = 1200,
                 OperatingCost = 3000,
                 Facilities = new List<Facilities>
-                {
-                    Facilities.Terrace,
-                    Facilities.ParkingLot
-                },
+            {
+                Facilities.Terrace,
+                Facilities.ParkingLot
+            },
                 BuildYear = 1990,
                 IsAvailable = true,
                 ImageUrls = new[]
@@ -1074,10 +1076,10 @@ namespace FribergRealEstatesAPI.Data.Seeding
                 MonthlyFee = 1400,
                 OperatingCost = 3800,
                 Facilities = new List<Facilities>
-                {
-                    Facilities.Terrace,
-                    Facilities.ParkingLot
-                },
+            {
+                Facilities.Terrace,
+                Facilities.ParkingLot
+            },
                 BuildYear = 2012,
                 IsAvailable = true,
                 ImageUrls = new[]
@@ -1096,16 +1098,16 @@ namespace FribergRealEstatesAPI.Data.Seeding
                 Area = 70,
                 BiArea = 15,
                 Floors = 1,
-                Description = "nkel skärgårdsstuga med utvecklingspotential – Lurö skärgård\r\nLetar du efter ett sommarprojekt i ett av Vänerns mest unika lägen? Denna enkla men charmiga skärgårdsstuga ligger på en friköpt tomt i Lurö skärgård – endast nåbar med båt. Huvudbyggnaden på 45 kvm har en öppen planlösning, kokvrå, vedspis och två sovrum. El finns via solceller och batteribank, och vatten tas från gemensam brunn. Utedass och dusch i separat byggnad. Tomten är naturtomt med berghällar, bärbuskar och gles skog. Här finns stor potential för dig som vill renovera, bygga till eller skapa ett avskilt paradis – mitt i ett naturreservat. Tillgång till båtplats på fastlandet ingår i köpet.",
+                Description = "Enkel skärgårdsstuga med utvecklingspotential – Lurö skärgård\r\nLetar du efter ett sommarprojekt i ett av Vänerns mest unika lägen? Denna enkla men charmiga skärgårdsstuga ligger på en friköpt tomt i Lurö skärgård – endast nåbar med båt. Huvudbyggnaden på 45 kvm har en öppen planlösning, kokvrå, vedspis och två sovrum. El finns via solceller och batteribank, och vatten tas från gemensam brunn. Utedass och dusch i separat byggnad. Tomten är naturtomt med berghällar, bärbuskar och gles skog. Här finns stor potential för dig som vill renovera, bygga till eller skapa ett avskilt paradis – mitt i ett naturreservat. Tillgång till båtplats på fastlandet ingår i köpet.",
                 Rooms = 2,
                 FloorRows = 1,
                 MonthlyFee = 1100,
                 OperatingCost = 3200,
                 Facilities = new List<Facilities>
-                {
-                    Facilities.ParkingLot,
-                    Facilities.Terrace
-                },
+            {
+                Facilities.ParkingLot,
+                Facilities.Terrace
+            },
                 BuildYear = 2012,
                 IsAvailable = true,
                 ImageUrls = new[]
@@ -1116,7 +1118,9 @@ namespace FribergRealEstatesAPI.Data.Seeding
                     "https://bilder.hemnet.se/images/1024x/5d/f4/5df41ae2698e366547b8dec0412e01e5.jpg"
                 }
             });
+
             await context.SaveChangesAsync();
         }
     }
 }
+
