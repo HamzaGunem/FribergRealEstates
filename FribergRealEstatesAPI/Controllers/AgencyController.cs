@@ -62,7 +62,7 @@ namespace FribergRealEstatesAPI.Controllers
             {
                 return NotFound($"Agency with ID {id} not found.");
             }
-            var agencyDto = mapper.Map<AgencyWithRealtorsDto>(agency);
+            var agencyDto = mapper.Map<AgencyWithSimpleRealtorsDto>(agency);
             return Ok(agencyDto);
         }
 
