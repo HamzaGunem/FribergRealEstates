@@ -62,6 +62,115 @@ namespace FribergRealEstatesAPI.Data.Seeding
                     Street = "Kungsgatan 15",
                     PostalCode = "11143"
                     },
+                    new Address
+                    {
+                        City = "Stockholm",
+                        Street = "Sveavägen 24",
+                        PostalCode = "11157"
+                    },
+                    new Address
+                    {
+                        City = "Stockholm",
+                        Street = "Birger Jarlsgatan 8",
+                        PostalCode = "11434"
+                    },
+                    new Address
+                    {
+                        City = "Stockholm",
+                        Street = "Stureplan 2",
+                        PostalCode = "11435"
+                    },
+                    new Address
+                    {
+                        City = "Stockholm",
+                        Street = "Götgatan 22",
+                        PostalCode = "11846"
+                    },
+                    new Address
+                    {
+                        City = "Stockholm",
+                        Street = "Östermalmsgatan 16",
+                        PostalCode = "11426"
+                    },
+                    new Address
+                    {
+                        City = "Stockholm",
+                        Street = "Hamngatan 11",
+                        PostalCode = "11147"
+                    },
+                    new Address
+                    {
+                        City = "Stockholm",
+                        Street = "Fleminggatan 18",
+                        PostalCode = "11226"
+                    },
+                    new Address
+                    {
+                        City = "Stockholm",
+                        Street = "Hornsgatan 124",
+                        PostalCode = "11728"
+                    },
+                    new Address
+                    {
+                        City = "Stockholm",
+                        Street = "Södermalmstorg 1",
+                        PostalCode = "11645"
+                    },
+                    new Address 
+                    {
+                        City = "Stockholm",
+                        Street = "Folkungagatan 50", 
+                        PostalCode = "11622" 
+                    },
+                    new Address 
+                    { 
+                        City = "Stockholm", 
+                        Street = "Bondegatan 3", 
+                        PostalCode = "11633" 
+                    },
+                    new Address 
+                    { 
+                        City = "Stockholm", 
+                        Street = "Södermannagatan 44", 
+                        PostalCode = "11623" 
+                    },
+                    new Address 
+                    { 
+                        City = "Stockholm", 
+                        Street = "Tjärhovsgatan 11", 
+                        PostalCode = "11628" 
+                    },
+                    new Address 
+                    { 
+                        City = "Stockholm", 
+                        Street = "Wollmar Yxkullsgatan 12", 
+                        PostalCode = "11850" 
+                    },
+
+                    new Address 
+                    { 
+                        City = "Stockholm", 
+                        Street = "Strandvägen 52", 
+                        PostalCode = "11456" 
+                    },
+                    new Address 
+                    { 
+                        City = "Stockholm", 
+                        Street = "Smålandsgatan 7", 
+                        PostalCode = "11146" 
+                    },
+                    new Address 
+                    { 
+                        City = "Stockholm", 
+                        Street = "Kungsgatan 42", 
+                        PostalCode = "11135" 
+                    },
+                    new Address 
+                    { 
+                        City = "Stockholm", 
+                        Street = "Norrlandsgatan 15", 
+                        PostalCode = "11143" 
+                    },
                 }
             });
 
