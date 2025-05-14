@@ -60,7 +60,7 @@ namespace FribergRealEstatesAPI.Controllers
         // Auth Robert
         [HttpGet("AllActiveAdverts")]
         [Authorize(Roles = ApiRoles.SuperAdmin)]
-        public async Task<ActionResult<AdvertDto>> GetAllActiveAdverts()
+        public async Task<ActionResult<List<AdvertDto>>> GetAllActiveAdverts()
         {
             var adverts = await advertRepository.GetAllActiveAdvertsAsync();
             if(adverts == null)
