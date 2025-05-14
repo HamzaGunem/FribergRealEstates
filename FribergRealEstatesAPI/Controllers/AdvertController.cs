@@ -1,8 +1,10 @@
 ﻿using AutoMapper;
+using FribergRealEstatesAPI.Constants;
 using FribergRealEstatesAPI.Data.Dto;
 using FribergRealEstatesAPI.Data.Interfaces;
 using FribergRealEstatesAPI.Data.Repositories;
 using FribergRealEstatesAPI.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -53,6 +55,17 @@ namespace FribergRealEstatesAPI.Controllers
             if (adverts == null)
                 return NotFound();
             return Ok(mapper.Map<AdvertDto>(adverts));
+        }
+
+        // Auth Robert
+        [HttpGet("AllActiveAdverts")]
+        [Authorize(Roles = ApiRoles.SuperAdmin)]
+        public async Task<ActionResult<List<AdvertDto>>> GetAllActiveAdverts()
+        {
+            var adverts = await advertRepository.GetAllActiveAdvertsAsync();
+            if(adverts == null)
+                return NotFound();
+            return Ok(mapper.Map<List<AdvertDto>>(adverts));
         }
 
         //Auth: Viktor

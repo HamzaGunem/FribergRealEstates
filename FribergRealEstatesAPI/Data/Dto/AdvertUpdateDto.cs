@@ -5,5 +5,6 @@
         public DateTime Updated { get; set; } = DateTime.Now;
         public bool Sold { get; set; }
         public double CurrentPrice { get; set; }
+        public int? RealtorId { get; set; } // Robert
     }
 }

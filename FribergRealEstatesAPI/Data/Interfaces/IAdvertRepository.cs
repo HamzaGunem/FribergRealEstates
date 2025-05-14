@@ -9,5 +9,6 @@ namespace FribergRealEstatesAPI.Data.Interfaces
         Task<List<Advert>> GetActiveAdvertsByRealtorAsync(int realtorId);
         Task<List<Advert>> GetFilteredAdvertsAsync(AdvertFilterDto filter);
         Task<Advert> GetActiveAdvertByAdvertIdAsync(int advertId);
+        Task<List<Advert>> GetAllActiveAdvertsAsync(); // Robert
     }
 }
