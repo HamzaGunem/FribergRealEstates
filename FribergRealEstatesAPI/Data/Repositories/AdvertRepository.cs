@@ -25,7 +25,7 @@ namespace FribergRealEstatesAPI.Data.Repositories
 
         //Auth Robert
 
-        public async Task<List<Advert>> GetAllActiveAdverts()
+        public async Task<List<Advert>> GetAllActiveAdvertsAsync()
         {
             return await _context.Adverts.Where(s => s.Sold == true).Include(a => a.Realtor).ToListAsync();
         }

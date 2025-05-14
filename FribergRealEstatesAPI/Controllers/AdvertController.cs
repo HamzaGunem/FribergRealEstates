@@ -57,11 +57,15 @@ namespace FribergRealEstatesAPI.Controllers
             return Ok(mapper.Map<AdvertDto>(adverts));
         }
 
+        // Auth Robert
         [HttpGet("AllActiveAdverts")]
         [Authorize(Roles = ApiRoles.SuperAdmin)]
         public async Task<ActionResult<AdvertDto>> GetAllActiveAdverts()
         {
-            var adverts = await advertRepository.GetAllAsync().Result;
+            var adverts = await advertRepository.GetAllActiveAdvertsAsync();
+            if(adverts == null)
+                return NotFound();
+            return Ok(mapper.Map<List<AdvertDto>>(adverts));
         }
 
         //Auth: Viktor
