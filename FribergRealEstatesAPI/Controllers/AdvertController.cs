@@ -1,8 +1,10 @@
 ﻿using AutoMapper;
+using FribergRealEstatesAPI.Constants;
 using FribergRealEstatesAPI.Data.Dto;
 using FribergRealEstatesAPI.Data.Interfaces;
 using FribergRealEstatesAPI.Data.Repositories;
 using FribergRealEstatesAPI.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -72,8 +74,10 @@ namespace FribergRealEstatesAPI.Controllers
         //Auth: Viktor
 
         [HttpPost("create")]
+        [Authorize(Roles = $"{ApiRoles.SuperAdmin},{ApiRoles.Realtor}")] // Samuel
         public async Task<ActionResult> CreateAdvert(AdvertCreateDto dto)
         {
+            
             var realtor = await realtorRepository.GetProfileWithAgencyAsync(dto.RealtorId);
             if (realtor == null)
                 return NotFound("Mäklare hittades inte.");
@@ -84,7 +88,7 @@ namespace FribergRealEstatesAPI.Controllers
 
             if (!residence.IsAvailable)
                 return BadRequest("Bostad är inte tillgänglig.");
-
+            
             var advert = new Advert
             {
                 Created = DateTime.Now,
