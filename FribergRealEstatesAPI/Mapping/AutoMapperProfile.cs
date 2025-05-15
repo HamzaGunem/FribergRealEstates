@@ -129,7 +129,8 @@ namespace FribergRealEstatesAPI.Mapping
             CreateMap<Agency, AgencyDto>(); //Jonathan
             CreateMap<RealtorCreateDto, Realtor>(); //Jonathan
             CreateMap<Agency, AgencySummaryDto>(); // Samuel
-            CreateMap<AdvertUpdateDto, Advert>(); //Viktor
+            CreateMap<AdvertUpdateDto, Advert>()
+                .ForMember(dest => dest.RealtorId, opt => opt.MapFrom(src => src.RealtorId)); //Viktor
         }
     }
 }

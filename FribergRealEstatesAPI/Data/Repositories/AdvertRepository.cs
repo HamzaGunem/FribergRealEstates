@@ -23,6 +23,15 @@ namespace FribergRealEstatesAPI.Data.Repositories
                 .ToListAsync();
         }
 
+        //Auth Robert
+        public async Task<List<Advert>> GetAllActiveAdvertsAsync()
+        {
+            return await _context.Adverts.Where(s => s.Sold == false).Include(a => a.Residence)
+                .ThenInclude(a => a.Address)
+                .ThenInclude(c => c.Commun)
+                .Include(r => r.Realtor).ToListAsync();
+        }
+
         // Auth Robert
         public async Task<Advert> GetActiveAdvertByAdvertIdAsync(int advertId)
         {

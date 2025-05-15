@@ -1112,10 +1112,137 @@ namespace FribergRealEstatesAPI.Data.Seeding
                 IsAvailable = true,
                 ImageUrls = new[]
                 {
-                    "https://bilder.hemnet.se/images/1024x/c3/83/c3839f0bfbd740b757057bdb7aa2e127.jpg",
-                    "https://bilder.hemnet.se/images/1024x/5c/25/5c2546bf286ec3ffb671990ce8374079.jpg",
-                    "https://bilder.hemnet.se/images/1024x/76/79/767983fb4642731fba50c847c432dde3.jpg",
-                    "https://bilder.hemnet.se/images/1024x/5d/f4/5df41ae2698e366547b8dec0412e01e5.jpg"
+                    "https://bilder.hemnet.se/images/itemgallery_cut/43/aa/43aa77208efb5a64385f3424e09bf5d3.jpg",
+                    "https://bilder.hemnet.se/images/itemgallery_cut/40/70/40701d9d4d84fecf686c07f3547b8c47.jpg",
+                    "https://bilder.hemnet.se/images/itemgallery_cut/cf/a1/cfa12cf18817b656cee4e188604814ec.jpg"
+                }
+            });
+
+            context.Residences.Add(new RowHouse
+            {
+                Address = context.Addresses.OrderBy(x => Guid.NewGuid()).First(),
+                Type = ResidenceType.VacationHouse,
+                Area = 85,
+                BiArea = 20,
+                Floors = 2,
+                Description = "Charmig fritidsvilla med sjötomt i Mälardalen\nDenna välplanerade fritidsbostad erbjuder 85 kvm boyta plus 20 kvm biyta på två plan. Kök med öppen spis, stort vardagsrum med panoramafönster mot sjön, och tre sovrum. Tomten sträcker sig ner till egen brygga i den lugna viken. Solpaneler och vedpanna för miljövänlig uppvärmning. Perfekt för både sommar- och vinterbruk med fullt utrustat vinterförråd.",
+                Rooms = 3,
+                FloorRows = 2,
+                MonthlyFee = 1500,
+                OperatingCost = 3800,
+                Facilities = new List<Facilities>
+                {
+                    Facilities.ParkingLot,
+                    Facilities.Terrace,
+                },
+                BuildYear = 2015,
+                IsAvailable = true,
+                ImageUrls = new[]
+                {
+                    "https://bilder.hemnet.se/images/itemgallery_cut/3e/c5/3ec5094dd8a077546afad0dd65079a9b.jpg",
+                    "https://bilder.hemnet.se/images/itemgallery_cut/2c/92/2c9250ffeab0a53657670134eb1270fe.jpg",
+                    "https://bilder.hemnet.se/images/itemgallery_cut/0c/96/0c967c36e6279b25f7cc45723fa4183b.jpg"
+                }
+            });
+
+            context.Residences.Add(new RowHouse
+            {
+                Address = context.Addresses.OrderBy(x => Guid.NewGuid()).First(),
+                Type = ResidenceType.RowHouse,
+                Area = 120,
+                BiArea = 30,
+                Floors = 3,
+                Description = "Modernt radhus i populärt område\nNytt och stilrent radhus med öppen planlösning och hög energistandard. Stort kök med öppen spis, tre sovrum och två badrum. Biyta inkluderar garage och hobbyrum. Trivsam innergård med uteplats och grönsaksland. Nära till skola, kollektivtrafik och naturreservat.",
+                Rooms = 4,
+                FloorRows = 3,
+                MonthlyFee = 2500,
+                OperatingCost = 4500,
+                Facilities = new List<Facilities>
+                {
+                    Facilities.Terrace
+                },
+                BuildYear = 2020,
+                IsAvailable = true,
+                ImageUrls = new[]
+                {
+                    "https://bilder.hemnet.se/images/itemgallery_cut/0f/b6/0fb6e6eb066eea371daaf7076126361a.jpg",
+                    "https://bilder.hemnet.se/images/itemgallery_cut/80/5b/805b66726dc76c836bb151882364e5b1.jpg"
+                }
+            });
+
+            context.Residences.Add(new RowHouse
+            {
+                Address = context.Addresses.OrderBy(x => Guid.NewGuid()).First(),
+                Type = ResidenceType.VacationHouse,
+                Area = 60,
+                BiArea = 10,
+                Floors = 1,
+                Description = "Idyllisk sommarstuga vid skärgården\nEnkel men fullt utrustad stuga med direkt tillgång till bad och båtplats. Öppen planlösning med kök, vardagsrum och två sovalkover. Stort soligt terrasstak med havsutsikt. Tomten är lättskött med naturlig vegetation. Endast 10 minuters promenad till kommunal båthamn.",
+                Rooms = 2,
+                FloorRows = 1,
+                MonthlyFee = 800,
+                OperatingCost = 2800,
+                Facilities = new List<Facilities>
+                {
+                    Facilities.Terrace,
+                },
+                BuildYear = 2008,
+                IsAvailable = false,
+                ImageUrls = new[]
+                {
+                    "https://bilder.hemnet.se/images/itemgallery_cut/a4/32/a4324cdb2170321f2279caabf9f8b8d1.png",
+                    "https://bilder.hemnet.se/images/itemgallery_cut/a3/67/a367e65a5cdcf4953ea6990bef3f2bb3.jpg"
+                }
+            });
+
+            context.Residences.Add(new RowHouse
+            {
+                Address = context.Addresses.OrderBy(x => Guid.NewGuid()).First(),
+                Type = ResidenceType.RowHouse,
+                Area = 95,
+                BiArea = 25,
+                Floors = 2,
+                Description = "Centralt radhus med stor trädgård\nLjust och rymligt radhus i hjärtat av stan. Nyrenoverat kök med vittursfönster, tre sovrum och familjebadrum. Källaren innehåller förråd och tvättstuga. Privat trädgård med fruktträd och uteplats. Kort avstånd till centrum men ändå lugnt läge.",
+                Rooms = 3,
+                FloorRows = 2,
+                MonthlyFee = 3200,
+                OperatingCost = 5200,
+                Facilities = new List<Facilities>
+                {
+                    Facilities.ParkingLot,
+                },
+                BuildYear = 2018,
+                IsAvailable = true,
+                ImageUrls = new[]
+                {
+                    "https://bilder.hemnet.se/images/itemgallery_cut/d0/e6/d0e63f2ad93ce7f2786b1e19e27b22dc.jpg",
+                    "https://bilder.hemnet.se/images/itemgallery_cut/72/55/7255a53ab167f84c5fbc30d9373a2a65.jpg"
+                }
+            });
+
+            context.Residences.Add(new RowHouse
+            {
+                Address = context.Addresses.OrderBy(x => Guid.NewGuid()).First(),
+                Type = ResidenceType.VacationHouse,
+                Area = 110,
+                BiArea = 40,
+                Floors = 2,
+                Description = "Exklusiv fjällstuga i alpint läge\nStorslagen stuga med panoramautsikt över fjällvärlden. Stort vardagsrum med öppen spis, fullt utrustat kök, fyra sovrum och bastu. Separat gäststuga i biytan. Tomten inkluderar skidbacke och egen skidspårmaskin. Perfekt för både vinter- och sommarsport.",
+                Rooms = 4,
+                FloorRows = 2,
+                MonthlyFee = 4200,
+                OperatingCost = 6800,
+                Facilities = new List<Facilities>
+                {
+                    Facilities.Terrace,
+                },
+                BuildYear = 2019,
+                IsAvailable = true,
+                ImageUrls = new[]
+                {
+                    "https://bilder.hemnet.se/images/itemgallery_cut/3e/94/3e9438cc2960a3592b21fe91b930680f.jpg",
+                    "https://bilder.hemnet.se/images/itemgallery_cut/26/91/2691c8570898c3f5d92dde67e3d21911.jpg",
+                    "https://bilder.hemnet.se/images/itemgallery_cut/7d/51/7d51e2c37966ca28dee4528c0ac73ca3.jpg"
                 }
             });
 
